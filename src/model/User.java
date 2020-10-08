@@ -11,4 +11,15 @@ public class User {
         userID = -1; //undefined
     }
 
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 }
