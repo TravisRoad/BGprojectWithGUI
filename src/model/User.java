@@ -3,14 +3,14 @@ package model;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private int userID;
+    private long userID;
     private String userName;
     private String passWord;
 
-    public User(String userName, String passWord){
+    public User(String userName, String passWord, long userID){
         this.userName = userName;
         this.passWord = passWord;
-        userID = -1; //undefined
+        this.userID = userID;
     }
 
     public void setUserID(int userID) {
@@ -29,7 +29,7 @@ public class User implements Serializable {
         return userName;
     }
 
-    public int getUserID() {
+    public long getUserID() {
         return userID;
     }
 

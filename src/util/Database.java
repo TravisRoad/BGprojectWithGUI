@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver" +
+            "?useSSL=false&characterEncoding=utf8";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/bgprojectwithgui";
     private static final String userName = "root";
     private static final String passwd = "123456";

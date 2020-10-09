@@ -2,7 +2,8 @@ package Dao;
 
 import model.User;
 import util.Database;
-import util.Error;
+import util.myexception.AccountNotExistException;
+import util.myexception.WrongPassWdException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,35 +17,47 @@ public class UserDao {
         //init
     }
 
-    public boolean login(User user){
-        return true;
-    }
-
-    public Error signup(User user){
-        boolean isExist = isDuplicated(user);
-        if(isExist) return Error.isExist;
-        else //TODO
-
-        return Error.success;
+    public boolean insert(String userName, String passwd){
+        String sql = "INSERT INTO usrs (username, passwd) VALUES (?,?)";
+        boolean ret = false;
+        try(PreparedStatement ps = Database.getConn().prepareStatement(sql)){
+            ps.setObject(1,userName);
+            ps.setObject(2,passwd);
+            ret = ps.execute();
+            ret = true;
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return ret;
     }
 
     /**
-     * 判断是否有对应的用户
-     * @param user 用户
-     * @return result:boolean
+     * 查询是否有对应的用户
+     * @param userName name
+     * @param passwd passwd
+     * @throws SQLException, AccountNotExistException, WrongPassWdException
+     * @return User 查询到的用户对象，失败则返回{@code null}
      */
-    private boolean isDuplicated(User user){
+    public User search(String userName, String passwd) throws SQLException, AccountNotExistException, WrongPassWdException {
         String sql = "SELECT * FROM usrs WHERE username=?";
-        boolean flag = false;
+        User user = null;
         try(PreparedStatement ps = Database.getConn().prepareStatement(sql)){
-            ps.setObject(1,user.getUserName());
+            ps.setObject(1,userName);
             try(ResultSet rs = ps.executeQuery()){
-                if(rs.next()) flag = false;
-                else flag = true;
+                if(rs.next()){//查询成功
+                    long id = rs.getLong(1);
+                    if(!rs.getString(3).equals(passwd)){
+                        throw new WrongPassWdException();
+                    }
+                    else{
+                        user = new User(userName,passwd,id);
+                    }
+                }
+                else{//无对应账户
+                    throw new AccountNotExistException();
+                }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return flag;
+        return user;
     }
 }
