@@ -1,4 +1,4 @@
-package Dao;
+package dao;
 
 import model.User;
 import util.Database;

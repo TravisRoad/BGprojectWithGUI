@@ -1,4 +1,5 @@
-# BGproject
+
+\# BGproject
 ## 功能
 - 个人爱好资料库
 - 引入外部资料库
