@@ -4,21 +4,18 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class LoginPane extends Application {
+import java.io.IOException;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-//        primaryStage.setTitle("Hello World");
-//        primaryStage.setScene(new Scene(root, 300, 275));
-//        primaryStage.show();
+public class LoginPane{
 
-    }
-
-
-    public static void main(String[] args) {
-        launch(args);
+    public void startLoginPane() throws IOException {
+        AnchorPane root = FXMLLoader.load(getClass().getResource("../resource/Login.fxml"));
+        Stage loginStage = new Stage();
+        loginStage.setTitle("Hello World");
+        loginStage.setScene(new Scene(root));
+        loginStage.show();
     }
 }

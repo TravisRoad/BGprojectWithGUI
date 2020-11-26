@@ -2,21 +2,13 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
+import view.LoginPane;
+
 
 public class MainController implements Initializable {
 
@@ -34,14 +26,8 @@ public class MainController implements Initializable {
     // When user click on myButton
     // this method will be called.
     public void open_login_window(ActionEvent event) throws IOException {
-        System.out.println("Button Clicked!");
-
-        AnchorPane root = FXMLLoader.load(getClass().getResource("../resource/Login.fxml"));
-        Stage loginStage = new Stage();
-        loginStage.setTitle("Hello World");
-        loginStage.setScene(new Scene(root, 300, 275));
-        loginStage.show();
-
+        LoginPane lp = new LoginPane();
+        lp.startLoginPane();
     }
 
 }

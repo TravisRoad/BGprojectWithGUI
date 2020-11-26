@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class client extends Application {
+public class Client extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
