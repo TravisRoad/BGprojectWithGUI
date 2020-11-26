@@ -1,4 +1,4 @@
-package sample;
+package view;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -9,20 +9,23 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class Main extends Application {
+public class client extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("../resource/Main.fxml"));
 
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>(){
+        /**
+         * 主窗口关闭则直接退出所有窗口
+         */
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {
                 Platform.exit();
             }
         });
 
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("main");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 

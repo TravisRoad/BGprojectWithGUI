@@ -1,5 +1,6 @@
-package sample;
+package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -8,17 +9,20 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
-public class Controller implements Initializable {
+public class MainController implements Initializable {
 
     @FXML
-    private Button myButton;
+    private Button loginButton;
 
-    @FXML
-    private TextField myTextField;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -29,15 +33,14 @@ public class Controller implements Initializable {
 
     // When user click on myButton
     // this method will be called.
-    public void showDateTime(ActionEvent event) {
+    public void open_login_window(ActionEvent event) throws IOException {
         System.out.println("Button Clicked!");
 
-        Date now= new Date();
-
-        DateFormat df = new SimpleDateFormat("yyyy-dd-MM HH:mm:ss");
-        String dateTimeString = df.format(now);
-        // Show in VIEW
-        myTextField.setText(dateTimeString);
+        AnchorPane root = FXMLLoader.load(getClass().getResource("../resource/Login.fxml"));
+        Stage loginStage = new Stage();
+        loginStage.setTitle("Hello World");
+        loginStage.setScene(new Scene(root, 300, 275));
+        loginStage.show();
 
     }
 
