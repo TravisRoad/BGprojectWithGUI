@@ -11,12 +11,19 @@ import java.sql.SQLException;
 
 /**
  * user table database access object
+ * 访问User表
  */
 public class UserDao {
     public UserDao(){
         //init
     }
 
+    /**
+     * 插入新用户，用户id会自动生成
+     * @param userName 用户名
+     * @param passwd 密码
+     * @return 插入成功
+     */
     public boolean insert(String userName, String passwd){
         String sql = "INSERT INTO usrs (username, passwd) VALUES (?,?)";
         boolean ret = false;
@@ -33,8 +40,8 @@ public class UserDao {
 
     /**
      * 查询是否有对应的用户
-     * @param userName name
-     * @param passwd passwd
+     * @param userName 用户名
+     * @param passwd 密码
      * @throws SQLException, AccountNotExistException, WrongPassWdException
      * @return User 查询到的用户对象，失败则返回{@code null}
      */
