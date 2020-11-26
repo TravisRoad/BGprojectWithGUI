@@ -29,8 +29,10 @@ public class Client {
         boolean flag = false;
         try{
             client = new Socket(ip,port);
-            obj_is = new ObjectInputStream(client.getInputStream());
+            InputStream is = client.getInputStream();
             obj_os = new ObjectOutputStream(client.getOutputStream());
+            obj_os.flush();
+            obj_is = new ObjectInputStream(client.getInputStream());
             flag = true;
         }catch (IOException e){
             e.printStackTrace();
