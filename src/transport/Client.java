@@ -1,5 +1,6 @@
 package transport;
 
+import model.User;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
@@ -11,22 +12,25 @@ import java.net.Socket;
  */
 public class Client {
     public Socket client = null;
-    private final int DEFAULT_PORT = 1100;
-    private final String DEFAULT_IP = "127.0.0.1";
     private final char END_CHAR = '#';
     private InputStream is;
+    private ObjectInputStream obj_is;
+    private ObjectOutputStream obj_os;
 
     public Client(){}
 
     public boolean connect(){
-        return connect(DEFAULT_IP,DEFAULT_PORT);
+        int DEFAULT_PORT = 1100;
+        String DEFAULT_IP = "127.0.0.1";
+        return connect(DEFAULT_IP, DEFAULT_PORT);
     }
 
     public boolean connect(String ip, int port){
         boolean flag = false;
         try{
             client = new Socket(ip,port);
-            InputStream is = client.getInputStream();
+            obj_is = new ObjectInputStream(client.getInputStream());
+            obj_os = new ObjectOutputStream(client.getOutputStream());
             flag = true;
         }catch (IOException e){
             e.printStackTrace();
@@ -61,6 +65,38 @@ public class Client {
             e.printStackTrace();
         }
         return flag;
+    }
+
+    public boolean writeObj(Object obj){
+        boolean flag = false;
+        try {
+            obj_os.writeObject(obj);
+            obj_os.flush();
+            flag = true;
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+    public Object readObj(){
+        try{
+            Object obj = obj_is.readObject();
+            return obj;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Client c = new Client();
+        System.out.println("hello1");
+        c.connect();
+        System.out.println("hello");
+        c.writeObj(new User("LXY","lalala", 1234));
     }
 
 }
