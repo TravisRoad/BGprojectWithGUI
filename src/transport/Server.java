@@ -24,19 +24,13 @@ public class Server {
             ExecutorService pool = Executors.newFixedThreadPool(MAX_CLIENT_CNT);
             int DEFAULT_PORT = 1100;
             service = new ServerSocket(DEFAULT_PORT, MAX_CLIENT_CNT,address);
-//            while(true){
-//                connect = service.accept();
-//                System.out.println(connect.toString());
-//                //创建一个任务,放入线程池等待运行
-//                ServiceTask serviceTask = new ServiceTask(connect);
-//                pool.execute(serviceTask);
-//            }
-            connect = service.accept();
-            ServiceTask serviceTask = new ServiceTask(connect);
-            pool.submit(serviceTask);
-            pool.shutdown();
-
-
+            while(true){
+                connect = service.accept();
+                System.out.println(connect.toString());
+                //创建一个任务,放入线程池等待运行
+                ServiceTask serviceTask = new ServiceTask(connect);
+                pool.execute(serviceTask);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
