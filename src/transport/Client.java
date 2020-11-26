@@ -1,7 +1,5 @@
 package transport;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -50,7 +48,7 @@ public class Client {
         return recvMsg;
     }
 
-    public boolean writeStr(@NotNull String str){
+    public boolean writeStr(String str){
         boolean flag = false;
         try {
             OutputStream out = client.getOutputStream();

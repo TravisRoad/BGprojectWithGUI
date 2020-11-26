@@ -4,7 +4,7 @@
 ### Controller
 * 控制 GUI 上的控件
 
-### Dao（Database Access Object）
+### dao（Database Access Object）
 * 数据库交互对象
 
 ### resource
