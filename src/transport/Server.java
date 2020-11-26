@@ -15,13 +15,13 @@ public class Server {
     public void start(){
         try{
             InetAddress address = InetAddress.getByName(DEFAULT_IP);
-            Socket connect = null;
+            Socket connectSocket = null;
             ExecutorService pool = Executors.newFixedThreadPool(MAX_CLIENT_CNT);
             service = new ServerSocket(DEFAULT_PORT,MAX_CLIENT_CNT,address);
             while(true){
-                connect = service.accept();
+                connectSocket = service.accept();
                 //创建一个任务,放入线程池等待运行
-                ServiceTask serviceTask = new ServiceTask(connect);
+                ServiceTask serviceTask = new ServiceTask(connectSocket);
                 pool.execute(serviceTask);
             }
         }catch (Exception e){
