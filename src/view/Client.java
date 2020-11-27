@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import transport.ClientTrans;
+import util.Database;
 
 public class Client extends Application {
 
@@ -27,10 +28,11 @@ public class Client extends Application {
             }
         });
 
+        connect2server();
         MainController mainController = fxmlLoader.getController(); //获取控制器对象，以传递参数
         mainController.setClientTrans(clientTrans);
 
-        connect2server();  // TODO:连接到服务器的返回值未处理
+
         primaryStage.setTitle("main");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

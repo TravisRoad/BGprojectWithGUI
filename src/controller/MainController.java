@@ -8,15 +8,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import transport.ClientTrans;
+import util.Database;
 import view.LoginPane;
 
 
-public class MainController implements Initializable {
+public class MainController extends ParentController implements Initializable{
 
     @FXML
     private Button loginButton;
     private String str = null;
-    private ClientTrans clientTrans;
 
 
     @Override
@@ -33,10 +33,6 @@ public class MainController implements Initializable {
 
     public void setStr(String str) {
         this.str = str;
-    }
-
-    public void setClientTrans(ClientTrans clientTrans) {
-        this.clientTrans = clientTrans;
     }
 }
 

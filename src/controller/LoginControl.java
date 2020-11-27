@@ -13,11 +13,12 @@ import java.util.ResourceBundle;
 import dao.UserDao;
 import model.User;
 import transport.ClientTrans;
+import util.Database;
 import util.TransportThings;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
 
-public class LoginControl implements Initializable {
+public class LoginControl extends ParentController implements Initializable {
 
     @FXML
     private TextField userNameTextField;
@@ -26,8 +27,6 @@ public class LoginControl implements Initializable {
     @FXML
     private Button loginButton;
     private Button signinButton;
-
-    private ClientTrans clientTrans;//在创建loginPane时已经传入参数
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,12 +37,16 @@ public class LoginControl implements Initializable {
         String userName = userNameTextField.getText();
         String passWord = passWordTextField.getText();
         TransportThings tt = new TransportThings();
+        User user = new User(userName,passWord,0);
         tt.setQuery("login");
+        tt.setUser(user);
 
         clientTrans.writeObj(tt);
-    }
-
-    public void setClientTrans(ClientTrans clientTrans) {
-        this.clientTrans = clientTrans;
+        tt = (TransportThings) clientTrans.readObj();
+        if(tt.getState()==0x01){
+            System.out.println("success");
+        }else if(tt.getState()==0x00){
+            System.out.println(tt.getInfo());
+        }
     }
 }

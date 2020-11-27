@@ -1,19 +1,19 @@
 package util;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Database {
-    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver" +
-            "?useSSL=false&characterEncoding=utf8";
+    private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://123.57.131.204:3306/boardgame";
     private static final String userName = "root";
     private static final String passwd = "123456";
-    private static Connection conn = null;
+    private static Connection conn;
 
-    static{//静态代码块
+    public Database(){
+        //connect();
+    }
+
+    static {
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, userName, passwd);
@@ -21,9 +21,8 @@ public class Database {
             e.printStackTrace();
         }
     }
-
     /**
-     * connect
+     * connect to database
      * @deprecated
      */
     public static void connect() {
@@ -35,7 +34,7 @@ public class Database {
         }
     }
 
-    public static Connection getConn() throws SQLException {
+    public static Connection getConn(){
         return conn;
     }
 
@@ -52,6 +51,22 @@ public class Database {
             throwable.printStackTrace();
         }finally {
             return flag;
+        }
+    }
+
+    public static void main(String[] args) {
+        Database d = new Database();
+        Connection conn = d.getConn();
+        String sql = "select * from user where username = ?";
+        boolean ret = false;
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setObject(1,"LXY");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                System.out.println(rs.getString("username") + rs.getString("passwd"));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
         }
     }
 }
