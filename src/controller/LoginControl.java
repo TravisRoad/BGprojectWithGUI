@@ -41,10 +41,12 @@ public class LoginControl extends ParentController implements Initializable {
         tt.setQuery("login");
         tt.setUser(user);
 
-        clientTrans.writeObj(tt);
+        clientTrans.writeObj(tt);//TODO:密码需要加密处理
         tt = (TransportThings) clientTrans.readObj();
         if(tt.getState()==0x01){
             System.out.println("success");
+            user = tt.getUser();
+            clientTrans.setCurrentUser(user);
         }else if(tt.getState()==0x00){
             System.out.println(tt.getInfo());
         }
