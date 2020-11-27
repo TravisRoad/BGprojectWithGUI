@@ -12,10 +12,13 @@ import java.net.Socket;
  */
 public class ClientTrans {
     public Socket client = null;
+
+    private User currentUser;
     private final char END_CHAR = '#';
     private InputStream is;
     private ObjectInputStream obj_is;
     private ObjectOutputStream obj_os;
+
 
     public ClientTrans(){}
 
@@ -100,4 +103,11 @@ public class ClientTrans {
         c.writeObj(new User("LXY","lalala", 1234));
     }
 
+    public void setCurrentUser(User currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public User getCurrentUser() {
+        return currentUser;
+    }
 }
