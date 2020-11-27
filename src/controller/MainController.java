@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import transport.ClientTrans;
 import view.LoginPane;
 
 
@@ -14,6 +15,8 @@ public class MainController implements Initializable {
 
     @FXML
     private Button loginButton;
+    private String str = null;
+    private ClientTrans clientTrans;
 
 
     @Override
@@ -23,13 +26,17 @@ public class MainController implements Initializable {
 
     }
 
-    // When user click on myButton
-    // this method will be called.
     public void open_login_window(ActionEvent event) throws IOException {
         LoginPane lp = new LoginPane();
-        lp.startLoginPane();
+        lp.startLoginPane(clientTrans);
     }
 
+    public void setStr(String str) {
+        this.str = str;
+    }
+
+    public void setClientTrans(ClientTrans clientTrans) {
+        this.clientTrans = clientTrans;
+    }
 }
-//更多请阅读：https://www.yiibai.com/javafx/javafx-tutorial-for-beginners.html
 

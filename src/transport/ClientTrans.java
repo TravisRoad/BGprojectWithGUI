@@ -10,14 +10,14 @@ import java.net.Socket;
  * 用于客户端与服务端通信
  * @author Travis
  */
-public class Client {
+public class ClientTrans {
     public Socket client = null;
     private final char END_CHAR = '#';
     private InputStream is;
     private ObjectInputStream obj_is;
     private ObjectOutputStream obj_os;
 
-    public Client(){}
+    public ClientTrans(){}
 
     public boolean connect(){
         int DEFAULT_PORT = 1100;
@@ -32,13 +32,12 @@ public class Client {
             InputStream is = client.getInputStream();
             obj_os = new ObjectOutputStream(client.getOutputStream());
             obj_os.flush();
-            obj_is = new ObjectInputStream(client.getInputStream());
+            obj_is = new ObjectInputStream(new BufferedInputStream(client.getInputStream()));
             flag = true;
         }catch (IOException e){
             e.printStackTrace();
-        }finally {
-            return flag;
         }
+        return flag;
     }
 
     public String readStr(){
@@ -94,7 +93,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        Client c = new Client();
+        ClientTrans c = new ClientTrans();
         System.out.println("hello1");
         c.connect();
         System.out.println("hello");
