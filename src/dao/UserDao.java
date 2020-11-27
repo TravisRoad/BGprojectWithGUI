@@ -5,6 +5,7 @@ import util.Database;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
 
+import javax.xml.crypto.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,10 +15,6 @@ import java.sql.SQLException;
  * 访问User表
  */
 public class UserDao {
-    public UserDao(){
-        //init
-    }
-
     /**
      * 插入新用户，用户id会自动生成
      * @param userName 用户名
@@ -25,7 +22,7 @@ public class UserDao {
      * @return 插入成功
      */
     public boolean insert(String userName, String passwd){
-        String sql = "INSERT INTO usrs (username, passwd) VALUES (?,?)";
+        String sql = "INSERT INTO user (username, passwd) VALUES (?,?)";
         boolean ret = false;
         try(PreparedStatement ps = Database.getConn().prepareStatement(sql)){
             ps.setObject(1,userName);
@@ -46,7 +43,7 @@ public class UserDao {
      * @return User 查询到的用户对象，失败则返回{@code null}
      */
     public User search(String userName, String passwd) throws SQLException, AccountNotExistException, WrongPassWdException {
-        String sql = "SELECT * FROM usrs WHERE username=?";
+        String sql = "SELECT * FROM user WHERE username=?";
         User user = null;
         try(PreparedStatement ps = Database.getConn().prepareStatement(sql)){
             ps.setObject(1,userName);
