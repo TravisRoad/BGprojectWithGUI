@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -11,13 +12,19 @@ import java.util.ResourceBundle;
 
 import dao.UserDao;
 import model.User;
+import transport.ClientTrans;
+import util.Database;
+import util.TransportThings;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
 
-public class LoginControl implements Initializable {
+public class LoginControl extends ParentController implements Initializable {
 
+    @FXML
     private TextField userNameTextField;
+    @FXML
     private TextField passWordTextField;
+    @FXML
     private Button loginButton;
     private Button signinButton;
 
@@ -29,20 +36,17 @@ public class LoginControl implements Initializable {
     public void login(ActionEvent event){
         String userName = userNameTextField.getText();
         String passWord = passWordTextField.getText();
-        UserDao userDao = new UserDao();
+        TransportThings tt = new TransportThings();
+        User user = new User(userName,passWord,0);
+        tt.setQuery("login");
+        tt.setUser(user);
 
-        try {
-            User user = userDao.search(userName,passWord); //TODO:获取到的用户还没有处理
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        } catch (AccountNotExistException e) {
-            e.printStackTrace();
-            System.out.println("账户不存在");
-        } catch (WrongPassWdException e) {
-            e.printStackTrace();
-            System.out.println("密码错误");
+        clientTrans.writeObj(tt);
+        tt = (TransportThings) clientTrans.readObj();
+        if(tt.getState()==0x01){
+            System.out.println("success");
+        }else if(tt.getState()==0x00){
+            System.out.println(tt.getInfo());
         }
     }
-
-
 }
