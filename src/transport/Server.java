@@ -48,7 +48,7 @@ public class Server {
         }
 
         @Override
-        public void run() {
+        public void run() {//TODO:要执行的server体在这里面
             System.out.println("start");
             User user = (User) readObj();
             System.out.println(user);

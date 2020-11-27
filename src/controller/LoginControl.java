@@ -13,6 +13,7 @@ import dao.UserDao;
 import model.User;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
+import transport.Client;
 
 public class LoginControl implements Initializable {
 
