@@ -7,7 +7,7 @@ public class User implements Serializable {
     private String userName;
     private String passWord;
 
-    public User(String userName, String passWord, long userID){
+    public User(String userName, String passWord, long userID) {
         this.userName = userName;
         this.passWord = passWord;
         this.userID = userID;

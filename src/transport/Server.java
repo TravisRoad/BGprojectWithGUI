@@ -60,7 +60,7 @@ class ServiceTask implements Runnable {
     ServiceTask(Socket socket) throws IOException {
         Database database = new Database();
         userDao = new UserDao(database);
-        boardGameDao = new BoardGameDao();
+        boardGameDao = new BoardGameDao(database);
         obj_is = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         obj_os = new ObjectOutputStream(socket.getOutputStream());
     }
