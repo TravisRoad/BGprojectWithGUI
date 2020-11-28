@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 bejson.com
  */
-package model.boardgame;
+package model.boardgamefetched;
 
 /**
  * Auto-generated: 2020-11-28 18:54:7

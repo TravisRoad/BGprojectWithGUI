@@ -1,6 +1,6 @@
 package util.httpRequest;
 
-import util.JsonConvert;
+import util.XMLtoJSON;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,41 +9,54 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MyGetRequest {
-    private final String id_url_api = "https://bgg-json.azurewebsites.net/thing/";
 
-    public static String GetRequest(String url) throws IOException {
+    public static String request(String thingsToSearch) {
+        String XMLapiString = "https://www.boardgamegeek.com/xmlapi/search?search=";
+        String url = XMLapiString + thingsToSearch;
+        return getResponds(url);
+    }
+
+    public static String request(int bg_id) {
+        String jsonapiString = "https://bgg-json.azurewebsites.net/thing/";
+        String url = jsonapiString + Integer.toString(bg_id);
+        return getResponds(url);
+    }
+
+    public static String getResponds(String url) {
         StringBuffer response = new StringBuffer();
-        URL urlForGetRequest = new URL(url);
-        String readLine = null;
-        HttpURLConnection httpURLConnection = (HttpURLConnection) urlForGetRequest.openConnection();
-        httpURLConnection.setRequestMethod("GET");
-        //conection.setRequestProperty("userId", "a1bcdef"); // set userId its a sample here
-        int responseCode = httpURLConnection.getResponseCode();
+        try {
+            URL urlForGetRequest = new URL(url);
+            String readLine = null;
+            HttpURLConnection httpURLConnection = (HttpURLConnection) urlForGetRequest.openConnection();
+            httpURLConnection.setRequestMethod("GET");
 
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(httpURLConnection.getInputStream()));
-            while ((readLine = in.readLine()) != null) {
-                response.append(readLine);
+            int responseCode = httpURLConnection.getResponseCode();
+
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(
+                        new InputStreamReader(httpURLConnection.getInputStream()));
+                while ((readLine = in.readLine()) != null) {
+                    response.append(readLine);
+                }
+                in.close();
+
+                System.out.println("JSON String Result" + response.toString());
+
+            } else {
+                System.out.println("GET NOT WORKED");
+                return null;
             }
-            in.close();
-
-            System.out.println("JSON String Result" + response.toString());
-
-        } else {
-            System.out.println("GET NOT WORKED");
-            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return response.toString();
     }
 
     public static void main(String[] args) {
-        try {
-            String a = MyGetRequest.GetRequest("https://bgg-json.azurewebsites.net/thing/31260");
-            JsonConvert j = new JsonConvert();
-            j.to(a);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        MyGetRequest myGetRequest = new MyGetRequest();
+        String xml = myGetRequest.request("gloomhaven");
+        XMLtoJSON xmLtoJSON = new XMLtoJSON();
+        String json = xmLtoJSON.convert(xml);
+        System.out.println(json);
     }
 }

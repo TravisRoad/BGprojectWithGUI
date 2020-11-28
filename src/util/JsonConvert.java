@@ -1,10 +1,12 @@
 package util;
 
 import com.google.gson.Gson;
-import model.boardgame.BoardGame;
-import model.boardgame.HotBoardGame;
+import model.boardgamefetched.BoardGameFetched;
+import model.boardgamefetched.HotBoardGame;
+import model.search.BoardGameSearched;
 
 public class JsonConvert {
+
     static void test() {
         String json = "{\n" +
                 "    \"rank\": 1,\n" +
@@ -18,10 +20,14 @@ public class JsonConvert {
         System.out.println(hbg);
     }
 
-    public void to(String json) {
+    public static BoardGameFetched convert2BoardGameFetched(String json) {
         Gson gson = new Gson();
-        BoardGame hbg = gson.fromJson(json, BoardGame.class);
-        System.out.println(hbg);
+        return gson.fromJson(json, BoardGameFetched.class);
+    }
+
+    public static BoardGameSearched convert2BoardgameSearched(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, BoardGameSearched.class);
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package model.boardgame;
+package model.boardgamefetched;
 
 public class HotBoardGame {
     private int rank;
