@@ -5,6 +5,7 @@ import dao.UserDao;
 import model.User;
 import util.Database;
 import util.TransportThings;
+import util.myexception.AccountAlreadyExistException;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
 
@@ -55,11 +56,10 @@ class ServiceTask implements Runnable {
     private final UserDao userDao;
     private BoardGameDao boardGameDao;
     private User currentUser;//default
-    private Database database;
 
     ServiceTask(Socket socket) throws IOException {
-        database = new Database();
-        userDao = new UserDao();
+        Database database = new Database();
+        userDao = new UserDao(database);
         boardGameDao = new BoardGameDao();
         obj_is = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
         obj_os = new ObjectOutputStream(socket.getOutputStream());
@@ -125,7 +125,9 @@ class ServiceTask implements Runnable {
             case "signup": // fixme:非原子操作,需要加数据库锁,没有进行数据库修改好像问题不大
                 User user = tt.getUser();
                 try {
-                    userDao.search(user.getUserName(), user.getPassWord());
+                    User user1 = userDao.search(user.getUserName(), user.getPassWord());
+                    if (user1 != null)
+                        throw new AccountAlreadyExistException();
                 } catch (SQLException throwable) {
                     throwable.printStackTrace();
                     tt_ret.setInfo("failed to access database");
@@ -137,6 +139,8 @@ class ServiceTask implements Runnable {
                         tt_ret.setInfo("failed to access database");
                     }
                 } catch (WrongPassWdException e) {
+                    tt_ret.setInfo("Account already exist");
+                } catch (AccountAlreadyExistException e) {
                     tt_ret.setInfo("Account already exist");
                 }
                 break;

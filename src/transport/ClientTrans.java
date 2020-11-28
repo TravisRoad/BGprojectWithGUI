@@ -13,7 +13,7 @@ import java.net.Socket;
 public class ClientTrans {
     public Socket client = null;
 
-    private User currentUser;
+    //private User currentUser;
     private final char END_CHAR = '#';
     private InputStream is;
     private ObjectInputStream obj_is;
@@ -100,14 +100,14 @@ public class ClientTrans {
         System.out.println("hello1");
         c.connect();
         System.out.println("hello");
-        c.writeObj(new User("LXY","lalala", 1234));
+        c.writeObj(new User("LXY", "lalala", 1234));
     }
 
-    public void setCurrentUser(User currentUser) {
-        this.currentUser = currentUser;
-    }
-
-    public User getCurrentUser() {
-        return currentUser;
-    }
+//    public void setCurrentUser(User currentUser) {
+//        this.currentUser = currentUser;
+//    }
+//
+//    public User getCurrentUser() {
+//        return currentUser;
+//    }
 }
