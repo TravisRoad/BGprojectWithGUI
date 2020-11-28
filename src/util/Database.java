@@ -10,17 +10,17 @@ public class Database {
     private static Connection conn;
 
     public Database() {
-        //connect();
+        connect();
     }
 
-    static {
-        try {
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, userName, passwd);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    static {
+//        try {
+//            Class.forName(JDBC_DRIVER);
+//            conn = DriverManager.getConnection(DB_URL, userName, passwd);
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     /**
      * connect to database

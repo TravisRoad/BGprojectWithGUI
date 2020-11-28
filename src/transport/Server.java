@@ -135,12 +135,15 @@ class ServiceTask implements Runnable {
                     if (userDao.insert(user.getUserName(), user.getPassWord())) {
                         tt_ret.setInfo("signup success");
                         tt_ret.setState(0x01);
+                        try {
+                            tt_ret.setUser(userDao.search(user.getUserName(), user.getPassWord()));
+                        } catch (SQLException | AccountNotExistException | WrongPassWdException ee) {
+                            ee.printStackTrace();
+                        }
                     } else {
                         tt_ret.setInfo("failed to access database");
                     }
-                } catch (WrongPassWdException e) {
-                    tt_ret.setInfo("Account already exist");
-                } catch (AccountAlreadyExistException e) {
+                } catch (WrongPassWdException | AccountAlreadyExistException e) {
                     tt_ret.setInfo("Account already exist");
                 }
                 break;
