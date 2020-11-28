@@ -1,6 +1,6 @@
 package util;
 
-import model.BoardGame;
+import model.boardgame.BoardGame;
 import model.User;
 
 import java.io.Serializable;

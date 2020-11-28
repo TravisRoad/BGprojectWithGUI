@@ -40,6 +40,7 @@
                         <Font size="36.0"/>
                     </font>
                 </Label>
+                <ToggleButton mnemonicParsing="false" text="ToggleButton" GridPane.rowIndex="2"/>
             </children>
         </GridPane>
     </children>

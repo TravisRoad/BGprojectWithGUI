@@ -9,6 +9,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 import model.User;
 import transport.ClientTrans;
 
@@ -28,13 +30,16 @@ public class MainPage extends Application {
             }
         });
 
+        Scene scene = new Scene(root);
+        JMetro jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         connect2server();
         MainController mainController = fxmlLoader.getController(); //获取控制器对象，以传递参数
         mainController.setClientTrans(clientTrans);
         mainController.setMainPage(this);
 
         primaryStage.setTitle("main");
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
