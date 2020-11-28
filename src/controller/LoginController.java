@@ -27,6 +27,7 @@ public class LoginController extends ParentController implements Initializable {
     private PasswordField passWordTextField;
     @FXML
     private Button loginButton;
+    @FXML
     private Button signupButton;
 
     @Override
