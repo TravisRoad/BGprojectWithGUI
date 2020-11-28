@@ -19,7 +19,7 @@ public class MainPage extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resource/Main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resource/Home.fxml"));
         Parent root = fxmlLoader.load();
         //主窗口关闭则直接退出所有窗口
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -28,14 +28,15 @@ public class MainPage extends Application {
             }
         });
 
-        connect2server();
+        /*connect2server();
         MainController mainController = fxmlLoader.getController(); //获取控制器对象，以传递参数
         mainController.setClientTrans(clientTrans);
-        mainController.setMainPage(this);
+        mainController.setMainPage(this);*/
 
         primaryStage.setTitle("main");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
     }
 
     public void setClientTrans(ClientTrans clientTrans) {
