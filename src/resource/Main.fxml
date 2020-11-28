@@ -11,7 +11,7 @@
 
 <TabPane prefHeight="900.0" prefWidth="1440.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
     <tabs>
-        <Tab fx:id="TabHome" text="Home">
+        <Tab fx:id="TabHome" onSelectionChanged="#refresh_scene" text="Home">
             <content>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                     <content>
@@ -83,7 +83,7 @@
                 </ScrollPane>
             </content>
         </Tab>
-        <Tab fx:id="TabSearch" text="Search">
+        <Tab fx:id="TabSearch" onSelectionChanged="#refresh_scene" text="Search">
             <content>
                 <GridPane alignment="CENTER">
                     <columnConstraints>
@@ -103,7 +103,7 @@
                         <Font size="24.0" />
                      </font>
                         </TextField>
-                        <Button fx:id="ButtonSearch" alignment="TOP_LEFT" mnemonicParsing="false" text="Search" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                        <Button fx:id="ButtonSearch" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#on_button_search_clicked" text="Search" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                             <GridPane.margin>
                                 <Insets top="50.0" />
                             </GridPane.margin>
@@ -114,9 +114,9 @@
                     </children>
                 </GridPane>
             </content></Tab>
-        <Tab fx:id="TabUser" text="User">
+        <Tab fx:id="TabUser" onSelectionChanged="#refresh_scene" text="User">
          <content>
-            <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0">
+            <SplitPane dividerPositions="0.25" prefHeight="160.0" prefWidth="200.0">
                <items>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -136,7 +136,7 @@
                                  </image>
                               </ImageView>
                               <Label fx:id="LabelUsername" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Button fx:id="ButtonEditProfile" mnemonicParsing="false" text="Edit Profile" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                              <Button fx:id="ButtonEditProfile" mnemonicParsing="false" onAction="#on_button_edit_profile_clicked" text="Edit Profile" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                            </children>
                         </GridPane>
                         <GridPane>
@@ -162,10 +162,11 @@
                   </VBox>
                   <ScrollPane prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <GridPane prefHeight="868.0" prefWidth="708.0">
+                        <GridPane prefHeight="868.0" prefWidth="1055.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                           </columnConstraints>
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -173,16 +174,24 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <Label text="Recently Played" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <font>
+                                    <Font size="40.0" />
+                                 </font>
+                              </Label>
+                              <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="251.0" minHeight="10.0" prefHeight="246.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="278.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
                                  <children>
-                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </ImageView>
-                                    <Label text="Label" />
+                                    <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                                    <Label text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                  </children>
-                              </VBox>
+                              </GridPane>
                            </children>
                         </GridPane>
                      </content>
@@ -191,7 +200,7 @@
             </SplitPane>
          </content>
         </Tab>
-        <Tab fx:id="TabSettings" text="Settings">
+        <Tab fx:id="TabSettings" onSelectionChanged="#refresh_scene" text="Settings">
             <content>
                 <GridPane alignment="CENTER">
                     <columnConstraints>

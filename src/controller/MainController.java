@@ -26,6 +26,8 @@ public class MainController extends ParentController implements Initializable {
     @FXML
     private Button ButtonSearch;
     @FXML
+    private Button ButtonEditProfile;
+    @FXML
     private TextField FieldSearch;
     @FXML
     private Label LabelUsername;
@@ -38,7 +40,7 @@ public class MainController extends ParentController implements Initializable {
     @FXML
     private Tab TabSettings;
     private String str = null;
-
+    private CharSequence SearchStr;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,6 +61,20 @@ public class MainController extends ParentController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resource/Main.fxml"));
         Parent root = fxmlLoader.load();
         mainPage.getStage().setScene(new Scene(root));
+    }
+
+    public void on_button_search_clicked(ActionEvent event) throws IOException {
+        SearchStr = FieldSearch.getCharacters();
+        //TODO: Search for board game
+    }
+
+    public void on_button_edit_profile_clicked(ActionEvent event) throws IOException {
+        //TODO
+    }
+
+    public void refresh_scene(ActionEvent event) throws IOException {
+        //When tab selection changed
+        //TODO
     }
 
     public void setStr(String str) {
