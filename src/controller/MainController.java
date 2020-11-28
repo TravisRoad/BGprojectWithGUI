@@ -11,6 +11,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
 import transport.ClientTrans;
 import util.Database;
 import view.LoginPane;
@@ -20,6 +23,20 @@ public class MainController extends ParentController implements Initializable {
 
     @FXML
     private Button loginButton;
+    @FXML
+    private Button ButtonSearch;
+    @FXML
+    private TextField FieldSearch;
+    @FXML
+    private Label LabelUsername;
+    @FXML
+    private Tab TabHome;
+    @FXML
+    private Tab TabSearch;
+    @FXML
+    private Tab TabUser;
+    @FXML
+    private Tab TabSettings;
     private String str = null;
 
 
