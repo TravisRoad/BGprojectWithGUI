@@ -1,5 +1,7 @@
 package model;
 
+import model.boardgame.BoardGame;
+
 import java.io.Serializable;
 
 public class TransportThings implements Serializable {
