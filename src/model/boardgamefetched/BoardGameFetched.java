@@ -1,7 +1,7 @@
 /**
  * Copyright 2020 bejson.com
  */
-package model.boardgame;
+package model.boardgamefetched;
 
 import java.util.List;
 
@@ -11,8 +11,7 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class BoardGame {
-
+public class BoardGameFetched {
     private int gameId;
     private String name;
     private String description;

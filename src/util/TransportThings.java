@@ -1,19 +1,19 @@
 package util;
 
-import model.boardgame.BoardGame;
+import model.BoardGameModel;
 import model.User;
 
 import java.io.Serializable;
 
 public class TransportThings implements Serializable {
     private User user = null;
-    private BoardGame boardGame = null;
+    private BoardGameModel boardGameModel = null;
     private String query = null;
     private String info = null;
     private int state = 0x00;//规定0x00代表查询失败，0x01代表成功
 
-    public void setBoardGame(BoardGame boardGame) {
-        this.boardGame = boardGame;
+    public void setBoardGame(BoardGameModel boardGameModel) {
+        this.boardGameModel = boardGameModel;
     }
 
     public void setQuery(String query) {
@@ -32,8 +32,8 @@ public class TransportThings implements Serializable {
         this.state = state;
     }
 
-    public BoardGame getBoardGame() {
-        return boardGame;
+    public BoardGameModel getBoardGame() {
+        return boardGameModel;
     }
 
     public String getQuery() {

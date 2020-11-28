@@ -1,20 +1,17 @@
 package model;
 
-import model.boardgame.BoardGame;
-
 import java.io.Serializable;
 
 public class TransportThings implements Serializable {
     private User user;
-    private BoardGame boardGame;
+    private BoardGameModel boardGameModel;
     private String classflag; // 传输的对象类型
     private String method; // 用于表示需要使用的方法
 
-    public TransportThings(User user, BoardGame boardGame, String classflag, String method){
+    public TransportThings(User user, BoardGameModel boardGameModel, String classflag, String method) {
         this.user = user;
-        this.boardGame = boardGame;
+        this.boardGameModel = boardGameModel;
         this.classflag = classflag;
         this.method = method;
     }
-
 }

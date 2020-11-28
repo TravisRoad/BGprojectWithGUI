@@ -31,3 +31,6 @@ user_comment(<u>user_id,cm_id</u>);
 
 ## json-api
 [json-api website](https://bgg-json.azurewebsites.net/)
+
+使用[json字符串转java实体类工具](https://www.bejson.com/json2javapojo/new)
+生成可以用来接收数据接口中获得的json串的java beans实体类
