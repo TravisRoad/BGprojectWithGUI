@@ -1,5 +1,5 @@
 
-# BGproject
+\# BGproject
 ## 功能
 - 个人爱好资料库
 - 引入外部资料库
@@ -28,3 +28,6 @@ game_played(<u>bg_id,ph_id</u>);
 comment_game(<u>bg_id,cm_id</u>);
 
 user_comment(<u>user_id,cm_id</u>);
+
+## json-api
+[json-api website](https://bgg-json.azurewebsites.net/)

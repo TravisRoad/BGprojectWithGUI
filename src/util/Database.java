@@ -9,20 +9,22 @@ public class Database {
     private static final String passwd = "123456";
     private static Connection conn;
 
-    public Database(){
-        //connect();
+    public Database() {
+        connect();
     }
 
-    static {
-        try {
-            Class.forName(JDBC_DRIVER);
-            conn = DriverManager.getConnection(DB_URL, userName, passwd);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    static {
+//        try {
+//            Class.forName(JDBC_DRIVER);
+//            conn = DriverManager.getConnection(DB_URL, userName, passwd);
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     /**
      * connect to database
+     *
      * @deprecated
      */
     public static void connect() {
@@ -34,22 +36,23 @@ public class Database {
         }
     }
 
-    public static Connection getConn(){
+    public Connection getConn() {
         return conn;
     }
 
     /**
      * 用于关闭connection
+     *
      * @return 是否成功关闭
      */
-    public static boolean close(){
+    public static boolean close() {
         boolean flag = false;
         try {
             conn.close();
             flag = true;
         } catch (SQLException throwable) {
             throwable.printStackTrace();
-        }finally {
+        } finally {
             return flag;
         }
     }
@@ -59,13 +62,13 @@ public class Database {
         Connection conn = d.getConn();
         String sql = "select * from user where username = ?";
         boolean ret = false;
-        try(PreparedStatement ps = conn.prepareStatement(sql)){
-            ps.setObject(1,"LXY");
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setObject(1, "LXY");
             ResultSet rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 System.out.println(rs.getString("username") + rs.getString("passwd"));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

@@ -28,7 +28,9 @@ public class MainController extends ParentController implements Initializable{
 
     public void open_login_window(ActionEvent event) throws IOException {
         LoginPane lp = new LoginPane();
+        lp.setMainPage(mainPage);
         lp.startLoginPane(clientTrans);
+
     }
 
     public void setStr(String str) {
