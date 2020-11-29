@@ -3,13 +3,15 @@
  */
 package model.boardgamefetched;
 
+import java.io.Serializable;
+
 /**
  * Auto-generated: 2020-11-28 18:54:7
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Expansions {
+public class Expansions implements Serializable {
 
     private String name;
     private int gameId;

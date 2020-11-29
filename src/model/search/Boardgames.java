@@ -3,6 +3,7 @@
  */
 package model.search;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class Boardgames {
+public class Boardgames implements Serializable {
 
     private List<Boardgame> boardgame;
     private String termsofuse;

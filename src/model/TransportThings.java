@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * @deprecated
+ */
 public class TransportThings implements Serializable {
     private User user;
     private BoardGameModel boardGameModel;

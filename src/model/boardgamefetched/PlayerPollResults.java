@@ -3,13 +3,15 @@
  */
 package model.boardgamefetched;
 
+import java.io.Serializable;
+
 /**
  * Auto-generated: 2020-11-28 18:54:7
  *
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class PlayerPollResults {
+public class PlayerPollResults implements Serializable {
 
     private int numPlayers;
     private int best;

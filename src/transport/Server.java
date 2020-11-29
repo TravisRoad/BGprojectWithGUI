@@ -3,6 +3,7 @@ package transport;
 import dao.BoardGameDao;
 import dao.UserDao;
 import model.User;
+import model.search.BoardGameSearched;
 import util.Database;
 import util.TransportThings;
 import util.myexception.AccountAlreadyExistException;
@@ -147,6 +148,11 @@ class ServiceTask implements Runnable {
                     tt_ret.setInfo("Account already exist");
                 }
                 break;
+            case "search":
+                String searchstr = tt.getInfo();
+                BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
+                tt_ret.setState(0x01);
+                tt_ret.setBoardGameSearched(boardGameSearched);
             default:
                 break;
         }
