@@ -1,5 +1,7 @@
 package util.httpRequest;
 
+import model.search.BoardGameSearched;
+import util.JsonConvert;
 import util.XMLtoJSON;
 
 import java.io.BufferedReader;
@@ -54,9 +56,11 @@ public class MyGetRequest {
 
     public static void main(String[] args) {
         MyGetRequest myGetRequest = new MyGetRequest();
-        String xml = myGetRequest.request("gloomhaven");
+        String xml = myGetRequest.request("uno");
         XMLtoJSON xmLtoJSON = new XMLtoJSON();
         String json = xmLtoJSON.convert(xml);
         System.out.println(json);
+        BoardGameSearched b = JsonConvert.convert2BoardgameSearched(json);
+        System.out.println(b);
     }
 }

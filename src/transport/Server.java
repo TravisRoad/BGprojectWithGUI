@@ -2,12 +2,14 @@ package transport;
 
 import dao.BoardGameDao;
 import dao.UserDao;
+import model.BoardGameModel;
 import model.User;
 import model.search.BoardGameSearched;
 import util.Database;
 import util.TransportThings;
 import util.myexception.AccountAlreadyExistException;
 import util.myexception.AccountNotExistException;
+import util.myexception.NoSearchResultException;
 import util.myexception.WrongPassWdException;
 
 import java.io.BufferedInputStream;
@@ -18,6 +20,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -150,9 +153,18 @@ class ServiceTask implements Runnable {
                 break;
             case "search":
                 String searchstr = tt.getInfo();
-                BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
-                tt_ret.setState(0x01);
-                tt_ret.setBoardGameSearched(boardGameSearched);
+                //BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
+                try {
+                    ArrayList<BoardGameModel> boardGameModels = boardGameDao.search0(searchstr);
+                    tt_ret.setBoardGameModels(boardGameModels);
+                    tt_ret.setState(0x01);
+                } catch (NoSearchResultException e) {
+                    tt_ret.setInfo("noResult");
+                    e.printStackTrace();
+                } catch (SQLException throwables) {
+                    tt_ret.setInfo("CANNOT ACCESS DATABASE");
+                    throwables.printStackTrace();
+                }
             default:
                 break;
         }

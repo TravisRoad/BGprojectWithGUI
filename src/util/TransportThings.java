@@ -6,12 +6,23 @@ import model.boardgamefetched.BoardGameFetched;
 import model.search.BoardGameSearched;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class TransportThings implements Serializable {
     private User user = null;
     private BoardGameModel boardGameModel = null;
     private BoardGameFetched boardGameFetched = null;
-    private BoardGameSearched boardGameSearched = null;
+    private ArrayList<BoardGameModel> boardGameModels = null;
+
+    private ArrayList<BoardGameModel> getBoardGameModels() {
+        return boardGameModels;
+    }
+
+    public void setBoardGameModels(ArrayList<BoardGameModel> boardGameModels) {
+        this.boardGameModels = boardGameModels;
+    }
+
+
     private String query = null;
     private String info = null;
     private int state = 0x00;//规定0x00代表查询失败，0x01代表成功
@@ -64,11 +75,4 @@ public class TransportThings implements Serializable {
         this.boardGameFetched = boardGameFetched;
     }
 
-    public BoardGameSearched getBoardGameSearched() {
-        return boardGameSearched;
-    }
-
-    public void setBoardGameSearched(BoardGameSearched boardGameSearched) {
-        this.boardGameSearched = boardGameSearched;
-    }
 }

@@ -1,11 +1,21 @@
 package dao;
 
+import model.BoardGameModel;
+import model.User;
 import model.boardgamefetched.BoardGameFetched;
 import model.search.BoardGameSearched;
 import util.Database;
 import util.JsonConvert;
 import util.XMLtoJSON;
 import util.httpRequest.MyGetRequest;
+import util.myexception.AccountNotExistException;
+import util.myexception.NoSearchResultException;
+import util.myexception.WrongPassWdException;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class BoardGameDao {
     private Database database;
@@ -34,6 +44,7 @@ public class BoardGameDao {
      *
      * @param thingstoSearch 搜索的字段
      * @return BoardGameSearched 存有返回的结果
+     * @deprecated
      */
     public BoardGameSearched search(String thingstoSearch) {
         String xml = MyGetRequest.request(thingstoSearch);
@@ -41,12 +52,24 @@ public class BoardGameDao {
         return JsonConvert.convert2BoardgameSearched(json);
     }
 
-    /*public BoardGameFetched getBoardGameFetched() {
-        return boardGameFetched;
+
+    public ArrayList<BoardGameModel> search0(String thingstoSearch) throws NoSearchResultException, SQLException {
+        String sql = "SELECT * FROM boardgame WHERE name like ? limit 10;";
+        ArrayList<BoardGameModel> boardGameList = new ArrayList<>();
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+            ps.setObject(1, "%" + thingstoSearch + "%");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bg_id = rs.getInt(1);
+                String name = rs.getString(2);
+                String intro = rs.getString(3);
+                double rating = rs.getDouble(4);
+                boardGameList.add(new BoardGameModel(bg_id, name, intro, rating));
+            }
+            if (boardGameList.isEmpty()) {
+                throw new NoSearchResultException();
+            }
+        }
+        return boardGameList;
     }
-
-    public void setBoardGameFetched(BoardGameFetched boardGameFetched) {
-        this.boardGameFetched = boardGameFetched;
-    }*/
-
 }
