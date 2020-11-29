@@ -3,6 +3,7 @@
  */
 package model.boardgamefetched;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @author bejson.com (i@bejson.com)
  * @website http://www.bejson.com/java2pojo/
  */
-public class BoardGameFetched {
+public class BoardGameFetched implements Serializable {
     private int gameId;
     private String name;
     private String description;

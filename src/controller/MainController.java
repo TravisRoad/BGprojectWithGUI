@@ -15,7 +15,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import util.TransportThings;
 import view.LoginPane;
+import view.MainPage;
 
 
 public class MainController extends ParentController implements Initializable {
@@ -58,7 +60,10 @@ public class MainController extends ParentController implements Initializable {
     public void change_scene_user(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resource/Main.fxml"));
         Parent root = fxmlLoader.load();
-        mainPage.getStage().setScene(new Scene(root));
+        Scene s = new Scene(root);
+        MainController mainController = fxmlLoader.getController();
+        mainController.setMainPage(mainPage);
+        mainPage.getStage().setScene(s);
     }
 
     public void on_button_edit_profile_clicked(ActionEvent event) throws IOException {
@@ -81,9 +86,18 @@ public class MainController extends ParentController implements Initializable {
 
 
     public void on_button_search_clicked(ActionEvent event) throws IOException {
-        CharSequence searchStr = FieldSearch.getCharacters();
+        //
         //TODO: Search for board game
-
+        TransportThings tt = new TransportThings();
+        tt.setQuery("search");
+        CharSequence searchStr = FieldSearch.getCharacters();
+        tt.setInfo(searchStr.toString());
+        mainPage.getClientTrans().writeObj(tt);
+        tt = (TransportThings) mainPage.getClientTrans().readObj();
+        int state = tt.getState();
+        if(state == 0x00){
+            System.out.println("failed");
+        }
     }
 }
 

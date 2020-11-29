@@ -1,6 +1,8 @@
 package model.boardgamefetched;
 
-public class HotBoardGame {
+import java.io.Serializable;
+
+public class HotBoardGame implements Serializable {
     private int rank;
     private long gameId;
     private String name;
