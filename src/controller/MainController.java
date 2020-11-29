@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -14,8 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
-import transport.ClientTrans;
-import util.Database;
 import view.LoginPane;
 
 
@@ -28,8 +27,6 @@ public class MainController extends ParentController implements Initializable {
     @FXML
     private Button ButtonEditProfile;
     @FXML
-    private TextField FieldSearch;
-    @FXML
     private Label LabelUsername;
     @FXML
     private Tab TabHome;
@@ -39,8 +36,9 @@ public class MainController extends ParentController implements Initializable {
     private Tab TabUser;
     @FXML
     private Tab TabSettings;
+    @FXML
+    private TextField FieldSearch;
     private String str = null;
-    private CharSequence SearchStr;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,22 +61,29 @@ public class MainController extends ParentController implements Initializable {
         mainPage.getStage().setScene(new Scene(root));
     }
 
-    public void on_button_search_clicked(ActionEvent event) throws IOException {
-        SearchStr = FieldSearch.getCharacters();
-        //TODO: Search for board game
-    }
-
     public void on_button_edit_profile_clicked(ActionEvent event) throws IOException {
         //TODO
     }
 
-    public void refresh_scene(ActionEvent event) throws IOException {
+    public void refresh_scene(Event event) throws IOException {
         //When tab selection changed
         //TODO
     }
 
     public void setStr(String str) {
         this.str = str;
+    }
+
+    /*public TextField getFieldSearch() {
+        return FieldSearch;
+    }*/
+
+
+
+    public void on_button_search_clicked(ActionEvent event) throws IOException {
+        CharSequence searchStr = FieldSearch.getCharacters();
+        //TODO: Search for board game
+
     }
 }
 
