@@ -95,8 +95,10 @@ public class MainController extends ParentController implements Initializable {
         mainPage.getClientTrans().writeObj(tt);
         tt = (TransportThings) mainPage.getClientTrans().readObj();
         int state = tt.getState();
-        if(state == 0x00){
+        if (state == 0x00) {
             System.out.println("failed");
+        } else {
+            System.out.println("success");
         }
     }
 }

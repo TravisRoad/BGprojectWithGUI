@@ -5,9 +5,8 @@ import org.json.JSONObject;
 import org.json.XML;
 
 public class XMLtoJSON {
-
     public static String convert(String xmlString) {
-        int PRETTY_PRINT_INDENT_FACTOR = 4;
+        int PRETTY_PRINT_INDENT_FACTOR = 2;
         String jsonPrettyPrintString = null;
         try {
             JSONObject xmlJSONObj = XML.toJSONObject(xmlString);
