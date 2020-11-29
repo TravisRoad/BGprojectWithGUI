@@ -6,7 +6,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -19,7 +18,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../gson-2.8.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../QfileRecv/495488523/495488523/FileRecv/mysql-connector-java-8.0.21.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +27,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../jmetro-8.6.14.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../Downloads_tmp/gson-2.8.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -37,7 +36,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../json-20201115.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../Downloads_tmp/jmetro-8.6.14.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -46,11 +45,13 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../mysql-connector-java-8.0.21.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../Downloads_tmp/json-20201115.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="json" level="project" />
   </component>
 </module>
