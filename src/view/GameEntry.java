@@ -1,5 +1,6 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,19 +38,25 @@ public class GameEntry extends HBox {
         VBox vBox = new VBox();
         Label titleLabel = new Label(title);
         Label introLabel = new Label(intro);
-        introLabel.setWrapText(true);
+        //introLabel.setWrapText(true);
 
-        titleLabel.setFont(Font.font(null, FontWeight.BOLD, 32));
+        titleLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
         introLabel.setFont(Font.font(null, 20));
+
+
 
         vBox.getChildren().addAll(titleLabel, introLabel);
 
         Label ratingLabel = new Label(String.format("%.1f", rating));
+        ratingLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
+        ratingLabel.setMinWidth(90);
         //TODO
 
         this.getChildren().addAll(imageView, vBox, ratingLabel);
         setHgrow(imageView, Priority.ALWAYS);
         setHgrow(vBox, Priority.ALWAYS);
         setHgrow(ratingLabel, Priority.ALWAYS);
+        setPadding(new Insets(25,50,25,50));
+        setSpacing(25);
     }
 }

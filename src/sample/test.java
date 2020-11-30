@@ -29,7 +29,7 @@ public class test extends Application {
         Button addButton = new Button("Add");
         addButton.setOnAction(e -> {
             String url = "https://media.st.dl.pinyuncloud.com/steam/apps/803330/capsule_616x353.jpg?t=1606513853";
-            HBox hBox = new GameEntry(url,"hh","intro",9.0);
+            HBox hBox = new GameEntry(url,"Some Board Game","This is an intro.This is an intro.This is an intro.This is an intro.This is an intro.",10.0);
             content.getChildren().add(hBox);
         });
 

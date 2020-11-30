@@ -1,5 +1,6 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -17,6 +18,7 @@ public class HomeStream extends VBox{
 
         Label title = new Label("Play Now");
         title.setFont(Font.font(null, FontWeight.BOLD, 60));
+        title.setPadding(new Insets(50,50,25,50));
         this.getChildren().add(title);
 
 
