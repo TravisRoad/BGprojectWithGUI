@@ -155,7 +155,7 @@ class ServiceTask implements Runnable {
                 String searchstr = tt.getInfo();
                 //BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
                 try {
-                    ArrayList<BoardGameModel> boardGameModels = boardGameDao.search0(searchstr);
+                    ArrayList<BoardGameModel> boardGameModels = boardGameDao.Browser();
                     tt_ret.setBoardGameModels(boardGameModels);
                     tt_ret.setState(0x01);
                 } catch (NoSearchResultException e) {

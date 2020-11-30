@@ -7,9 +7,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import transport.ClientTrans;
 
-public class HomeStream extends VBox{
-    public HomeStream() {
+public class HomeStream extends VBox {
+    private ClientTrans clientTrans;
+
+    public HomeStream(ClientTrans clientTrans) {
+        this.clientTrans = clientTrans;
         setLayout();
     }
 
@@ -19,15 +23,18 @@ public class HomeStream extends VBox{
 
         Label title = new Label("Play Now");
         title.setFont(Font.font(null, FontWeight.BOLD, 60));
-        title.setPadding(new Insets(50,50,25,50));
+        title.setPadding(new Insets(50, 50, 25, 50));
         this.getChildren().add(title);
 
-        for (int i = 0;i<10;i++){
-            //TODO add retrieved data to entry
+        for (int i = 0; i < 10; i++) {
+            //TODO:add retrieved data to entry
             //GameEntry gameEntry = new GameEntry();
         }
 
         //Button buttonShowMore = new Button("Show More");
     }
 
+    public void setClientTrans(ClientTrans clientTrans) {
+        this.clientTrans = clientTrans;
+    }
 }

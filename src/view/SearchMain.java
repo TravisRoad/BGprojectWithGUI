@@ -1,5 +1,6 @@
 package view;
 
+import controller.SearchController;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -8,9 +9,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
+import transport.ClientTrans;
+import util.myexception.NoSearchResultException;
+import view.MyStage.SearchResultStage;
 
 public class SearchMain extends VBox {
-    public SearchMain(){
+    private ClientTrans clientTrans;
+    private SearchController searchController;
+
+    public SearchMain(ClientTrans clientTrans) {
+        searchController = new SearchController();
+        searchController.setClientTrans(clientTrans);
+        this.clientTrans = clientTrans;
+
         TextField fieldSearch = new TextField();
         Button buttonSearch = new Button("Search!");
         //fieldSearch.setAlignment(Pos.CENTER);
@@ -22,12 +34,16 @@ public class SearchMain extends VBox {
         buttonSearch.setFont(Font.font(null, 24));
         buttonSearch.setOnAction(buttonSearchClicked -> {
             String queryString = fieldSearch.getText();
-            //TODO: perform query
+            try {
+                Stage stage = new SearchResultStage(searchController.searchBottomOnClick(queryString));
+                stage.show();
+            } catch (NoSearchResultException e) {
+                e.printStackTrace();
+                //TODO:弹出错误窗口
+            }
         });
         setSpacing(50);
         setPadding(new Insets(200,50,200,50));
         this.getChildren().addAll(fieldSearch,buttonSearch);
     }
-
-
 }

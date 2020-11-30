@@ -14,7 +14,7 @@ public class TransportThings implements Serializable {
     private BoardGameFetched boardGameFetched = null;
     private ArrayList<BoardGameModel> boardGameModels = null;
 
-    private ArrayList<BoardGameModel> getBoardGameModels() {
+    public ArrayList<BoardGameModel> getBoardGameModels() {
         return boardGameModels;
     }
 

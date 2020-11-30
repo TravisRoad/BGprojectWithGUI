@@ -12,17 +12,16 @@ import model.BoardGameModel;
 import view.GameEntry;
 import view.MainPage;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class SearchResultStage extends Stage {
     ArrayList<BoardGameModel> boardGameModels;
-    MainPage mainPage;
 
 
-    public SearchResultStage(ArrayList<BoardGameModel> boardGameModels, MainPage mainPage) {
+    public SearchResultStage(ArrayList<BoardGameModel> boardGameModels) {
         super();
         this.boardGameModels = boardGameModels;
-        this.mainPage = mainPage;
         build();
     }
 
@@ -30,7 +29,8 @@ public class SearchResultStage extends Stage {
         VBox vBox = new VBox();
         Parent root = new ScrollPane(vBox);
         for (BoardGameModel boardGameModel : boardGameModels) {
-            String url = "../../resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
+            //String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
+            String url = "file:src/resource/avatar.png";
             String title = boardGameModel.getName();
             String intro = boardGameModel.getIntroduction();
             Double rating = boardGameModel.getRate();
