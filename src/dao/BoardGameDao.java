@@ -52,7 +52,12 @@ public class BoardGameDao {
         return JsonConvert.convert2BoardgameSearched(json);
     }
 
-
+    /**
+     * @param thingstoSearch 查询字段
+     * @return 返回查询得到的所有桌游的列表
+     * @throws NoSearchResultException 没有结果
+     * @throws SQLException            SQL错误
+     */
     public ArrayList<BoardGameModel> search0(String thingstoSearch) throws NoSearchResultException, SQLException {
         String sql = "SELECT * FROM boardgame WHERE name like ? limit 10;";
         ArrayList<BoardGameModel> boardGameList = new ArrayList<>();
@@ -74,12 +79,26 @@ public class BoardGameDao {
     }
 
     /**
-     * 查询top100
+     * 查询top10
      *
      * @return
      */
-    public ArrayList<BoardGameModel> Browser() {
-        String sql = "SELECT * FROM boardgame order by geekrating limit 100";
-        return null;
+    public ArrayList<BoardGameModel> Browser() throws SQLException, NoSearchResultException {
+        String sql = "SELECT * FROM boardgame order by geekrating limit 10";
+        ArrayList<BoardGameModel> boardGameList = new ArrayList<>();
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bg_id = rs.getInt(1);
+                String name = rs.getString(2);
+                String intro = rs.getString(3);
+                double rating = rs.getDouble(4);
+                boardGameList.add(new BoardGameModel(bg_id, name, intro, rating));
+            }
+            if (boardGameList.isEmpty()) {
+                throw new NoSearchResultException();
+            }
+        }
+        return boardGameList;
     }
 }

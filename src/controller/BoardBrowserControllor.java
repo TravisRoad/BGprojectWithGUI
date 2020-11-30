@@ -88,6 +88,7 @@ public class BoardBrowserControllor extends ParentController implements Initiali
             //描述部分结束
 
             Button logPlay = new Button("记录");
+
             logPlay.setOnAction(e -> openLogPlayStage());
 
             vBoxHeader.getChildren().add(imageView);
