@@ -72,4 +72,14 @@ public class BoardGameDao {
         }
         return boardGameList;
     }
+
+    /**
+     * 查询top100
+     *
+     * @return
+     */
+    public ArrayList<BoardGameModel> Browser() {
+        String sql = "SELECT * FROM boardgame order by geekrating limit 100";
+        return null;
+    }
 }

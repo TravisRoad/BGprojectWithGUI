@@ -14,6 +14,8 @@ import jfxtras.styles.jmetro.Style;
 import model.User;
 import transport.ClientTrans;
 
+import java.io.IOException;
+
 public class MainPage extends Application {
 
     private ClientTrans clientTrans;
@@ -21,10 +23,11 @@ public class MainPage extends Application {
     private Stage mainStage;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         setStage(primaryStage);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resource/Home.fxml"));
         Parent root = fxmlLoader.load();
+
         //主窗口关闭则直接退出所有窗口
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent event) {

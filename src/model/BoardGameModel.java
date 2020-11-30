@@ -11,6 +11,9 @@ public class BoardGameModel implements Serializable {
     private String introduction;
     private Double rate;
 
+    public BoardGameModel() {
+    }
+
     public Double getRate() {
         return rate;
     }
