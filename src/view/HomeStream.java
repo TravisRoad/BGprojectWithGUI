@@ -1,6 +1,7 @@
 package view;
 
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
@@ -21,7 +22,12 @@ public class HomeStream extends VBox{
         title.setPadding(new Insets(50,50,25,50));
         this.getChildren().add(title);
 
+        for (int i = 0;i<10;i++){
+            //TODO add retrieved data to entry
+            //GameEntry gameEntry = new GameEntry();
+        }
 
-
+        //Button buttonShowMore = new Button("Show More");
     }
+
 }

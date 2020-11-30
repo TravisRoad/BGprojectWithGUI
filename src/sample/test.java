@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.GameEntry;
 import view.HomeStream;
+import view.SearchMain;
 
 public class test extends Application {
 
@@ -32,7 +33,8 @@ public class test extends Application {
             HBox hBox = new GameEntry(url,"Some Board Game","This is an intro.This is an intro.This is an intro.This is an intro.This is an intro.",10.0);
             content.getChildren().add(hBox);
         });
-
+        SearchMain a = new SearchMain();
+        content.getChildren().add(a);
         HomeStream homeStream = new HomeStream();
         content.getChildren().add(homeStream);
 
