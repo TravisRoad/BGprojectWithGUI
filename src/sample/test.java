@@ -4,47 +4,39 @@ import java.util.Random;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import transport.ClientTrans;
-import view.GameEntry;
-import view.HomeStream;
-import view.SearchMain;
+import view.*;
 
 public class test extends Application {
 
     private ClientTrans clientTrans;
     @Override
     public void start(Stage primaryStage) {
-        clientTrans = new ClientTrans();
-        clientTrans.connect();//connect to server
+        ClientTrans ct = new ClientTrans();
+        TabPane tabPane = new TabPane();
 
-        final Random rng = new Random();
-        VBox content = new VBox(5);
-        ScrollPane scroller = new ScrollPane(content);
-        scroller.setFitToWidth(true);
+        Tab tabHome = new Tab("Home", new HomeStream(ct));
+        Tab tabSearch = new Tab("Search"  , new SearchMain(ct));
+        Tab tabUser = new Tab("User" , new UserMain());
 
-        Button addButton = new Button("Add");
-        addButton.setOnAction(e -> {
-            String url = "https://media.st.dl.pinyuncloud.com/steam/apps/803330/capsule_616x353.jpg?t=1606513853";
-            HBox hBox = new GameEntry(url, "Some Board Game", "This is an intro.This is an intro.This is an intro.This is an intro.This is an intro.", 10.0);
-            content.getChildren().add(hBox);
-        });
+        tabPane.getTabs().add(tabHome);
+        tabPane.getTabs().add(tabSearch);
+        tabPane.getTabs().add(tabUser);
 
-        SearchMain a = new SearchMain(clientTrans);
-        content.getChildren().add(a);
+        VBox vBox = new VBox(tabPane);
+        Scene scene = new Scene(vBox);
 
-        HomeStream homeStream = new HomeStream(clientTrans);
-        content.getChildren().add(homeStream);
-
-        Scene scene = new Scene(new BorderPane(scroller, null, null, addButton, null), 400, 400);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Board Game Recorder");
+        primaryStage.setWidth(1440);
+        primaryStage.setHeight(900);
+
         primaryStage.show();
     }
 

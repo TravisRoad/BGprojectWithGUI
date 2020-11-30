@@ -23,6 +23,7 @@ public class SearchMain extends VBox {
         searchController.setClientTrans(clientTrans);
         this.clientTrans = clientTrans;
 
+
         TextField fieldSearch = new TextField();
         Button buttonSearch = new Button("Search!");
         //fieldSearch.setAlignment(Pos.CENTER);
@@ -30,8 +31,8 @@ public class SearchMain extends VBox {
 
         //fieldSearch.setPadding(new Insets(50,50,50,50));
         //buttonSearch.setPadding(new Insets(50,50,50,50));
-        fieldSearch.setFont(Font.font(null, 24));
-        buttonSearch.setFont(Font.font(null, 24));
+        fieldSearch.setFont(Font.font("Calibri", 24));
+        buttonSearch.setFont(Font.font("Calibri", 24));
         buttonSearch.setOnAction(buttonSearchClicked -> {
             String queryString = fieldSearch.getText();
             try {

@@ -29,8 +29,8 @@ public class SearchResultStage extends Stage {
         VBox vBox = new VBox();
         Parent root = new ScrollPane(vBox);
         for (BoardGameModel boardGameModel : boardGameModels) {
-            //String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
-            String url = "file:src/resource/avatar.png";
+            String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
+            //String url = "file:src/resource/avatar.png";
             String title = boardGameModel.getName();
             String intro = boardGameModel.getIntroduction();
             Double rating = boardGameModel.getRate();
@@ -38,9 +38,9 @@ public class SearchResultStage extends Stage {
             vBox.getChildren().add(hBox);
         }
 
-        JMetro jMetro = new JMetro(Style.LIGHT);
+        //JMetro jMetro = new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
-        jMetro.setScene(scene);
+        //jMetro.setScene(scene);
         setScene(scene);
     }
 }
