@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import view.GameEntry;
+import view.HomeStream;
 
 public class test extends Application {
 
@@ -31,6 +32,9 @@ public class test extends Application {
             HBox hBox = new GameEntry(url,"hh","intro",9.0);
             content.getChildren().add(hBox);
         });
+
+        HomeStream homeStream = new HomeStream();
+        content.getChildren().add(homeStream);
 
         Scene scene = new Scene(new BorderPane(scroller, null, null, addButton, null), 400, 400);
         primaryStage.setScene(scene);
