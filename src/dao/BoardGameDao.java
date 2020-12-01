@@ -84,7 +84,7 @@ public class BoardGameDao {
      * @return
      */
     public ArrayList<BoardGameModel> Browser() throws SQLException, NoSearchResultException {
-        String sql = "SELECT * FROM boardgame order by geekrating DESC limit 10";
+        String sql = "SELECT * FROM boardgame limit 10";
         ArrayList<BoardGameModel> boardGameList = new ArrayList<>();
         try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

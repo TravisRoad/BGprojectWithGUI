@@ -29,7 +29,6 @@ public class GameEntry extends HBox {
     }
 
     private void setLayout() {
-        System.setProperty("prism.lcdtext", "false");
 
         Image image = new Image(imageURL);
         ImageView imageView = new ImageView(image);
@@ -41,15 +40,15 @@ public class GameEntry extends HBox {
         Label introLabel = new Label(intro);
         //introLabel.setWrapText(true);
 
-        titleLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 40));
-        introLabel.setFont(Font.font("Calibri", 20));
+        titleLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
+        introLabel.setFont(Font.font(null, 20));
 
 
 
         vBox.getChildren().addAll(titleLabel, introLabel);
 
         Label ratingLabel = new Label(String.format("%.1f", rating));
-        ratingLabel.setFont(Font.font("Calibri", FontWeight.BOLD, 40));
+        ratingLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
         ratingLabel.setMinWidth(90);
         //TODO
 
@@ -59,6 +58,5 @@ public class GameEntry extends HBox {
         setHgrow(ratingLabel, Priority.ALWAYS);
         setPadding(new Insets(25,50,25,50));
         setSpacing(25);
-        //
     }
 }
