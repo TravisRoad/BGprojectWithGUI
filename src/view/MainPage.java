@@ -27,29 +27,6 @@ public class MainPage extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        setStage(primaryStage);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../resource/Home.fxml"));
-        Parent root = fxmlLoader.load();
-
-        //主窗口关闭则直接退出所有窗口
-        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            public void handle(WindowEvent event) {
-                Platform.exit();
-            }
-        });
-
-        Scene scene = new Scene(root);
-        JMetro jMetro = new JMetro(Style.LIGHT);
-        jMetro.setScene(scene);
-        connect2server();
-        MainController mainController = fxmlLoader.getController(); //获取控制器对象，以传递参数
-        mainController.setClientTrans(clientTrans);
-        mainController.setMainPage(this);
-
-        primaryStage.setTitle("main");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-
     }
 
     public void setClientTrans(ClientTrans clientTrans) {

@@ -21,25 +21,14 @@ import util.myexception.WrongPassWdException;
 
 public class LoginController extends ParentController implements Initializable {
 
-    @FXML
-    private TextField userNameTextField;
-    @FXML
-    private PasswordField passWordTextField;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Button signupButton;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
-    public void login(ActionEvent event){
-        String userName = userNameTextField.getText();
-        String passWord = passWordTextField.getText();
+    public void login(String userName, String passWord) {
         TransportThings tt = new TransportThings();
-        User user = new User(userName,passWord,0);
+        User user = new User(userName, passWord, 0);
         tt.setQuery("login");
         tt.setUser(user);
 
@@ -48,15 +37,12 @@ public class LoginController extends ParentController implements Initializable {
         if (tt.getState() == 0x01) {
             System.out.println("success");
             user = tt.getUser();
-            mainPage.setCurrentUser(user);
         } else if (tt.getState() == 0x00) {
             System.out.println(tt.getInfo());
         }
     }
 
-    public void signup(ActionEvent event) {
-        String userName = userNameTextField.getText();
-        String passWord = passWordTextField.getText();
+    public void signup(String userName, String passWord) {
         TransportThings tt = new TransportThings();
         User user = new User(userName, passWord, 0);
         tt.setQuery("signup");
