@@ -14,8 +14,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        LoginPane loginPane = new LoginPane();
         MainTabLayout mainTabLayout = new MainTabLayout();
-        Scene mainScene = new Scene(mainTabLayout);
+        //Scene mainScene = new Scene(mainTabLayout);
+        Scene mainScene = new Scene(loginPane);
 
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Board Game Recorder");
