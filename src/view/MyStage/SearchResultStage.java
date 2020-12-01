@@ -1,5 +1,6 @@
 package view.MyStage;
 
+import controller.SearchController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +19,11 @@ import java.util.ArrayList;
 public class SearchResultStage extends Stage {
     ArrayList<BoardGameModel> boardGameModels;
 
+    public void setSearchController(SearchController searchController) {
+        this.searchController = searchController;
+    }
+
+    SearchController searchController;
 
     public SearchResultStage(ArrayList<BoardGameModel> boardGameModels) {
         super();
