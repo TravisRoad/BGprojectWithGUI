@@ -35,8 +35,9 @@ public class SearchMain extends VBox {
         buttonSearch.setOnAction(buttonSearchClicked -> {
             String queryString = fieldSearch.getText();
             try {
-                Stage stage = new SearchResultStage(searchController.searchBottomOnClick(queryString));
-                stage.show();
+                SearchResultStage searchResultStage = new SearchResultStage(searchController.searchBottomOnClick(queryString));
+                searchResultStage.setSearchController(searchController);
+                searchResultStage.show();
             } catch (NoSearchResultException e) {
                 e.printStackTrace();
                 //TODO:弹出错误窗口

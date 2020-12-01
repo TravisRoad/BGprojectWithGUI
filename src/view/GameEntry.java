@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Box;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
@@ -29,11 +30,11 @@ public class GameEntry extends HBox {
     }
 
     private void setLayout() {
-
         Image image = new Image(imageURL);
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
-        imageView.setFitHeight(100);
+        imageView.setFitWidth(100);
+
 
         VBox vBox = new VBox();
         Label titleLabel = new Label(title);

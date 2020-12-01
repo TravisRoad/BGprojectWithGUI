@@ -1,5 +1,6 @@
 package view.MyStage;
 
+import controller.SearchController;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -18,6 +19,11 @@ import java.util.ArrayList;
 public class SearchResultStage extends Stage {
     ArrayList<BoardGameModel> boardGameModels;
 
+    public void setSearchController(SearchController searchController) {
+        this.searchController = searchController;
+    }
+
+    SearchController searchController;
 
     public SearchResultStage(ArrayList<BoardGameModel> boardGameModels) {
         super();
@@ -35,12 +41,15 @@ public class SearchResultStage extends Stage {
             String intro = boardGameModel.getIntroduction();
             Double rating = boardGameModel.getRate();
             HBox hBox = new GameEntry(url, title, intro, rating);
+            hBox.setOnMouseClicked(e -> {
+                //TODO:
+            });
             vBox.getChildren().add(hBox);
         }
 
-        JMetro jMetro = new JMetro(Style.LIGHT);
+//        JMetro jMetro = new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
-        jMetro.setScene(scene);
+//        jMetro.setScene(scene);
         setScene(scene);
     }
 }
