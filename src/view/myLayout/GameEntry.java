@@ -1,4 +1,4 @@
-package view;
+package view.myLayout;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -50,7 +50,7 @@ public class GameEntry extends HBox {
         Label ratingLabel = new Label(String.format("%.1f", rating));
         ratingLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
         ratingLabel.setMinWidth(90);
-        //TODO
+        //TODO: add background graphic to rating
 
         this.getChildren().addAll(imageView, vBox, ratingLabel);
         setHgrow(imageView, Priority.ALWAYS);

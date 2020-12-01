@@ -1,3 +1,4 @@
+/*
 package myRemakeView;
 
 import java.util.Random;
@@ -15,6 +16,10 @@ import javafx.stage.Stage;
 import view.GameEntry;
 import view.HomeStream;
 import view.SearchMain;
+
+*/
+/*
+
 
 public class Main extends Application {
     @Override
@@ -48,3 +53,4 @@ public class Main extends Application {
     }
 }
 
+*/

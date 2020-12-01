@@ -1,18 +1,13 @@
-package view;
+package view.myLayout;
 
-import com.sun.javafx.geom.BaseBounds;
-import com.sun.javafx.geom.transform.BaseTransform;
-import com.sun.javafx.jmx.MXNodeAlgorithm;
-import com.sun.javafx.jmx.MXNodeAlgorithmContext;
-import com.sun.javafx.sg.prism.NGNode;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import transport.ClientTrans;
+import view.myLayout.HomeStream;
+import view.myLayout.SearchMain;
+import view.myLayout.UserMain;
 
 public class MainTabLayout extends VBox {
     public MainTabLayout() {
@@ -28,6 +23,7 @@ public class MainTabLayout extends VBox {
         tabPane.getTabs().add(tabUser);
 
         VBox vBox = new VBox(tabPane);
-        Scene scene = new Scene(vBox);
+        //Scene scene = new Scene(vBox);
+        getChildren().addAll(vBox);
     }
 }

@@ -25,6 +25,9 @@ import util.myexception.OtherException;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ * @deprecated
+ */
 public class BoardBrowser extends Application {
     private MainPage mainPage;
     private BoardBrowserControllor boardBrowserControllor;

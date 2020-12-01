@@ -16,6 +16,9 @@ import transport.ClientTrans;
 
 import java.io.IOException;
 
+/**
+ * @deprecated
+ */
 public class MainPage extends Application {
 
     private ClientTrans clientTrans;

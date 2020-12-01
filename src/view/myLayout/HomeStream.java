@@ -1,17 +1,13 @@
-package view;
+package view.myLayout;
 
 import controller.SearchController;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import transport.ClientTrans;
-import util.myexception.NoSearchResultException;
-import view.MyStage.SearchResultStage;
 
 public class HomeStream extends VBox {
     private ClientTrans clientTrans;

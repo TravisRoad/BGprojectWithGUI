@@ -1,4 +1,4 @@
-package view.MyStage;
+package view.myStage;
 
 import controller.SearchController;
 import javafx.scene.Parent;
@@ -10,10 +10,8 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import model.BoardGameModel;
-import view.GameEntry;
-import view.MainPage;
+import view.myLayout.GameEntry;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 public class SearchResultStage extends Stage {

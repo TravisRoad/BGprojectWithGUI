@@ -1,4 +1,4 @@
-package view;
+package view.myLayout;
 
 import javafx.scene.layout.VBox;
 

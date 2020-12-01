@@ -1,18 +1,15 @@
-package view;
+package view.myLayout;
 
 import controller.SearchController;
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.stage.Stage;
 import transport.ClientTrans;
 import util.myexception.NoSearchResultException;
-import view.MyStage.SearchResultStage;
+import view.myStage.SearchResultStage;
 
 public class SearchMain extends VBox {
     private ClientTrans clientTrans;
@@ -37,6 +34,7 @@ public class SearchMain extends VBox {
             String queryString = fieldSearch.getText();
             try {
                 SearchResultStage searchResultStage = new SearchResultStage(searchController.searchBottomOnClick(queryString));
+                //TODO:rewrite setSearchController
                 searchResultStage.setSearchController(searchController);
                 searchResultStage.show();
             } catch (NoSearchResultException e) {
