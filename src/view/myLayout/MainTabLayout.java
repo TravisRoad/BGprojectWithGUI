@@ -14,12 +14,11 @@ public class MainTabLayout extends VBox {
     private Main main;
 
     public MainTabLayout(Main main) {
-        ClientTrans ct = main.getClientTrans();
         TabPane tabPane = new TabPane();
 
-        Tab tabHome = new Tab("Home", new HomeStream(ct));
-        Tab tabSearch = new Tab("Search", new SearchMain(ct));
-        Tab tabUser = new Tab("User", new UserMain());
+        Tab tabHome = new Tab("Home", new HomeStream(main));
+        Tab tabSearch = new Tab("Search", new SearchMain(main));
+        Tab tabUser = new Tab("User", new UserMain(main));
 
         tabPane.getTabs().add(tabHome);
         tabPane.getTabs().add(tabSearch);

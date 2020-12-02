@@ -1,6 +1,7 @@
 package view.myStage;
 
 import controller.SearchController;
+import dao.BoardGameDao;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -10,12 +11,23 @@ import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import jfxtras.styles.jmetro.Style;
 import model.BoardGameModel;
+import view.Main;
+import view.myLayout.BoardBrowserVBox;
 import view.myLayout.GameEntry;
 
 import java.util.ArrayList;
 
 public class SearchResultStage extends Stage {
     ArrayList<BoardGameModel> boardGameModels;
+    Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    public void setBoardGameModels(ArrayList<BoardGameModel> boardGameModels) {
+        this.boardGameModels = boardGameModels;
+    }
 
     public void setSearchController(SearchController searchController) {
         this.searchController = searchController;
@@ -23,28 +35,27 @@ public class SearchResultStage extends Stage {
 
     SearchController searchController;
 
-    public SearchResultStage(ArrayList<BoardGameModel> boardGameModels) {
+    public SearchResultStage() {
         super();
-        this.boardGameModels = boardGameModels;
-        build();
     }
 
-    private void build() {
+    public void build() {
         VBox vBox = new VBox();
         Parent root = new ScrollPane(vBox);
         for (BoardGameModel boardGameModel : boardGameModels) {
-            //String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
-            String url = "file:src/resource/avatar.png";
+            String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
+            //String url = "file:src/resource/avatar.png";
             String title = boardGameModel.getName();
             String intro = boardGameModel.getIntroduction();
             Double rating = boardGameModel.getRate();
             HBox hBox = new GameEntry(url, title, intro, rating);
+            hBox.setOnMouseClicked(e -> {
+                searchController.newStage((int) boardGameModel.getBg_id());
+            });
             vBox.getChildren().add(hBox);
         }
 
-        JMetro jMetro = new JMetro(Style.LIGHT);
         Scene scene = new Scene(root);
-        jMetro.setScene(scene);
         setScene(scene);
     }
 }

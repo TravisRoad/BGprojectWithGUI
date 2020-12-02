@@ -29,7 +29,6 @@ public class GameEntry extends HBox {
     }
 
     private void setLayout() {
-
         Image image = new Image(imageURL);
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);

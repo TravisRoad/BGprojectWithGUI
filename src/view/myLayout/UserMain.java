@@ -1,5 +1,6 @@
 package view.myLayout;
 
+import controller.UserController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -10,9 +11,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import view.Main;
 
 public class UserMain extends SplitPane {
-    public UserMain(){
+    Main main;
+    UserController userController;
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    public UserMain(Main main) {
+        userController = new UserController();
+        this.main = main;
+        userController.setMain(main);
         setDividerPositions(0.25);
 
 
@@ -28,7 +40,7 @@ public class UserMain extends SplitPane {
         //TODO: customize user profile
         ImageView imgAvatar = new ImageView();
 
-        Label labelUsername = new Label("RiddMa");
+        Label labelUsername = new Label(main.getUser().getUserName());
         labelUsername.setAlignment(Pos.CENTER);
         labelUsername.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
 

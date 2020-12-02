@@ -153,7 +153,7 @@ class ServiceTask implements Runnable {
                 break;
             case "search":
                 String searchstr = tt.getInfo();
-                //BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
+                BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
                 try {
                     ArrayList<BoardGameModel> boardGameModels = boardGameDao.Browser();
                     tt_ret.setBoardGameModels(boardGameModels);
@@ -165,6 +165,20 @@ class ServiceTask implements Runnable {
                     tt_ret.setInfo("CANNOT ACCESS DATABASE");
                     throwables.printStackTrace();
                 }
+                break;
+            case "top10":
+                try {
+                    ArrayList<BoardGameModel> boardGameModels = boardGameDao.Browser();
+                    tt_ret.setBoardGameModels(boardGameModels);
+                    tt_ret.setState(0x01);
+                } catch (NoSearchResultException e) {
+                    tt_ret.setInfo("noResult");
+                    e.printStackTrace();
+                } catch (SQLException throwables) {
+                    tt_ret.setInfo("CANNOT ACCESS DATABASE");
+                    throwables.printStackTrace();
+                }
+                break;
             default:
                 break;
         }

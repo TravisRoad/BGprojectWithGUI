@@ -21,6 +21,10 @@ public class BoardGameDao {
     private Database database;
     //private BoardGameFetched boardGameFetched;
 
+    public BoardGameDao() {
+
+    }
+
     public BoardGameDao(Database database) {
         this.database = database;
         //boardGameFetched = new BoardGameFetched();
