@@ -13,6 +13,7 @@ public class TransportThings implements Serializable {
     private BoardGameModel boardGameModel = null;
     private BoardGameFetched boardGameFetched = null;
     private ArrayList<BoardGameModel> boardGameModels = null;
+    private GameLog gameLog = null;
 
     public ArrayList<BoardGameModel> getBoardGameModels() {
         return boardGameModels;
@@ -75,4 +76,19 @@ public class TransportThings implements Serializable {
         this.boardGameFetched = boardGameFetched;
     }
 
+    public BoardGameModel getBoardGameModel() {
+        return boardGameModel;
+    }
+
+    public void setBoardGameModel(BoardGameModel boardGameModel) {
+        this.boardGameModel = boardGameModel;
+    }
+
+    public GameLog getGameLog() {
+        return gameLog;
+    }
+
+    public void setGameLog(GameLog gameLog) {
+        this.gameLog = gameLog;
+    }
 }

@@ -70,7 +70,7 @@ class ServiceTask implements Runnable {
     }
 
     @Override
-    public void run() {//TODO:要执行的server体在这里面
+    public void run() {//要执行的server体在这里面
         boolean exitFlag = false;
         while (true) {
             TransportThings tt = (TransportThings) readObj();
@@ -178,6 +178,9 @@ class ServiceTask implements Runnable {
                     tt_ret.setInfo("CANNOT ACCESS DATABASE");
                     throwables.printStackTrace();
                 }
+                break;
+            case "gamelog":
+                //TODO: gamelog部分没写完
                 break;
             default:
                 break;

@@ -1,13 +1,15 @@
 package view.myLayout;
 
+import controller.LogPlayController;
 import javafx.scene.layout.VBox;
 import view.Main;
 
 public class LogPlay extends VBox {
-    Main main;
-    LogPlayController
+    private Main main;
+    private LogPlayController logPlayController;
 
-    public LogPlay() {
-
+    public LogPlay(Main main) {
+        logPlayController = new LogPlayController();
+        logPlayController.setMain(main);
     }
 }

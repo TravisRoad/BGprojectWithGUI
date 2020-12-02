@@ -56,7 +56,7 @@ public class BoardBrowserControllor implements Initializable {
 //        boardGameModel.setBg_id(bg_id);
 //        tt.setQuery("fetch");
 //        tt.setBoardGame(boardGameModel);
-//        mainPage.getClientTrans().writeObj(tt);// TODO:对称的server处未处理
+//        mainPage.getClientTrans().writeObj(tt);//
 //        tt = (TransportThings) mainPage.getClientTrans().readObj();
 //        if(tt.getState() == 0x01)
 //            return tt.getBoardGameFetched();
