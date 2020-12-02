@@ -1,25 +1,53 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.UserDao;
+import javafx.stage.Stage;
 import model.User;
 import transport.ClientTrans;
 import util.Database;
 import util.TransportThings;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
+import view.Main;
 
-public class LoginController extends ParentController implements Initializable {
+public class LoginController implements Initializable {
+
+    public void setLoginStage(Stage loginStage) {
+        this.loginStage = loginStage;
+    }
+
+    private Stage loginStage;
+    private Button loginButton;
+    private Button signupButton;
+    private TextField userField;
+    private PasswordField passwordField;
+
+
+    Main main;
+
+    public LoginController(Button loginButton, Button signupButton, TextField userField, PasswordField passwordField) {
+        this.loginButton = loginButton;
+        this.signupButton = signupButton;
+        this.userField = userField;
+        this.passwordField = passwordField;
+        loginButton.setOnAction(e -> {
+            login(userField.getText(), passwordField.getText());
+        });
+        signupButton.setOnAction(e -> {
+            signup(userField.getText(), passwordField.getText());
+        });
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,13 +60,16 @@ public class LoginController extends ParentController implements Initializable {
         tt.setQuery("login");
         tt.setUser(user);
 
-        clientTrans.writeObj(tt);//TODO:密码需要加密处理
-        tt = (TransportThings) clientTrans.readObj();
+        main.getClientTrans().writeObj(tt);//TODO:密码需要加密处理
+        tt = (TransportThings) main.getClientTrans().readObj();
         if (tt.getState() == 0x01) {
             System.out.println("success");
             user = tt.getUser();
+            main.setUser(user);
+            showAlert("登陆成功", tt.getState());
         } else if (tt.getState() == 0x00) {
             System.out.println(tt.getInfo());
+            showAlert(tt.getInfo(), tt.getState());
         }
     }
 
@@ -47,14 +78,44 @@ public class LoginController extends ParentController implements Initializable {
         User user = new User(userName, passWord, 0);
         tt.setQuery("signup");
         tt.setUser(user);
-
-        clientTrans.writeObj(tt);//TODO:密码需要加密处理
-        tt = (TransportThings) clientTrans.readObj();
+        if (passWord.length() < 6 || passWord.length() > 40) {
+            showAlert("密码长度不合要求", 0);
+            return;
+        }
+        if (userName.length() > 50 || userName.length() == 0) {
+            showAlert("用户名不符合要求", 0);
+            return;
+        }
+        main.getClientTrans().writeObj(tt);//TODO:密码需要加密处理
+        tt = (TransportThings) main.getClientTrans().readObj();
         if (tt.getState() == 0x01) {
             System.out.println("success");
             user = tt.getUser();
+            showAlert("注册成功", 0);
         } else if (tt.getState() == 0x00) {
             System.out.println(tt.getInfo());
+            showAlert(tt.getInfo(), 0);
+        }
+    }
+
+    public void setMain(Main main) {
+        this.main = main;
+    }
+
+    private void showAlert(String str, int state) {
+        Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+        //设置对话框标题
+        alert2.setTitle("Exit");
+        //设置内容
+        alert2.setHeaderText(str);
+        //显示对话框
+        Optional<ButtonType> result = alert2.showAndWait();
+        if (state == 0x01) {
+            if (result.get() == ButtonType.OK) {
+                loginStage.close();
+            }
+        } else {
+            // 失败则继续
         }
     }
 }

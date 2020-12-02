@@ -5,15 +5,18 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import transport.ClientTrans;
+import view.Main;
 import view.myLayout.HomeStream;
 import view.myLayout.SearchMain;
 import view.myLayout.UserMain;
 
 public class MainTabLayout extends VBox {
-    public MainTabLayout() {
-        ClientTrans ct = new ClientTrans();
+    private Main main;
+
+    public MainTabLayout(Main main) {
+        ClientTrans ct = main.getClientTrans();
         TabPane tabPane = new TabPane();
-        
+
         Tab tabHome = new Tab("Home", new HomeStream(ct));
         Tab tabSearch = new Tab("Search", new SearchMain(ct));
         Tab tabUser = new Tab("User", new UserMain());
@@ -26,4 +29,6 @@ public class MainTabLayout extends VBox {
         //Scene scene = new Scene(vBox);
         getChildren().addAll(vBox);
     }
+
+
 }

@@ -27,19 +27,16 @@ import java.io.IOException;
 public class LoginPane extends VBox {
     private LoginController loginController;
 
-    public LoginPane() {
-        //loginController = new LoginController();
-
+    public LoginPane(Main main) {
         setAlignment(Pos.CENTER);
         setPadding(new Insets(50, 50, 50, 50));
 
         Label headerLogin = new Label("Login");
-        headerLogin.setAlignment(Pos.CENTER_LEFT);
+        headerLogin.setAlignment(Pos.TOP_CENTER);
         headerLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 40));
 
         GridPane gpLogin = new GridPane();
-        gpLogin.setAlignment(Pos.CENTER_LEFT);
-
+        gpLogin.setAlignment(Pos.CENTER);
 
         Label labelUser = new Label("Username");
         Label labelPass = new Label("Password");
@@ -50,19 +47,21 @@ public class LoginPane extends VBox {
         gpLogin.add(labelPass, 0, 1, 1, 1);
         gpLogin.add(fieldUser, 1, 0, 1, 1);
         gpLogin.add(fieldPass, 1, 1, 1, 1);
+        gpLogin.setHgap(5.0);
+        gpLogin.setVgap(5.0);
 
-        HBox boxButtons = new HBox();
-        boxButtons.setAlignment(Pos.CENTER);
         Button buttonSignup = new Button("Sign Up");
         Button buttonLogin = new Button("Login");
-        buttonSignup.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
-        buttonLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
+        buttonSignup.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        buttonLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
+        gpLogin.add(buttonSignup, 0, 2);
+        gpLogin.add(buttonLogin, 1, 2);
+        GridPane.setMargin(buttonLogin, new Insets(0, 1, 0, 50));
 
-        boxButtons.getChildren().addAll(buttonSignup, buttonLogin);
+        getChildren().addAll(headerLogin, gpLogin);
 
-        getChildren().addAll(headerLogin, gpLogin, boxButtons);
-
-
+        loginController = new LoginController(buttonLogin, buttonSignup, fieldUser, fieldPass);
+        loginController.setMain(main);
     }
 
     public LoginController getLoginController() {

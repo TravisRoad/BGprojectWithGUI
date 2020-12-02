@@ -14,17 +14,29 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        LoginPane loginPane = new LoginPane();
-        MainTabLayout mainTabLayout = new MainTabLayout();
-        //Scene mainScene = new Scene(mainTabLayout);
-        Scene mainScene = new Scene(loginPane);
+        clientTrans = new ClientTrans();
+        clientTrans.connect();
+        user = new User();
+
+        LoginPane loginPane = new LoginPane(this);
+        Stage loginStage = new Stage();
+        loginPane.getLoginController().setLoginStage(loginStage);
+        loginStage.setScene(new Scene(loginPane));
+
+        MainTabLayout mainTabLayout = new MainTabLayout(this);
+        Scene mainScene = new Scene(mainTabLayout);
 
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Board Game Recorder");
         primaryStage.setWidth(1440);
         primaryStage.setHeight(900);
 
+        primaryStage.setOnCloseRequest(e -> {
+            System.exit(0);
+        });
+
         primaryStage.show();
+        loginStage.show();
     }
 
     public static void main(String[] args) {
