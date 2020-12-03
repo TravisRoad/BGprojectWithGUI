@@ -5,9 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * 游戏记录对象
+ */
 public class GameLog implements Serializable {
-    private ArrayList<String> userNames = null;
-    private String organizer;
+    private ArrayList<String> userNames = null; // 玩家列表
+    private String organizer; // 组织者
     private String theVictoryOne = null;
     private Date date = null;
     private int bg_id = 0;

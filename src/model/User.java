@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 
+/**
+ * 用户实体类
+ */
 public class User implements Serializable {
     private long userID;
     private String userName;

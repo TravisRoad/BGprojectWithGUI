@@ -11,6 +11,9 @@ import view.myLayout.HomeStream;
 import view.myLayout.SearchMain;
 import view.myLayout.UserMain;
 
+/**
+ * 主界面标签页布局
+ */
 public class MainTabLayout extends VBox {
     private Main main;
     private Stage stage;

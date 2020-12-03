@@ -46,8 +46,7 @@ public class BoardBrowserControllor implements Initializable {
         LogPlay logPlay = new LogPlay(main, stage);
         logPlay.getLogPlayController().setBg_id(bg_id);
         Scene scene = new Scene(new ScrollPane(logPlay), 400, 600);
-        Application.setUserAgentStylesheet(Application.STYLESHEET_MODENA);
-        scene.getStylesheets().add(getClass().getResource("../view/DarkTheme.css").toExternalForm());
+        //scene.getStylesheets().add(getClass().getResource("../resource/datepicker.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
 
