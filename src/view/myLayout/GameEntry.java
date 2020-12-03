@@ -12,6 +12,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 
+/**
+ * 瀑布流中的桌游条目
+ */
 public class GameEntry extends HBox {
     String imageURL;
     String title;

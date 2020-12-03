@@ -6,6 +6,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.layout.VBox;
 import view.Main;
 
+/**
+ * LogPlay界面布局
+ */
 public class LogPlay extends VBox {
     private Main main;
     private LogPlayController logPlayController;

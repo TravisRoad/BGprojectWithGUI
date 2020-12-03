@@ -5,6 +5,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.myLayout.MainTabLayout;
 
+/**
+ * 主界面Stage
+ */
 public class Home {
     private Main main;
 

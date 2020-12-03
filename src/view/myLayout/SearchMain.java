@@ -12,6 +12,9 @@ import util.myexception.NoSearchResultException;
 import view.Main;
 import view.myStage.SearchResultStage;
 
+/**
+ * Search界面布局
+ */
 public class SearchMain extends VBox {
     private SearchController searchController;
 

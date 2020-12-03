@@ -22,7 +22,7 @@ import jfxtras.styles.jmetro.Style;
 import java.io.IOException;
 
 /**
- * 登陆面板view类
+ * 登陆界面
  */
 public class LoginPane extends VBox {
     private LoginController loginController;

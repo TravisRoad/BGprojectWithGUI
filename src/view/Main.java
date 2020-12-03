@@ -7,6 +7,9 @@ import model.User;
 import transport.ClientTrans;
 import view.myLayout.MainTabLayout;
 
+/**
+ * 入口（login）
+ */
 public class Main extends Application {
 
     private User user;
@@ -20,11 +23,19 @@ public class Main extends Application {
 
         LoginPane loginPane = new LoginPane(this);
         loginPane.getLoginController().setLoginStage(primaryStage);
-        primaryStage.setScene(new Scene(loginPane));
 
+        primaryStage.setScene(new Scene(loginPane));
         primaryStage.setTitle("Board Game Recorder");
         primaryStage.setWidth(400);
         primaryStage.setHeight(600);
+
+        //for test: quick start
+        /*MainTabLayout mainTabLayout = new MainTabLayout(this);
+        primaryStage.setScene(new Scene(mainTabLayout));
+        primaryStage.setWidth(1400);
+        primaryStage.setHeight(900);*/
+        //for test
+
 
         primaryStage.setOnCloseRequest(e -> {
             System.exit(0);

@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 /**
- *
+ * 桌游详情页面
  */
 public class BoardGameModel implements Serializable {
     private int bg_id;
