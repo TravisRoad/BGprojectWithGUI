@@ -31,6 +31,7 @@ public class HomeStream extends VBox {
     public HomeStream(Main main, Stage stage) {
         this.main = main;
         this.stage = stage;
+        searchController.setMain(main);
         setLayout();
     }
 

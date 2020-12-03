@@ -18,6 +18,7 @@ public class LogPlay extends VBox {
         logPlayController.setMain(main);
 
         DatePicker datePicker = new DatePicker();
+        logPlayController.setDatePicker(datePicker);
 
         VBox playerVBox = new VBox();
         Button addPlayer = new Button("增加玩家");// 增加玩家
@@ -30,7 +31,7 @@ public class LogPlay extends VBox {
         Button applyButton = new Button("确认");
 
         applyButton.setOnAction(e -> {
-            //logPlayController.log();
+            logPlayController.log();
         });
 
         this.getChildren().addAll(datePicker, playerVBox, applyButton);

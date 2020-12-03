@@ -1,9 +1,9 @@
 package util;
 
 import model.BoardGameModel;
+import model.GameLog;
 import model.User;
 import model.boardgamefetched.BoardGameFetched;
-import model.search.BoardGameSearched;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -5,12 +5,11 @@ import model.User;
 import model.boardgamefetched.BoardGameFetched;
 import model.search.BoardGameSearched;
 import util.Database;
+import model.GameLog;
 import util.JsonConvert;
 import util.XMLtoJSON;
 import util.httpRequest.MyGetRequest;
-import util.myexception.AccountNotExistException;
 import util.myexception.NoSearchResultException;
-import util.myexception.WrongPassWdException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -104,5 +103,20 @@ public class BoardGameDao {
             }
         }
         return boardGameList;
+    }
+
+    public boolean logGame(GameLog gameLog, User user) throws SQLException {
+        String sql = "INSERT INTO play_history (playdate,bg_id,username) VALUES (?,?,?)";
+        boolean ret = false;
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+            ps.setObject(1, gameLog.getDate());
+            ps.setObject(2, gameLog.getBg_id());
+            ps.setObject(3, user.getUserName());
+            ret = ps.execute();
+            ret = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }

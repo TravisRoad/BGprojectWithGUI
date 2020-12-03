@@ -1,11 +1,10 @@
 package controller;
 
-import javafx.event.Event;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import util.GameLog;
+import model.GameLog;
 import util.TransportThings;
 import view.Main;
 import view.myLayout.LogPlay;
@@ -59,6 +58,8 @@ public class LogPlayController {
         TransportThings tt = new TransportThings();
         tt.setQuery("gamelog");
         tt.setGameLog(gameLog);
+        tt.setUser(main.getUser());
+
         main.getClientTrans().writeObj(tt); //发送包
         tt = (TransportThings) main.getClientTrans().readObj();
         showAlert(tt.getState());

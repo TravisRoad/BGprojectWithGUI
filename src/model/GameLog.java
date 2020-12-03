@@ -1,10 +1,11 @@
-package util;
+package model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class GameLog {
+public class GameLog implements Serializable {
     private ArrayList<String> userNames = null;
     private String theVictoryOne = null;
     private Date date = null;

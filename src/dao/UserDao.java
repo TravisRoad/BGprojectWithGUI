@@ -29,11 +29,12 @@ public class UserDao {
      * @return 插入成功
      */
     public boolean insert(String userName, String passwd) {
-        String sql = "INSERT INTO user (username, passwd) VALUES (?,?)";
+        String sql = "INSERT INTO user (username, passwd,nickname) VALUES (?,?,?)";
         boolean ret = false;
         try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
             ps.setObject(1, userName);
             ps.setObject(2, passwd);
+            ps.setObject(3, userName);
             ret = ps.execute();
             ret = true;
         } catch (SQLException e) {

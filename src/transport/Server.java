@@ -6,6 +6,7 @@ import model.BoardGameModel;
 import model.User;
 import model.search.BoardGameSearched;
 import util.Database;
+import model.GameLog;
 import util.TransportThings;
 import util.myexception.AccountAlreadyExistException;
 import util.myexception.AccountNotExistException;
@@ -191,6 +192,17 @@ class ServiceTask implements Runnable {
                 break;
             case "gamelog":
                 //TODO: gamelog部分没写完
+                System.out.println("gamelog recv");
+                GameLog gameLog = tt.getGameLog();
+                User theUser = tt.getUser();
+                try {
+                    boardGameDao.logGame(gameLog, theUser);
+                    tt_ret.setState(0x01);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    tt_ret.setInfo("cannot access database");
+                }
+                System.out.println(tt_ret.getState());
                 break;
             default:
                 break;
