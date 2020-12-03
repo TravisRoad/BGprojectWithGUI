@@ -73,7 +73,13 @@ class ServiceTask implements Runnable {
     public void run() {//要执行的server体在这里面
         boolean exitFlag = false;
         while (true) {
-            TransportThings tt = (TransportThings) readObj();
+            TransportThings tt = null;
+            try {
+                tt = (TransportThings) readObj_throw_exception();
+            } catch (Exception e) {
+                System.out.println("退出");
+                break;
+            }
             parseTransportThings(tt, exitFlag);
             if (exitFlag) break;
         }
@@ -98,6 +104,10 @@ class ServiceTask implements Runnable {
             e.printStackTrace();
         }
         return null;
+    }
+
+    private Object readObj_throw_exception() throws IOException, ClassNotFoundException {
+        return obj_is.readObject();
     }
 
     /**

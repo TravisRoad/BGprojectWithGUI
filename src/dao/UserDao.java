@@ -57,10 +57,12 @@ public class UserDao {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {//查询成功
                     long id = rs.getLong(1);
+                    String nickName = rs.getString(4);
                     if (!rs.getString(3).equals(passwd)) {
                         throw new WrongPassWdException();
                     } else {
                         user = new User(userName, passwd, id);
+                        user.setNickName(nickName);
                     }
                 }
                 else{//无对应账户

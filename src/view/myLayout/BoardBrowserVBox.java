@@ -26,6 +26,10 @@ import view.Main;
 public class BoardBrowserVBox extends VBox {
     private BoardBrowserControllor boardBrowserControllor;
 
+    public BoardBrowserVBox() {
+        super(5);
+    }
+
     public BoardBrowserVBox(Main main, BoardGameFetched boardGameFetched) {
         super(5);
         boardBrowserControllor = new BoardBrowserControllor();

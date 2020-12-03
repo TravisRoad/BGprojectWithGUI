@@ -51,6 +51,7 @@ public class LogPlayController {
 
         GameLog gameLog = new GameLog();
         gameLog.setDate(date);
+        gameLog.setBg_id(bg_id);
         gameLog.setUserNames(userNames);
         gameLog.setTheVictoryOne("anyone");
         gameLog.dateFormat();// 格式化

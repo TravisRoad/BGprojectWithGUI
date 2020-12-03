@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 public class SearchResultStage extends Stage {
     ArrayList<BoardGameModel> boardGameModels;
+    Stage stage;
     Main main;
 
     public void setMain(Main main) {
@@ -39,6 +40,11 @@ public class SearchResultStage extends Stage {
         super();
     }
 
+    public SearchResultStage(Stage stage) {
+        super();
+        this.stage = stage;
+    }
+
     public void build() {
         VBox vBox = new VBox();
         Parent root = new ScrollPane(vBox);
@@ -51,6 +57,7 @@ public class SearchResultStage extends Stage {
             HBox hBox = new GameEntry(url, title, intro, rating);
             hBox.setOnMouseClicked(e -> {
                 searchController.newStage((int) boardGameModel.getBg_id());
+                searchController.newStage_0((int) boardGameModel.getBg_id());
             });
             vBox.getChildren().add(hBox);
         }
