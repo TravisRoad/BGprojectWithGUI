@@ -28,7 +28,7 @@ public class Main extends Application {
 
         Scene loginScene = new Scene(loginPane);
 
-        Application.setUserAgentStylesheet(STYLESHEET_MODENA);
+        //Application.setUserAgentStylesheet(STYLESHEET_MODENA);
         //loginScene.getStylesheets().add(getClass().getResource("DarkTheme.css").toExternalForm());
 
         Application.setUserAgentStylesheet(getClass().getResource("DarkTheme.css").toExternalForm());
