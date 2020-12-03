@@ -2,7 +2,6 @@ package util.httpRequest;
 
 import model.search.BoardGameSearched;
 import util.JsonConvert;
-import util.XMLtoJSON;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +9,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+/**
+ * 用于访问网络数据接口的类
+ * 实现了request的get方法
+ */
 public class MyGetRequest {
 
     public static String request(String thingsToSearch) {

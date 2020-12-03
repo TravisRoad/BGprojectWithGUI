@@ -8,7 +8,6 @@ import util.Database;
 import model.GameLog;
 import util.JsonConvert;
 import util.TransportThings;
-import util.XMLtoJSON;
 import util.httpRequest.MyGetRequest;
 import util.myexception.NoSearchResultException;
 

@@ -13,78 +13,71 @@ import java.net.Socket;
 public class ClientTrans {
     public Socket client = null;
 
-    //private User currentUser;
-    private final char END_CHAR = '#';
-    private InputStream is;
     private ObjectInputStream obj_is;
     private ObjectOutputStream obj_os;
 
 
-    public ClientTrans(){}
+    public ClientTrans() {
+    }
 
-    public boolean connect(){
+    /**
+     * 连接
+     *
+     * @return 是否连接成功
+     */
+    public boolean connect() {
         int DEFAULT_PORT = 1100;
         String DEFAULT_IP = "127.0.0.1";
         return connect(DEFAULT_IP, DEFAULT_PORT);
     }
 
-    public boolean connect(String ip, int port){
+    /**
+     * 连接到服务端
+     *
+     * @param ip   ip地址，默认为本地
+     * @param port 端口
+     * @return 是否连接成功
+     */
+    public boolean connect(String ip, int port) {
         boolean flag = false;
-        try{
-            client = new Socket(ip,port);
+        try {
+            client = new Socket(ip, port);
             InputStream is = client.getInputStream();
             obj_os = new ObjectOutputStream(client.getOutputStream());
             obj_os.flush();
             obj_is = new ObjectInputStream(new BufferedInputStream(client.getInputStream()));
             flag = true;
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return flag;
     }
 
-    public String readStr(){
-        int len;
-        String recvMsg = "";
-
-        try {
-            byte[] buffer = new byte[1024];
-            while((len = is.read(buffer))!= -1){
-                recvMsg = recvMsg.concat(new String(buffer, 0, len));
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return recvMsg;
-    }
-
-    public boolean writeStr(@NotNull String str){
-        boolean flag = false;
-        try {
-            OutputStream out = client.getOutputStream();
-            out.write(str.getBytes("utf-8"));
-            flag = true;
-            client.shutdownOutput();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-        return flag;
-    }
-
-    public boolean writeObj(Object obj){
+    /**
+     * 向Socket对象的输出流写入传输对象
+     *
+     * @param obj 待传输的对象
+     * @return 传输是否成功
+     */
+    public boolean writeObj(Object obj) {
         boolean flag = false;
         try {
             obj_os.writeObject(obj);
             obj_os.flush();
             flag = true;
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return flag;
     }
 
-    public Object readObj(){
-        try{
+    /**
+     * 从Socket对象的输入流读出传输的对象
+     *
+     * @return 传输对象
+     */
+    public Object readObj() {
+        try {
             Object obj = obj_is.readObject();
             return obj;
         } catch (IOException e) {

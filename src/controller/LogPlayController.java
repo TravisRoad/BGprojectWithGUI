@@ -54,12 +54,14 @@ public class LogPlayController {
         LocalDate localDate = datePicker.getValue();
         if (localDate == null) {
             showError("未填写日期");
+            return;
         }
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date date = Date.from(instant);
         Date currentDate = Calendar.getInstance().getTime();
         if (date.after(currentDate)) {
             showError("填写的是未来的日期");
+            return;
         }
 
         GameLog gameLog = new GameLog();
@@ -105,8 +107,9 @@ public class LogPlayController {
         if (state == 0x01) {
             alert2.setHeaderText("记录成功");
             flag = true;
-        } else
+        } else {
             alert2.setHeaderText("失败");
+        }
         Optional<ButtonType> result = alert2.showAndWait();
         if (flag) stage.close();
 

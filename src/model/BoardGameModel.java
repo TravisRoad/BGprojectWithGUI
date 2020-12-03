@@ -52,4 +52,14 @@ public class BoardGameModel implements Serializable {
     public void setBg_id(int bg_id) {
         this.bg_id = bg_id;
     }
+
+    @Override
+    public String toString() {
+        return "BoardGameModel{" +
+                "bg_id=" + bg_id +
+                ", name='" + name + '\'' +
+                ", introduction='" + introduction + '\'' +
+                ", rate=" + rate +
+                '}';
+    }
 }

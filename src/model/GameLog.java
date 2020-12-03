@@ -56,4 +56,15 @@ public class GameLog implements Serializable {
     public void setOrganizer(String organizer) {
         this.organizer = organizer;
     }
+
+    @Override
+    public String toString() {
+        return "GameLog{" +
+                "userNames=" + userNames +
+                ", organizer='" + organizer + '\'' +
+                ", theVictoryOne='" + theVictoryOne + '\'' +
+                ", date=" + date +
+                ", bg_id=" + bg_id +
+                '}';
+    }
 }
