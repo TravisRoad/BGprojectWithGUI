@@ -7,6 +7,16 @@ public class User implements Serializable {
     private String userName;
     private String passWord;
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    private String nickName;
+
     public User(String userName, String passWord, long userID) {
         this.userName = userName;
         this.passWord = passWord;
