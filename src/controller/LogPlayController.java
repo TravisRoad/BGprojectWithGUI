@@ -37,6 +37,7 @@ public class LogPlayController {
 
     public void setMain(Main main) {
         this.main = main;
+        textFields.add(new TextField(main.getUser().getUserName()));
     }
 
     public void log() {
