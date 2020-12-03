@@ -3,6 +3,9 @@ package view.myLayout;
 import controller.LogPlayController;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import view.Main;
 
@@ -24,6 +27,13 @@ public class LogPlay extends VBox {
         Button addPlayer = new Button("增加玩家");// 增加玩家
         playerVBox.getChildren().add(addPlayer);
 
+        HBox hBox = new HBox();
+
+        Label label = new Label("玩家");
+        TextField textField = new TextField(main.getUser().getUserName());
+        hBox.getChildren().addAll(label, textField);
+
+        playerVBox.getChildren().add(hBox);
         addPlayer.setOnAction(e -> {
             logPlayController.addPlayerButtonOnClicked(playerVBox);
         });
