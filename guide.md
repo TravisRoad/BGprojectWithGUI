@@ -66,6 +66,8 @@ user_comment(<u>user_id,cm_id</u>);
 
 * 控制 GUI 上的控件
 
+
+
 ### dao（Database Access Object）
 
 * 数据库交互对象
@@ -77,10 +79,46 @@ user_comment(<u>user_id,cm_id</u>);
 * 实体对象
 
 ### transport
-* C-S 通信层
+
+| 类            | 说明                                                         |
+| :------------ | :----------------------------------------------------------- |
+| `ClientTrans` | `用于客户端与服务端通信`                                   |
+| `Server` | `用于服务端的程序，其中使用了线程池以处理并发的操作'</br> ''虽然监听的是本地的连接请求，但是可以将程序放在服务器上运行，接收来自互联网的请求` |
+
+#### Server
+| 限定符和类型  | 方法和说明                      |
+| :------------ | :------------------------------ |
+| `static void` | `main(java.lang.String[] args)` |
+| `void`        | `start()`用于开始服务器端的服务 |
+
+#### Client
+
+| 限定符和类型       | 方法和说明                                                   |
+| :----------------- | :----------------------------------------------------------- |
+| `boolean`          | `connect()`连接                                              |
+| `boolean`          | `connect(java.lang.String ip, int port)`连接到服务端         |
+| `static void`      | `main(java.lang.String[] args)`                              |
+| `java.lang.Object` | `readObj()`从Socket对象的输入流读出传输的对象                |
+| `boolean`          | `writeObj(java.lang.Object obj)`向Socket对象的输出流写入传输对象 |
 
 ### util
-* 有用的小零件
+
+#### 类概要
+|     类      |                             说明                             |
+| :---------: | :----------------------------------------------------------: |
+|  Database   |                 用于连接数据库和数据库初始化                 |
+| JsonConvert |              用于装换Json字符串为Java Beans对象              |
+| SecureHash  | SHA(Secure Hash Algorithm，安全散列算法），数字签名等密码学应用中重要的工具， 被广泛地应用于电子商务等信息安全领域。 |
+|    Time     |                   用于生成带有时间戳的输出                   |
+|MyGetRequest	|用于访问网络数据接口的类 实现了request的get方法|
+
+|异常错误	|说明|
+| :---------: | :----------------------------------------------------------: |
+|AccountAlreadyExistException	|账户已经存在|
+|AccountNotExistException	|账户不存在|
+|NoSearchResultException	|无搜索内容|
+|OtherException	|其他错误|
+|WrongPassWdException	|密码错误|
 
 ### view
 * GUI 视图
