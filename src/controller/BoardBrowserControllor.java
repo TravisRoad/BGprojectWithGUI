@@ -3,8 +3,11 @@ package controller;
 import dao.BoardGameDao;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ScrollPane;
+import javafx.stage.Stage;
 import model.BoardGameModel;
 import model.boardgamefetched.BoardGameFetched;
 import util.Database;
@@ -12,6 +15,7 @@ import util.TransportThings;
 import util.myexception.NoSearchResultException;
 import util.myexception.OtherException;
 import view.Main;
+import view.myLayout.LogPlay;
 
 import java.net.URL;
 import java.util.Optional;
@@ -35,10 +39,17 @@ public class BoardBrowserControllor implements Initializable {
 
     public void openLogPlayStage(int bg_id, Event e) {
         // new Stage
-        BoardGameModel boardGameModel = new BoardGameModel();
+        /*BoardGameModel boardGameModel = new BoardGameModel();
         boardGameModel.setBg_id(bg_id);
         TransportThings tt = new TransportThings();
-        tt.setQuery("logplay");
+        tt.setQuery("logplay");*/
+
+        Stage stage = new Stage();
+        LogPlay logPlay = new LogPlay(main);
+        logPlay.getLogPlayController().setBg_id(bg_id);
+        Scene scene = new Scene(new ScrollPane(logPlay));
+        stage.setScene(scene);
+        stage.show();
 
         // show new stage
 
