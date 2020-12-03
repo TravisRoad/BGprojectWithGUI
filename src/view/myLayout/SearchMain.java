@@ -23,6 +23,7 @@ public class SearchMain extends VBox {
         searchController = new SearchController();
         searchController.setMain(main);
 
+        setId("MainContainer");//设置为css主容器类
 
         TextField fieldSearch = new TextField();
         Button buttonSearch = new Button("Search!");
