@@ -21,6 +21,9 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ *
+ */
 public class BoardBrowserControllor implements Initializable {
     public void setMain(Main main) {
         this.main = main;

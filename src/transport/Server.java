@@ -27,21 +27,26 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Travis
+ * 用于服务端的程序，其中使用了线程池以处理并发的操作</br>
+ * 虽然监听的是本地的连接请求，但是可以将程序放在服务器上运行，接收来自互联网的请求
+ */
 public class Server {
     ServerSocket service;
 
     public void start() {
         try {
-            String DEFAULT_IP = "127.0.0.1";
+            String DEFAULT_IP = "127.0.0.1"; // 监听本地，可以实现在远端运行
             InetAddress address = InetAddress.getByName(DEFAULT_IP);
             Socket connect = null;
-            int MAX_CLIENT_CNT = 5;
+            int MAX_CLIENT_CNT = 10; // 最大连接数
             ExecutorService pool = Executors.newFixedThreadPool(MAX_CLIENT_CNT);
             int DEFAULT_PORT = 1100;
             service = new ServerSocket(DEFAULT_PORT, MAX_CLIENT_CNT, address);
             while (true) {
                 connect = service.accept();
-                System.out.println(connect.toString());
+                Time.println("有新连接接入" + connect.toString());
                 //创建一个任务,放入线程池等待运行
                 ServiceTask serviceTask = new ServiceTask(connect);
                 pool.execute(serviceTask);
