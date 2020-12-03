@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import model.User;
 import transport.ClientTrans;
 import util.Database;
+import util.SecureHash;
 import util.TransportThings;
 import util.myexception.AccountNotExistException;
 import util.myexception.WrongPassWdException;
@@ -67,9 +68,11 @@ public class LoginController implements Initializable {
         TransportThings tt = new TransportThings();
         User user = new User(userName, passWord, 0);
         tt.setQuery("login");
+        // 加密
+        user.setPassWord(SecureHash.getResult(user.getPassWord()));
         tt.setUser(user);
 
-        main.getClientTrans().writeObj(tt);//TODO:密码需要加密处理
+        main.getClientTrans().writeObj(tt);
         tt = (TransportThings) main.getClientTrans().readObj();
         if (tt.getState() == 0x01) {
             System.out.println("success");
@@ -90,6 +93,8 @@ public class LoginController implements Initializable {
 //        VBox vBox = new VBox()
         TransportThings tt = new TransportThings();
         User user = new User(userName, passWord, 0);
+        // 加密
+        user.setPassWord(SecureHash.getResult(user.getPassWord()));
         tt.setQuery("signup");
         tt.setUser(user);
         if (passWord.length() < 6 || passWord.length() > 40) {

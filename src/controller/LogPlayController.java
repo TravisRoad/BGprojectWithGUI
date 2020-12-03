@@ -13,6 +13,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
@@ -25,6 +26,10 @@ public class LogPlayController {
 
     private int bg_id;
     private int playerNum;
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     public LogPlayController(LogPlay logPlay) {
         this.logPlayVBox = logPlay;
@@ -45,9 +50,17 @@ public class LogPlayController {
         for (TextField t : textFields) {
             userNames.add(t.getText());
         }
+        // 日期转化
         LocalDate localDate = datePicker.getValue();
+        if (localDate == null) {
+            showError("未填写日期");
+        }
         Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
         Date date = Date.from(instant);
+        Date currentDate = Calendar.getInstance().getTime();
+        if (date.after(currentDate)) {
+            showError("填写的是未来的日期");
+        }
 
         GameLog gameLog = new GameLog();
         gameLog.setDate(date);
@@ -77,17 +90,26 @@ public class LogPlayController {
         this.datePicker = datePicker;
     }
 
+    private void showError(String info) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("");
+        alert.setHeaderText("警告");
+        alert.setContentText(info);
+        Optional<ButtonType> result = alert.showAndWait();
+    }
+
     private void showAlert(int state) {
         Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
         alert2.setTitle("");
-        if (state == 0x01)
+        boolean flag = false;
+        if (state == 0x01) {
             alert2.setHeaderText("记录成功");
-        else
+            flag = true;
+        } else
             alert2.setHeaderText("失败");
         Optional<ButtonType> result = alert2.showAndWait();
-        if (result.get() == ButtonType.OK) {
+        if (flag) stage.close();
 
-        }
     }
 
     public void addPlayerButtonOnClicked(VBox playerVBox) {

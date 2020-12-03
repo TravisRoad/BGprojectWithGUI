@@ -38,16 +38,10 @@ public class BoardBrowserControllor implements Initializable {
     }
 
     public void openLogPlayStage(int bg_id, Event e) {
-        // new Stage
-        /*BoardGameModel boardGameModel = new BoardGameModel();
-        boardGameModel.setBg_id(bg_id);
-        TransportThings tt = new TransportThings();
-        tt.setQuery("logplay");*/
-
         Stage stage = new Stage();
-        LogPlay logPlay = new LogPlay(main);
+        LogPlay logPlay = new LogPlay(main, stage);
         logPlay.getLogPlayController().setBg_id(bg_id);
-        Scene scene = new Scene(new ScrollPane(logPlay));
+        Scene scene = new Scene(new ScrollPane(logPlay), 400, 600);
         stage.setScene(scene);
         stage.show();
 
