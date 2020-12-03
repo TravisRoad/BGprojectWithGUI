@@ -38,22 +38,9 @@ public class BoardGameDao {
      */
     public BoardGameFetched fetchBoardGameInfo(int bg_id) {
         MyGetRequest myGetRequest = new MyGetRequest();
-        String json = myGetRequest.request(bg_id);
+        String json = MyGetRequest.request(bg_id);
         JsonConvert jsonConvert = new JsonConvert();
-        return jsonConvert.convert2BoardGameFetched(json);
-    }
-
-    /**
-     * 搜索一些桌游的信息，通过API获取信息
-     *
-     * @param thingstoSearch 搜索的字段
-     * @return BoardGameSearched 存有返回的结果
-     * @deprecated
-     */
-    public BoardGameSearched search(String thingstoSearch) {
-        String xml = MyGetRequest.request(thingstoSearch);
-        String json = XMLtoJSON.convert(xml);
-        return JsonConvert.convert2BoardgameSearched(json);
+        return JsonConvert.convert2BoardGameFetched(json);
     }
 
     /**

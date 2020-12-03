@@ -8,6 +8,9 @@ import model.boardgamefetched.BoardGameFetched;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * 带有各种 model类对象的运载类，用于在服务端和客户端之间传递信息
+ */
 public class TransportThings implements Serializable {
     private User user = null;
     private BoardGameModel boardGameModel = null;

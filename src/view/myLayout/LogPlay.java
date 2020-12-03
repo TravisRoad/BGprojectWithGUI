@@ -1,5 +1,6 @@
 package view.myLayout;
 
+import com.browniebytes.javafx.control.DateTimePicker;
 import controller.LogPlayController;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -27,6 +28,7 @@ public class LogPlay extends VBox {
 
         DatePicker datePicker = new DatePicker();
         datePicker.setValue(LocalDate.now());
+        datePicker.setStyle("");
         logPlayController.setDatePicker(datePicker);
 
         VBox playerVBox = new VBox();

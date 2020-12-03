@@ -63,5 +63,6 @@
       </library>
     </orderEntry>
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="DateTimePicker" level="project" />
   </component>
 </module>

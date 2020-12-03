@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 import view.myLayout.MainTabLayout;
 
 /**
- * 主界面Stage
+ * 主界面的描述对象
  */
 public class Home {
     private Main main;

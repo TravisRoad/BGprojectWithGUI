@@ -56,14 +56,4 @@ public class MyGetRequest {
         }
         return response.toString();
     }
-
-    public static void main(String[] args) {
-        MyGetRequest myGetRequest = new MyGetRequest();
-        String xml = myGetRequest.request("uno");
-        XMLtoJSON xmLtoJSON = new XMLtoJSON();
-        String json = xmLtoJSON.convert(xml);
-        System.out.println(json);
-        BoardGameSearched b = JsonConvert.convert2BoardgameSearched(json);
-        System.out.println(b);
-    }
 }

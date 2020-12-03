@@ -17,6 +17,9 @@ import view.myLayout.GameEntry;
 
 import java.util.ArrayList;
 
+/**
+ * 展现搜索结果的窗口描述对象，绑定了相关事件的监听器
+ */
 public class SearchResultStage extends Stage {
     ArrayList<BoardGameModel> boardGameModels;
     Stage stage;

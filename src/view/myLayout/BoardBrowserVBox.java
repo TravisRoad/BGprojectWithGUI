@@ -23,6 +23,9 @@ import util.myexception.NoSearchResultException;
 import util.myexception.OtherException;
 import view.Main;
 
+/**
+ * 浏览页面的主要构成对象
+ */
 public class BoardBrowserVBox extends VBox {
     private BoardBrowserControllor boardBrowserControllor;
 

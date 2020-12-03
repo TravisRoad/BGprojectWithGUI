@@ -28,9 +28,10 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author Travis
  * 用于服务端的程序，其中使用了线程池以处理并发的操作</br>
  * 虽然监听的是本地的连接请求，但是可以将程序放在服务器上运行，接收来自互联网的请求
+ *
+ * @author Travis
  */
 public class Server {
     ServerSocket service;
