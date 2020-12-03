@@ -33,7 +33,7 @@ public class UserMain extends SplitPane {
         userController = new UserController();
         this.main = main;
         userController.setMain(main);
-        setDividerPositions(0.25);
+        setDividerPositions(0.13);
 
         //split pane左半部分
         VBox leftControl = new VBox();
@@ -50,11 +50,11 @@ public class UserMain extends SplitPane {
 
         Label labelUsername = new Label(main.getUser().getNickName());
         labelUsername.setAlignment(Pos.CENTER);
-        labelUsername.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
+        //labelUsername.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
         userController.setLabelUsername(labelUsername);
 
         Button buttonEditProfile = new Button("Edit Profile");
-        buttonEditProfile.setFont(Font.font("Calibri", 20));
+        //buttonEditProfile.setFont(Font.font("Calibri", 20));
         buttonEditProfile.setOnAction(editProfile -> {
             userController.newEditProfileStage();
         });
@@ -72,12 +72,14 @@ public class UserMain extends SplitPane {
 
 
 
-        Label labelRecent = new Label("Recently Played");
-        labelRecent.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
-        labelRecent.setAlignment(Pos.CENTER_LEFT);
 
+        Label labelRecent = new Label("Recently Played");
+        labelRecent.setId("Title-big");
         Button buttonRefresh = new Button("Refresh");
-        buttonRefresh.setAlignment(Pos.CENTER_RIGHT);
+        VBox buttonBox = new VBox(buttonRefresh);
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.setPadding(new Insets(5,0,0,0));
+
         buttonRefresh.setOnAction(e -> {
             rightBox.getChildren().remove(1);
             VBox rightContentNew = userController.refreshList();
@@ -85,13 +87,13 @@ public class UserMain extends SplitPane {
         });
 
 
-        rightTop.getChildren().addAll(labelRecent, buttonRefresh);
+        rightTop.getChildren().addAll(labelRecent, buttonBox);
         rightBox.getChildren().addAll(rightTop);
         rightBox.setFillWidth(true);
         HBox.setHgrow(buttonRefresh, Priority.ALWAYS);
         HBox.setHgrow(labelRecent, Priority.ALWAYS);
-        rightTop.setPadding(new Insets(10, 25, 25, 25));
-        rightTop.setSpacing(50);
+        rightTop.setSpacing(25);
+        rightBox.setPadding(new Insets(35,50,50,50));
         rightBox.getChildren().add(userController.refreshList());
 
         getItems().addAll(leftControl, rightControl);

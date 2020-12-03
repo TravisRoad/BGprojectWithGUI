@@ -22,18 +22,15 @@ public class SearchMain extends VBox {
     public SearchMain(Main main, Stage stage) {
         searchController = new SearchController();
         searchController.setMain(main);
-
         setId("MainContainer");//设置为css主容器类
 
+
         TextField fieldSearch = new TextField();
+        fieldSearch.setId("FieldSearch");
         Button buttonSearch = new Button("Search!");
-        //fieldSearch.setAlignment(Pos.CENTER);
+        buttonSearch.setId("buttonSearch");
         setAlignment(Pos.CENTER);
 
-        //fieldSearch.setPadding(new Insets(50,50,50,50));
-        //buttonSearch.setPadding(new Insets(50,50,50,50));
-        fieldSearch.setFont(Font.font("Calibri", 24));
-        buttonSearch.setFont(Font.font("Calibri", 24));
         buttonSearch.setOnAction(buttonSearchClicked -> {
             String queryString = fieldSearch.getText();
             try {
@@ -51,7 +48,7 @@ public class SearchMain extends VBox {
             }
         });
         setSpacing(50);
-        setPadding(new Insets(200,50,200,50));
+        setPadding(new Insets(0,150,150,150));
         this.getChildren().addAll(fieldSearch,buttonSearch);
     }
 }

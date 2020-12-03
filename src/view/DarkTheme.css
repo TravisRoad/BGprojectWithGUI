@@ -15,23 +15,44 @@
     -fx-font-size: 16pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
-    -fx-opacity: 0.7;
+    -fx-opacity: 0.75;
     -fx-border-color: rgb(230, 230, 230);
     -fx-border-radius: 10;
     -fx-padding: 4 8 8 8;
     -fx-border-width: 2;
 }
 
+#buttonSearch{
+    -fx-font-size: 32pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.75;
+    -fx-border-color: rgb(230, 230, 230);
+    -fx-border-radius: 10;
+    -fx-padding: 8 16 16 16;
+    -fx-border-width: 3;
+}
+
 .text-field {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
-    -fx-opacity: 0.7;
+    -fx-opacity: 0.75;
     -fx-border-color: rgb(230, 230, 230);
     -fx-border-radius: 10;
     -fx-border-width: 2;
     -fx-padding: 1 2 2 6;
+}
 
+#FieldSearch{
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.75;
+    -fx-border-color: rgb(230, 230, 230);
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+    -fx-padding: 2 4 4 8;
 }
 
 #Title {
@@ -91,4 +112,50 @@
 
 .split-pane {
     -fx-padding: 1 0 0 0;
+}
+
+.dialog-pane{
+    -fx-background-color: #1d1d1d;
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.75;
+}
+
+.scroll-pane {
+    -fx-background-color: black;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(160, 160, 160);
+    -fx-background-radius: 5em;
+}
+
+.scroll-pane > .corner {
+    -fx-background-color: black;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+
+    -fx-pref-height: 5;
+    -fx-pref-width: 5;
+    -fx-background-insets: 5;
 }
