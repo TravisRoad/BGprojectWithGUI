@@ -1,15 +1,15 @@
 package controller;
 
 import javafx.event.Event;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import util.GameLog;
 import util.TransportThings;
 import view.Main;
+import view.myLayout.LogPlay;
 
-import java.awt.*;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -19,9 +19,22 @@ import java.util.Optional;
 
 public class LogPlayController {
     private Main main;
-    private ArrayList<TextField> textFields;
+    private ArrayList<TextField> textFields = new ArrayList<>();
     private DatePicker datePicker;
     private Stage stage;
+    private LogPlay logPlayVBox;
+
+    private int bg_id;
+    private int playerNum;
+
+    public LogPlayController(LogPlay logPlay) {
+        this.logPlayVBox = logPlay;
+        playerNum = 0;
+    }
+
+    public void setBg_id(int bg_id) {
+        this.bg_id = bg_id;
+    }
 
     public void setMain(Main main) {
         this.main = main;
@@ -40,11 +53,12 @@ public class LogPlayController {
         gameLog.setDate(date);
         gameLog.setUserNames(userNames);
         gameLog.setTheVictoryOne("anyone");
+        gameLog.dateFormat();// 格式化
 
         TransportThings tt = new TransportThings();
         tt.setQuery("gamelog");
         tt.setGameLog(gameLog);
-        main.getClientTrans().writeObj(tt);
+        main.getClientTrans().writeObj(tt); //发送包
         tt = (TransportThings) main.getClientTrans().readObj();
         showAlert(tt.getState());
         //TODO: 返回提示
@@ -72,5 +86,23 @@ public class LogPlayController {
         }
     }
 
+    public void addPlayerButtonOnClicked(VBox playerVBox) {
+        HBox hBox = new HBox();
 
+        Label label = new Label("玩家");
+        TextField textField = new TextField();
+        textFields.add(textField);
+
+        Button removeButton = new Button("移除");
+
+        hBox.getChildren().addAll(label, textField, removeButton);
+        playerVBox.getChildren().add(hBox);
+
+        // 绑定移除事件
+        removeButton.setOnAction(e -> {
+            playerVBox.getChildren().remove(hBox);
+            textFields.remove(textField);
+            playerNum--;
+        });
+    }
 }

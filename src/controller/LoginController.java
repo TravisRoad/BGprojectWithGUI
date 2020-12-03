@@ -12,6 +12,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 import dao.UserDao;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.User;
 import transport.ClientTrans;
@@ -83,6 +84,10 @@ public class LoginController implements Initializable {
     }
 
     public void signup(String userName, String passWord, ActionEvent e) {
+//        Stage stage = new Stage();
+//        stage.setHeight(300);
+//
+//        VBox vBox = new VBox()
         TransportThings tt = new TransportThings();
         User user = new User(userName, passWord, 0);
         tt.setQuery("signup");
