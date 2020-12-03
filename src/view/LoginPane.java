@@ -34,6 +34,7 @@ public class LoginPane extends VBox {
         Label headerLogin = new Label("Login");
         headerLogin.setAlignment(Pos.TOP_CENTER);
         headerLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 40));
+        headerLogin.setPadding(new Insets(0, 50, 25, 50));
 
         GridPane gpLogin = new GridPane();
         gpLogin.setAlignment(Pos.CENTER);
@@ -47,18 +48,26 @@ public class LoginPane extends VBox {
         gpLogin.add(labelPass, 0, 1, 1, 1);
         gpLogin.add(fieldUser, 1, 0, 1, 1);
         gpLogin.add(fieldPass, 1, 1, 1, 1);
-        gpLogin.setHgap(5.0);
-        gpLogin.setVgap(5.0);
+        gpLogin.setHgap(10);
+        gpLogin.setVgap(10);
 
         Button buttonSignup = new Button("Sign Up");
         Button buttonLogin = new Button("Login");
         buttonSignup.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         buttonLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
-        gpLogin.add(buttonSignup, 0, 2);
-        gpLogin.add(buttonLogin, 1, 2);
-        GridPane.setMargin(buttonLogin, new Insets(0, 1, 0, 50));
+        //buttonLogin.setMinWidth(buttonSignup.getWidth());
 
-        getChildren().addAll(headerLogin, gpLogin);
+        HBox boxButtons = new HBox();
+        boxButtons.getChildren().addAll(buttonSignup, buttonLogin);
+        boxButtons.setAlignment(Pos.CENTER);
+        boxButtons.setPadding(new Insets(25, 25, 25, 25));
+        boxButtons.setSpacing(25);
+        /*gpLogin.add(buttonSignup, 0, 2);
+        gpLogin.add(buttonLogin, 1, 2);
+        GridPane.setMargin(buttonLogin, new Insets(0, 1, 0, 50));*/
+
+
+        getChildren().addAll(headerLogin, gpLogin, boxButtons);
 
         loginController = new LoginController(buttonLogin, buttonSignup, fieldUser, fieldPass);
         loginController.setMain(main);
