@@ -43,12 +43,20 @@ public class UserDao {
         return ret;
     }
 
+    public void changeNickName(String s, int user_id) throws SQLException {
+        String sql = "UPDATE user set nickName = ? where user_id = ?";
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+
+        }
+    }
+
     /**
      * 查询是否有对应的用户
+     *
      * @param userName 用户名
-     * @param passwd 密码
-     * @throws SQLException, AccountNotExistException, WrongPassWdException
+     * @param passwd   密码
      * @return User 查询到的用户对象，失败则返回{@code null}
+     * @throws SQLException, AccountNotExistException, WrongPassWdException
      */
     public User search(String userName, String passwd) throws SQLException, AccountNotExistException, WrongPassWdException {
         String sql = "SELECT * FROM user WHERE username=?";

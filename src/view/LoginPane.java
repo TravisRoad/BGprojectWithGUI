@@ -66,8 +66,11 @@ public class LoginPane extends VBox {
         gpLogin.add(buttonLogin, 1, 2);
         GridPane.setMargin(buttonLogin, new Insets(0, 1, 0, 50));*/
 
-
-        getChildren().addAll(headerLogin, gpLogin, boxButtons);
+        Button quick = new Button("quickLogin");
+        quick.setOnAction(e -> {
+            loginController.login("lxy", "123456", e);
+        });
+        getChildren().addAll(headerLogin, gpLogin, boxButtons, quick);
 
         loginController = new LoginController(buttonLogin, buttonSignup, fieldUser, fieldPass);
         loginController.setMain(main);
