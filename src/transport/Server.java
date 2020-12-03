@@ -35,6 +35,9 @@ import java.util.concurrent.Executors;
 public class Server {
     ServerSocket service;
 
+    /**
+     * 用于开始服务器端的服务
+     */
     public void start() {
         try {
             String DEFAULT_IP = "127.0.0.1"; // 监听本地，可以实现在远端运行
@@ -62,6 +65,11 @@ public class Server {
     }
 }
 
+/**
+ * 服务器端的线程池中的实现了Runnable接口的对象
+ *
+ * @implNote Runnable
+ */
 class ServiceTask implements Runnable {
     private final ObjectInputStream obj_is;
     private final ObjectOutputStream obj_os;
@@ -69,6 +77,12 @@ class ServiceTask implements Runnable {
     private BoardGameDao boardGameDao;
     private User currentUser;//default
 
+    /**
+     * 构造方法
+     *
+     * @param socket 来自远端的socket
+     * @throws IOException 如果远端关闭则会失去连接
+     */
     ServiceTask(Socket socket) throws IOException {
         Database database = new Database();
         userDao = new UserDao(database);
@@ -77,8 +91,13 @@ class ServiceTask implements Runnable {
         obj_os = new ObjectOutputStream(socket.getOutputStream());
     }
 
+    /**
+     * 要执行的server体在这里面,整体结构是：</br>
+     * 接收TransportThings对象，解读其中的query字段，执行相应操作，写回回应的TransportThings对象</br>
+     * 并且能够捕获到远端关闭的异常，如果关闭，则服务端会关闭该线程
+     */
     @Override
-    public void run() {//要执行的server体在这里面
+    public void run() {
         boolean exitFlag = false;
         while (true) {
             TransportThings tt = null;
@@ -93,6 +112,12 @@ class ServiceTask implements Runnable {
         }
     }
 
+    /**
+     * 向Socket对象的输出流写入传输对象
+     *
+     * @param obj 待传输的对象
+     * @return 传输是否成功
+     */
     private boolean writeObj(Object obj) {
         boolean flag = false;
         try {
@@ -105,6 +130,11 @@ class ServiceTask implements Runnable {
         return flag;
     }
 
+    /**
+     * 从Socket对象的输入流读出传输的对象
+     *
+     * @return 传输对象
+     */
     private Object readObj() {
         try {
             return obj_is.readObject();
@@ -114,6 +144,13 @@ class ServiceTask implements Runnable {
         return null;
     }
 
+    /**
+     * 将异常抛出的特殊读出传输对象的方法
+     *
+     * @return 传输对象
+     * @throws IOException            异常
+     * @throws ClassNotFoundException 异常
+     */
     private Object readObj_throw_exception() throws IOException, ClassNotFoundException {
         return obj_is.readObject();
     }

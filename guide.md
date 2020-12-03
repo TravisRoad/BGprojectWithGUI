@@ -1,5 +1,9 @@
 # BGProject
 
+[TOC]
+
+
+
 ## 软件功能
 
 * 浏览市场上发布的各类桌游简介以及评分
@@ -12,6 +16,7 @@
 
 * Windows 10 Pro 2004，macOS 11.0
 * IntelliJ IDEA 2020，Java 8 with JavaFX
+* mysql  Ver 14.14 Distrib 5.7.31, for Linux (x86_64)
 
 ## 界面设计
 
@@ -35,9 +40,30 @@
 
 数据库架设在阿里云服务器上
 
+![boardgame](guide.assets/boardgame.png)
+
+各个table设计如下：
+
+user(<u>user_id</u>,username,passwd);
+
+play_history(<u>ph_id</u>,victory_player_id);
+
+boardgame(<u>bg_id</u>,bg_name,introduction);
+
+comment(<u>cm_id</u>,cm_content,rate);
+
+play(<u>user_id,ph_id</u>);
+
+game_played(<u>bg_id,ph_id</u>);
+
+comment_game(<u>bg_id,cm_id</u>);
+
+user_comment(<u>user_id,cm_id</u>);
+
 ## 各模块功能解析
 
 ### controller
+
 * 控制 GUI 上的控件
 
 ### dao（Database Access Object）
