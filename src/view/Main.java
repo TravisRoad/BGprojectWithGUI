@@ -26,8 +26,14 @@ public class Main extends Application {
         LoginPane loginPane = new LoginPane(this);
         loginPane.getLoginController().setLoginStage(primaryStage);
 
+        Scene loginScene = new Scene(loginPane);
 
-        primaryStage.setScene(new Scene(loginPane));
+        Application.setUserAgentStylesheet(STYLESHEET_MODENA);
+        //loginScene.getStylesheets().add(getClass().getResource("DarkTheme.css").toExternalForm());
+
+        Application.setUserAgentStylesheet(getClass().getResource("DarkTheme.css").toExternalForm());
+
+        primaryStage.setScene(loginScene);
         primaryStage.setTitle("Board Game Recorder");
         primaryStage.setWidth(600);
         primaryStage.setHeight(800);
@@ -35,7 +41,9 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             System.exit(0);
         });
-        Application.setUserAgentStylesheet(getClass().getResource("DarkTheme.css").toExternalForm());
+
+
+
         primaryStage.show();
     }
 

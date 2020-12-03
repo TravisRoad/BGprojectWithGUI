@@ -1,7 +1,10 @@
 .root {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: black;
 }
 
+.background{
+    -fx-background-color: black;
+}
 
 .label {
     -fx-font-size: 16pt;
@@ -22,7 +25,31 @@
     -fx-border-width: 2;
 }
 
-#buttonSearch{
+.button:hover {
+    -fx-font-size: 16pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 10;
+    -fx-padding: 4 8 8 8;
+    -fx-border-width: 2;
+}
+
+.button:armed {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-font-size: 16pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.85;
+    -fx-border-color: white;
+    -fx-border-radius: 10;
+    -fx-padding: 4 8 8 8;
+    -fx-border-width: 2;
+}
+
+#buttonSearch {
     -fx-font-size: 32pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
@@ -44,12 +71,34 @@
     -fx-padding: 1 2 2 6;
 }
 
-#FieldSearch{
+.text-field:focused {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: white;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 1 2 2 6;
+}
+
+#FieldSearch {
     -fx-font-size: 20pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
     -fx-opacity: 0.75;
     -fx-border-color: rgb(230, 230, 230);
+    -fx-border-radius: 10;
+    -fx-border-width: 3;
+    -fx-padding: 2 4 4 8;
+}
+
+#FieldSearch:focused {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+    -fx-border-color: white;
     -fx-border-radius: 10;
     -fx-border-width: 3;
     -fx-padding: 2 4 4 8;
@@ -69,7 +118,7 @@
     -fx-opacity: 0.85;
 }
 
-#Description{
+#Description {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: white;
@@ -114,7 +163,7 @@
     -fx-padding: 1 0 0 0;
 }
 
-.dialog-pane{
+.dialog-pane {
     -fx-background-color: #1d1d1d;
     -fx-font-size: 20pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -126,8 +175,8 @@
     -fx-background-color: black;
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
-    -fx-background-color:transparent;
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
 }
 
 .increment-button, .decrement-button {
@@ -136,7 +185,7 @@
 }
 
 .scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
+.scroll-bar:vertical .track {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;

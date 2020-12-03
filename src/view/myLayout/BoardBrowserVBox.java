@@ -39,7 +39,6 @@ public class BoardBrowserVBox extends VBox {
 
     private void build(BoardGameFetched boardGameFetched) {
         setAlignment(Pos.CENTER);
-        Pane pane = new Pane();
         int rank = boardGameFetched.getRank();
 
         // 获取各种属性
@@ -51,53 +50,30 @@ public class BoardBrowserVBox extends VBox {
         Image image = new Image(boardGameFetched.getThumbnail());
         ImageView imageView = new ImageView(image);
 
-
-        VBox vBoxHeader = new VBox();
-        vBoxHeader.setAlignment(Pos.CENTER);
-
-        // 描述部分
-        HBox hBoxDescription = new HBox();
-        {
-            Polygon polygon = new Polygon(); //六边形
-            polygon.getPoints().addAll(20.0, 0.0,
-                    0.0, 11.6,
-                    0.0, 28.4,
-                    20.0, 40.0,
-                    40.0, 28.4,
-                    40.0, 11.6);
-            polygon.setFill(Color.GREEN);
-
-            Label rateLabel = new Label(String.format("%.1f", averageRating));
-            rateLabel.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 17));
-            rateLabel.setTextFill(Color.WHITE);
-            rateLabel.setLayoutY(10);
-            rateLabel.setLayoutX(3);
-            Group g = new Group();
-            g.getChildren().addAll(polygon, rateLabel);
-
-            VBox des = new VBox();
-            Text nameText = new Text(name);
-            nameText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 20));
-            Label textDescription = new Label(description);
-            textDescription.setWrapText(true);
-            des.getChildren().addAll(nameText, textDescription);
+        VBox mainBox = new VBox();
+        mainBox.setAlignment(Pos.CENTER);
+        Label nameLabel = new Label(name);
+        nameLabel.setId("Title-big");
+        Label rateLabel = new Label("★" + String.format("%.1f", averageRating) + "\tRanking: " + rank + "\tPublished: " + boardGameFetched.getYearPublished());
+        rateLabel.setId("Title");
+        Label descLabel = new Label(description);
+        descLabel.setMaxWidth(1000);
+        descLabel.setMinHeight(500);
+        descLabel.setWrapText(true);
+        ScrollPane scrollPane = new ScrollPane(descLabel);
+        scrollPane.setMaxWidth(1010);
+        mainBox.setPadding(new Insets(50,50,50,50));
+        mainBox.setSpacing(25);
 
 
-            hBoxDescription.getChildren().add(g);
-            hBoxDescription.getChildren().add(des);
-            HBox.setMargin(polygon, new Insets(1.0, 1.0, 1.0, 1.0));
-        }
-        //描述部分结束
-
-        Button logPlay = new Button("记录");
+        Button logPlay = new Button("LogPlay");
         logPlay.setOnAction(e -> boardBrowserControllor.openLogPlayStage(boardGameFetched.getGameId(), e));// 绑定记录按钮
 
-        vBoxHeader.getChildren().add(imageView);
 
-        vBoxHeader.getChildren().add(new Text("排名:" + rank + "\t出版年份:" + boardGameFetched.getYearPublished()));
-        vBoxHeader.getChildren().add(hBoxDescription);
-        vBoxHeader.getChildren().add(logPlay);
+        mainBox.getChildren().add(imageView);
+        mainBox.getChildren().addAll(nameLabel, rateLabel, scrollPane);
+        mainBox.getChildren().add(logPlay);
 
-        getChildren().add(vBoxHeader);
+        getChildren().add(mainBox);
     }
 }

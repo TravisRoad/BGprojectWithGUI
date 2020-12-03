@@ -64,7 +64,7 @@ public class SearchController implements Initializable {
         boardGameFetched = boardGameDao.fetchBoardGameInfo(bg_id);
         boardBrowserVBox = new BoardBrowserVBox(main, boardGameFetched);
 
-        Scene scene = new Scene(boardBrowserVBox, 400, 500);
+        Scene scene = new Scene(boardBrowserVBox, 1440, 900);
         loadingStage.setScene(scene);
     }
 
