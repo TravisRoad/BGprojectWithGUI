@@ -5,6 +5,9 @@ import model.boardgamefetched.BoardGameFetched;
 import model.boardgamefetched.HotBoardGame;
 import model.search.BoardGameSearched;
 
+/**
+ * 用于装换Json字符串为Java Beans对象
+ */
 public class JsonConvert {
 
     static void test() {
@@ -25,6 +28,12 @@ public class JsonConvert {
         return gson.fromJson(json, BoardGameFetched.class);
     }
 
+    /**
+     * 将搜索API获得的json字符串转化为BoardGameSearched对象
+     *
+     * @param json json字符串
+     * @return 对象
+     */
     public static BoardGameSearched convert2BoardgameSearched(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, BoardGameSearched.class);

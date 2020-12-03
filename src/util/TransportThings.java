@@ -100,4 +100,19 @@ public class TransportThings implements Serializable {
     public void setGameLogs(ArrayList<GameLog> gameLogs) {
         this.gameLogs = gameLogs;
     }
+
+    @Override
+    public String toString() {
+        return "TransportThings{" +
+                "user=" + user +
+                ", boardGameModel=" + boardGameModel +
+                ", boardGameFetched=" + boardGameFetched +
+                ", boardGameModels=" + boardGameModels +
+                ", gameLogs=" + gameLogs +
+                ", gameLog=" + gameLog +
+                ", query='" + query + '\'' +
+                ", info='" + info + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }

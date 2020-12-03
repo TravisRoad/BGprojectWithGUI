@@ -76,6 +76,7 @@ class ServiceTask implements Runnable {
     private final UserDao userDao;
     private BoardGameDao boardGameDao;
     private User currentUser;//default
+    private Database database;
 
     /**
      * 构造方法
@@ -84,7 +85,7 @@ class ServiceTask implements Runnable {
      * @throws IOException 如果远端关闭则会失去连接
      */
     ServiceTask(Socket socket) throws IOException {
-        Database database = new Database();
+        database = new Database();
         userDao = new UserDao(database);
         boardGameDao = new BoardGameDao(database);
         obj_is = new ObjectInputStream(new BufferedInputStream(socket.getInputStream()));
@@ -103,8 +104,10 @@ class ServiceTask implements Runnable {
             TransportThings tt = null;
             try {
                 tt = (TransportThings) readObj_throw_exception();
+                Time.println(tt.toString());
             } catch (Exception e) {
                 System.out.println("退出");
+                database.close(); // 关闭连接
                 break;
             }
             parseTransportThings(tt, exitFlag);
@@ -238,6 +241,8 @@ class ServiceTask implements Runnable {
                 Time.println("gamelog recv");
                 GameLog gameLog = tt.getGameLog();
                 User theUser = tt.getUser();
+                Time.println(gameLog.toString());
+                Time.println(theUser.toString());
                 try {
                     boardGameDao.logGame(gameLog, theUser);
                     tt_ret.setState(0x01);

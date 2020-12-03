@@ -2,25 +2,21 @@ package util;
 
 import java.sql.*;
 
+/**
+ * 用于连接数据库和数据库初始化
+ */
 public class Database {
     private static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://123.57.131.204:3306/boardgame";
+    private static final String DB_URL = "jdbc:mysql://123.57.131.204:3306/boardgame" +
+            "?useUnicode=true&autoReconnect=true&allowMultiQueries=true&useSSL=false&serverTimezone=GMT%2B8 ";
     private static final String userName = "root";
     private static final String passwd = "123456";
     private static Connection conn;
 
+
     public Database() {
         connect();
     }
-
-//    static {
-//        try {
-//            Class.forName(JDBC_DRIVER);
-//            conn = DriverManager.getConnection(DB_URL, userName, passwd);
-//        } catch (ClassNotFoundException | SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     /**
      * connect to database
@@ -45,7 +41,7 @@ public class Database {
      *
      * @return 是否成功关闭
      */
-    public static boolean close() {
+    public boolean close() {
         boolean flag = false;
         try {
             conn.close();
@@ -57,6 +53,11 @@ public class Database {
         }
     }
 
+    /**
+     * 测试方法
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         Database d = new Database();
         Connection conn = d.getConn();

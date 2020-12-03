@@ -49,4 +49,14 @@ public class User implements Serializable {
     public String getPassWord() {
         return passWord;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                ", nickName='" + nickName + '\'' +
+                '}';
+    }
 }
