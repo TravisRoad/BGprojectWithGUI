@@ -147,10 +147,10 @@ public class BoardGameDao {
     }
 
     /**
-     * @param username
-     * @return
-     * @throws SQLException
-     * @throws NoSearchResultException
+     * @param username 用户名
+     * @return 搭载的包
+     * @throws SQLException            MySql访问错误
+     * @throws NoSearchResultException 无结果访问
      */
     public TransportThings RecentlyPlayed(String username) throws SQLException, NoSearchResultException {
         String sql = "SELECT bg_id, name, introduction, playdate, ph_id FROM play_history natural join boardgame WHERE username = ? order by playdate desc limit 10";

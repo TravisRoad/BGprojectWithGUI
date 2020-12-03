@@ -206,7 +206,8 @@ class ServiceTask implements Runnable {
             case "recent"://查询最近游玩
                 System.out.println("recently played");
                 try {
-                    boardGameDao.RecentlyPlayed(tt.getUser().getUserName());
+                    tt_ret = boardGameDao.RecentlyPlayed(tt.getUser().getUserName());
+                    tt_ret.setState(0x01);
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                     tt_ret.setInfo("cannot access database");
@@ -214,7 +215,7 @@ class ServiceTask implements Runnable {
                     e.printStackTrace();
                     tt_ret.setInfo("NoSearchResultException");
                 }
-
+                break;
             default:
                 break;
         }

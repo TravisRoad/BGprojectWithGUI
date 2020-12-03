@@ -31,21 +31,30 @@ public class UserController {
         tt.setUser(main.getUser());
         main.getClientTrans().writeObj(tt);
         tt = (TransportThings) main.getClientTrans().readObj();
-        ArrayList<BoardGameModel> boardGameModels = tt.getBoardGameModels();
-        VBox vvBox = new VBox();
-        for (BoardGameModel boardGameModel : boardGameModels) {
-            String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
-            //String url = "file:src/resource/avatar.png";
-            String name = boardGameModel.getName();
-            String intro = boardGameModel.getIntroduction();
-            Double rating = boardGameModel.getRate();
-            HBox hBox = new GameEntryInUser(url, name, intro);
-            hBox.setOnMouseClicked(e -> {
-                this.newStage((int) boardGameModel.getBg_id());
-            });
-            vvBox.getChildren().add(hBox);
+        VBox vBox = new VBox();
+        switch (tt.getState()) {
+            case 0x00: // 访问失败，输出错误信息
+                System.out.println(tt.getInfo());
+                break;
+            case 0x01:
+                ArrayList<BoardGameModel> boardGameModels = tt.getBoardGameModels();
+                for (BoardGameModel boardGameModel : boardGameModels) {
+                    String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
+                    //String url = "file:src/resource/avatar.png";
+                    String name = boardGameModel.getName();
+                    String intro = boardGameModel.getIntroduction();
+                    Double rating = boardGameModel.getRate();
+                    HBox hBox = new GameEntryInUser(url, name, intro);
+                    hBox.setOnMouseClicked(e -> {
+                        this.newStage((int) boardGameModel.getBg_id());
+                    });
+                    vBox.getChildren().add(hBox);
+                }
+                break;
+            default:
+                break;
         }
-        return vvBox;
+        return vBox;
     }
 
     public void newStage(int bg_id) {
