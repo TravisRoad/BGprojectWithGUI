@@ -1,0 +1,94 @@
+.root {
+    -fx-background-color: #1d1d1d;
+}
+
+
+.label {
+    -fx-font-size: 16pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.75;
+}
+
+/*padding: top right bottom left*/
+.button {
+    -fx-font-size: 16pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.7;
+    -fx-border-color: rgb(230, 230, 230);
+    -fx-border-radius: 10;
+    -fx-padding: 4 8 8 8;
+    -fx-border-width: 2;
+}
+
+.text-field {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.7;
+    -fx-border-color: rgb(230, 230, 230);
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 1 2 2 6;
+
+}
+
+#Title {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.85;
+}
+
+#Title-big {
+    -fx-font-size: 42pt;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: white;
+    -fx-opacity: 0.85;
+}
+
+#Description{
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+}
+
+#MainContainer {
+    -fx-border-color: rgb(230, 230, 230) transparent transparent transparent;
+    -fx-border-width: 2pt;
+}
+
+.tab-pane {
+    -fx-tab-min-width: 120px;
+    -fx-tab-max-width: 120px;
+    -fx-tab-min-height: 50px;
+    -fx-tab-max-height: 50px;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.6;
+
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-alignment: CENTER;
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Black";
+    -fx-text-fill: white;
+    -fx-opacity: 0.8;
+}
+
+
+.split-pane:horizontal > .split-pane-divider {
+    -fx-border-color: rgb(160, 160, 160);
+}
+
+.split-pane {
+    -fx-padding: 1 0 0 0;
+}

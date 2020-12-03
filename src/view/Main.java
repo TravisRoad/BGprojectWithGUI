@@ -21,8 +21,11 @@ public class Main extends Application {
         clientTrans.connect();
         user = new User();
 
+
+
         LoginPane loginPane = new LoginPane(this);
         loginPane.getLoginController().setLoginStage(primaryStage);
+
 
         primaryStage.setScene(new Scene(loginPane));
         primaryStage.setTitle("Board Game Recorder");
@@ -40,7 +43,7 @@ public class Main extends Application {
         primaryStage.setOnCloseRequest(e -> {
             System.exit(0);
         });
-
+        Application.setUserAgentStylesheet(getClass().getResource("DarkTheme.css").toExternalForm());
         primaryStage.show();
     }
 

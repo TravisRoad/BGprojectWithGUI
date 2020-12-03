@@ -29,6 +29,7 @@ public class UserMain extends SplitPane {
     }
 
     public UserMain(Main main) {
+        setId("MainContainer");//设置为css主容器类
         userController = new UserController();
         this.main = main;
         userController.setMain(main);

@@ -36,6 +36,7 @@ public class HomeStream extends VBox {
     }
 
     private void setLayout() {
+        setId("MainContainer");//设置为css主容器类
         //基础框架scrollpane
         VBox vBox = new VBox();
         ScrollPane scrollPane = new ScrollPane(vBox);
@@ -44,8 +45,9 @@ public class HomeStream extends VBox {
 
         //页面标题
         Label title = new Label("Play Now");
-        title.setFont(Font.font("Calibri", FontWeight.BOLD, 60));
-        title.setPadding(new Insets(50, 50, 25, 50));
+        title.setId("Title-big");
+        title.setPadding(new Insets(0,0,25,0));
+        vBox.setPadding(new Insets(40, 50, 100, 75));
         vBox.getChildren().add(title);
 
         //向服务器查询内容
@@ -55,7 +57,7 @@ public class HomeStream extends VBox {
         tt = (TransportThings) main.getClientTrans().readObj();
         ArrayList<BoardGameModel> boardGameModels = tt.getBoardGameModels();
 
-        //生成瀑布流
+        //根据服务器返回结果生成瀑布流
         VBox vvBox = new VBox();
         for (BoardGameModel boardGameModel : boardGameModels) {
             String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";

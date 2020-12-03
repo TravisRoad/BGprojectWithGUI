@@ -1,6 +1,7 @@
 package view.myLayout;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,8 +28,8 @@ public class GameEntry extends HBox {
         this.title = title;
         this.intro = intro;
         this.rating = rating;
-        setLayout();
-        setRating();
+        setLayout();//设置图片和介绍的layout
+        setRating();//拆分rating部分的layout，便于setLayout函数在子类中复用
     }
 
     public GameEntry() {
@@ -36,33 +37,42 @@ public class GameEntry extends HBox {
     }
 
     protected void setLayout() {
+        //图片容器，固定宽高
+        HBox imageBox = new HBox();
+        imageBox.setMinWidth(155);
+        imageBox.setMaxWidth(155);
+
         Image image = new Image(imageURL);
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
         imageView.setFitHeight(100);
+        imageBox.getChildren().add(imageView);
 
+        //标题及简介容器，通过css控制样式
         VBox vBox = new VBox();
         Label titleLabel = new Label(title);
         Label introLabel = new Label(intro);
-        //introLabel.setWrapText(true);
-
-        titleLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
-        introLabel.setFont(Font.font(null, 20));
+        titleLabel.setId("Title");
+        introLabel.setId("Description");
+        introLabel.setPadding(new Insets(10, 0, 0, 0));
 
 
         vBox.getChildren().addAll(titleLabel, introLabel);
-        this.getChildren().addAll(imageView, vBox);
+        this.getChildren().addAll(imageBox, vBox);
         setHgrow(imageView, Priority.ALWAYS);
         setHgrow(vBox, Priority.ALWAYS);
 
-        setPadding(new Insets(25, 50, 25, 50));
+        setPadding(new Insets(25, 0, 25, 0));
         setSpacing(25);
     }
 
+    //拆分rating部分的layout，便于setLayout函数在子类中复用
     protected void setRating() {
-        Label ratingLabel = new Label(String.format("%.1f", rating));
-        ratingLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
-        ratingLabel.setMinWidth(90);
+        Label ratingLabel = new Label("★" + String.format("%.1f", rating));
+        ratingLabel.setId("Title");
+        ratingLabel.setMinWidth(80);
+        ratingLabel.setPadding(new Insets(10, 0, 0, 0));
+        ratingLabel.setAlignment(Pos.CENTER);
         //TODO: add background graphic to rating
         getChildren().add(ratingLabel);
         setHgrow(ratingLabel, Priority.ALWAYS);

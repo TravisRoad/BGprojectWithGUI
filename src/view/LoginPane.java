@@ -32,6 +32,7 @@ public class LoginPane extends VBox {
         setPadding(new Insets(50, 50, 50, 50));
 
         Label headerLogin = new Label("Login");
+        headerLogin.setId("Title");
         headerLogin.setAlignment(Pos.TOP_CENTER);
         headerLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 40));
         headerLogin.setPadding(new Insets(0, 50, 25, 50));
