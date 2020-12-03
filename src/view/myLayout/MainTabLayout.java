@@ -17,6 +17,9 @@ public class MainTabLayout extends VBox {
 
     public MainTabLayout(Main main, Stage stage) {
         TabPane tabPane = new TabPane();
+        //设置标签不可关闭
+        tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
         this.stage = stage;
         Tab tabHome = new Tab("Home", new HomeStream(main, stage));
         Tab tabSearch = new Tab("Search", new SearchMain(main, stage));

@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class BoardGameDao {
     private Database database;
@@ -119,4 +120,36 @@ public class BoardGameDao {
         }
         return true;
     }
+
+    /**
+     * 查询最近游玩
+     */
+    public ArrayList<GameLog> RecentlyPlayed(String username) throws SQLException, NoSearchResultException {
+        String sql = "SELECT bg_id, name, introduction, playdate FROM play_history natural join boardgame WHERE username = ? order by playdate desc limit 10";
+        ArrayList<GameLog> gameLogList = new ArrayList<>();
+        GameLog tmpLog = new GameLog();
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+            ps.setString(1, username);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int bg_id = rs.getInt(1);
+                String title = rs.getString(2);
+                String intro = rs.getString(3);
+                Date playdate = rs.getDate(4);
+                tmpLog.setBg_id(bg_id);
+                tmpLog.setDate(playdate);
+                ArrayList<String> usernames = new ArrayList<>();
+                usernames.add(username);
+                tmpLog.setUserNames(usernames);
+
+                gameLogList.add(tmpLog);
+                if (gameLogList.isEmpty()) {
+                    throw new NoSearchResultException();
+                }
+            }
+        }
+        return gameLogList;
+    }
+
+
 }

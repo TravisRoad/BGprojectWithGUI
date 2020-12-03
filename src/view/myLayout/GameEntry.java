@@ -16,11 +16,10 @@ import javafx.scene.text.FontWeight;
  * 瀑布流中的桌游条目
  */
 public class GameEntry extends HBox {
-    String imageURL;
-    String title;
-    String intro;
-    double rating;
-
+    protected String imageURL;
+    protected String title;
+    protected String intro;
+    protected double rating;
 
     public GameEntry(String imageURL, String title, String intro, double rating) {
         super();
@@ -29,9 +28,14 @@ public class GameEntry extends HBox {
         this.intro = intro;
         this.rating = rating;
         setLayout();
+        setRating();
     }
 
-    private void setLayout() {
+    public GameEntry() {
+        super();
+    }
+
+    protected void setLayout() {
         Image image = new Image(imageURL);
         ImageView imageView = new ImageView(image);
         imageView.setPreserveRatio(true);
@@ -46,19 +50,23 @@ public class GameEntry extends HBox {
         introLabel.setFont(Font.font(null, 20));
 
 
-
         vBox.getChildren().addAll(titleLabel, introLabel);
+        this.getChildren().addAll(imageView, vBox);
+        setHgrow(imageView, Priority.ALWAYS);
+        setHgrow(vBox, Priority.ALWAYS);
 
+        setPadding(new Insets(25, 50, 25, 50));
+        setSpacing(25);
+    }
+
+    protected void setRating() {
         Label ratingLabel = new Label(String.format("%.1f", rating));
         ratingLabel.setFont(Font.font(null, FontWeight.BOLD, 40));
         ratingLabel.setMinWidth(90);
         //TODO: add background graphic to rating
-
-        this.getChildren().addAll(imageView, vBox, ratingLabel);
-        setHgrow(imageView, Priority.ALWAYS);
-        setHgrow(vBox, Priority.ALWAYS);
+        getChildren().add(ratingLabel);
         setHgrow(ratingLabel, Priority.ALWAYS);
-        setPadding(new Insets(25,50,25,50));
-        setSpacing(25);
     }
+
+
 }
