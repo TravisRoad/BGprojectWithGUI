@@ -1,12 +1,9 @@
 package controller;
 
 import dao.BoardGameDao;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.BoardGameModel;
@@ -15,13 +12,14 @@ import util.TransportThings;
 import util.myexception.NoSearchResultException;
 import view.Main;
 import view.myLayout.BoardBrowserVBox;
-import view.myStage.ProgressFrom;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * 搜索入口界面的控制器
+ */
 public class SearchController implements Initializable {
     Main main;
     Stage loadingStage;
@@ -30,6 +28,13 @@ public class SearchController implements Initializable {
         this.main = main;
     }
 
+    /**
+     * 点击搜索按钮，返回一个桌游的ArrayList
+     *
+     * @param searchStr 搜索字符串
+     * @return 返回BoardGameModel的ArrayList
+     * @throws NoSearchResultException 无搜索结果异常
+     */
     public ArrayList<BoardGameModel> searchBottomOnClick(String searchStr) throws NoSearchResultException {
         ArrayList<BoardGameModel> boardGameModels = null;
         TransportThings tt = new TransportThings();
@@ -51,12 +56,15 @@ public class SearchController implements Initializable {
 
     }
 
+    /**
+     * 点击桌游条目后，弹出桌游详情窗口
+     *
+     * @param bg_id 桌游id
+     */
     public void newStage(int bg_id) {
         loadingStage = new Stage();
-        //ProgressFrom progressFrom = new ProgressFrom(loadingStage);
         loadingStage.setScene(new Scene(new AnchorPane(new Label("请稍后")), 400, 500));
         loadingStage.show();
-        // progressFrom.activateProgressBar();
         BoardGameFetched boardGameFetched;
         BoardBrowserVBox boardBrowserVBox;
 
@@ -69,9 +77,12 @@ public class SearchController implements Initializable {
     }
 
     public void newStage_0(int bg_id) {
-        //
+        //施工中
     }
 
+    /**
+     * 多线程支持
+     */
     class thread implements Runnable {
         private Stage loadingStage;
         private int bg_id;
@@ -83,7 +94,6 @@ public class SearchController implements Initializable {
 
         @Override
         public void run() {
-
         }
     }
 }

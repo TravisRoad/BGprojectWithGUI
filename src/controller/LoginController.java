@@ -21,7 +21,9 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
 
     /**
-     * 接收登录界面的Stage对象
+     * 未登录就退出时设置状态码以及显示提示窗口
+     *
+     * @param loginStage 界面stage
      */
     public void setLoginStage(Stage loginStage) {
         this.loginStage = loginStage;
@@ -41,6 +43,14 @@ public class LoginController implements Initializable {
 
     Main main;
 
+    /**
+     * 构造方法，初始化界面元素以及绑定动作到按钮
+     *
+     * @param loginButton   登录按钮
+     * @param signupButton  注册按钮
+     * @param userField     用户名标签
+     * @param passwordField 密码标签
+     */
     public LoginController(Button loginButton, Button signupButton, TextField userField, PasswordField passwordField) {
         this.loginButton = loginButton;
         this.signupButton = signupButton;
@@ -98,10 +108,6 @@ public class LoginController implements Initializable {
      * @param e        事件
      */
     public void signup(String userName, String passWord, ActionEvent e) {
-//        Stage stage = new Stage();
-//        stage.setHeight(300);
-//
-//        VBox vBox = new VBox()
         TransportThings tt = new TransportThings();
         User user = new User(userName, passWord, 0);
         // 加密

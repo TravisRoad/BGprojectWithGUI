@@ -14,7 +14,6 @@ import model.boardgamefetched.BoardGameFetched;
 import util.TransportThings;
 import view.Main;
 import view.myLayout.BoardBrowserVBox;
-import view.myLayout.GameEntry;
 import view.myLayout.GameEntryInUser;
 
 import java.util.ArrayList;
@@ -22,6 +21,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Optional;
 
+/**
+ * 用户信息界面的控制器
+ */
 public class UserController {
     private Main main;
     private Label labelUsername;
@@ -34,6 +36,11 @@ public class UserController {
         this.main = main;
     }
 
+    /**
+     * 刷新右侧的最近游玩列表
+     *
+     * @return 返回一个包含若干GameEntryInUser的VBox
+     */
     public VBox refreshList() {
         //向服务器查询内容
         TransportThings tt = new TransportThings();
@@ -46,7 +53,7 @@ public class UserController {
             case 0x00: // 访问失败，输出错误信息
                 System.out.println(tt.getInfo());
                 break;
-            case 0x01:
+            case 0x01: // 访问成功，将信息整理添加到BoardGameModel里
                 ArrayList<BoardGameModel> boardGameModels = tt.getBoardGameModels();
                 ArrayList<GameLog> gameLogs = tt.getGameLogs();
                 Iterator<GameLog> iterator = gameLogs.iterator();
@@ -72,12 +79,15 @@ public class UserController {
         return vBox;
     }
 
+    /**
+     * 点击列表中桌游条目时弹出详情窗口
+     *
+     * @param bg_id 桌游id
+     */
     public void newStage(int bg_id) {
         Stage loadingStage = new Stage();
-        //ProgressFrom progressFrom = new ProgressFrom(loadingStage);
         loadingStage.setScene(new Scene(new AnchorPane(new Label("请稍后")), 400, 500));
         loadingStage.show();
-        // progressFrom.activateProgressBar();
         BoardGameFetched boardGameFetched;
         BoardBrowserVBox boardBrowserVBox;
 
@@ -85,10 +95,13 @@ public class UserController {
         boardGameFetched = boardGameDao.fetchBoardGameInfo(bg_id);
         boardBrowserVBox = new BoardBrowserVBox(main, boardGameFetched);
 
-        Scene scene = new Scene(boardBrowserVBox, 400, 500);
+        Scene scene = new Scene(boardBrowserVBox, 1440, 900);
         loadingStage.setScene(scene);
     }
 
+    /**
+     * 点击edit profile按钮后弹出修改昵称窗口
+     */
     public void newEditProfileStage() {
         Stage stage = new Stage();
         HBox hBox = new HBox(10);
@@ -119,7 +132,7 @@ public class UserController {
     /**
      * 发送更改昵称请求
      *
-     * @param newName
+     * @param newName 新的昵称
      */
     private void sendChangeRequest(String newName, Stage stage) {
         TransportThings tt = new TransportThings();
@@ -146,6 +159,12 @@ public class UserController {
         }
     }
 
+    /**
+     * 修改昵称的alert窗口
+     * @param str 警示信息
+     * @param state 状态码
+     * @param stage 主窗体
+     */
     private void showAlert(String str, int state, Stage stage) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("");

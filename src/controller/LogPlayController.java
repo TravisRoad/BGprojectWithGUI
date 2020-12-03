@@ -17,6 +17,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * 记录游玩窗口的控制器
+ */
 public class LogPlayController {
     private Main main;
     private ArrayList<TextField> textFields = new ArrayList<>();
@@ -45,6 +48,9 @@ public class LogPlayController {
         textFields.add(new TextField(main.getUser().getUserName()));
     }
 
+    /**
+     * 添加记录信息
+     */
     public void log() {
         ArrayList<String> userNames = new ArrayList<>();
         for (TextField t : textFields) {
@@ -92,6 +98,10 @@ public class LogPlayController {
         this.datePicker = datePicker;
     }
 
+    /**
+     * 显示错误信息
+     * @param info 错误内容
+     */
     private void showError(String info) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("");
@@ -100,6 +110,10 @@ public class LogPlayController {
         Optional<ButtonType> result = alert.showAndWait();
     }
 
+    /**
+     * 显示警示信息
+     * @param state 状态码
+     */
     private void showAlert(int state) {
         Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
         alert2.setTitle("");
@@ -115,6 +129,10 @@ public class LogPlayController {
 
     }
 
+    /**
+     * 点击添加玩家按钮以添加玩家
+     * @param playerVBox 新玩家的VBox
+     */
     public void addPlayerButtonOnClicked(VBox playerVBox) {
         HBox hBox = new HBox();
 
