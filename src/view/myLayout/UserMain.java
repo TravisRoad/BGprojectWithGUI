@@ -47,14 +47,15 @@ public class UserMain extends SplitPane {
         //TODO: customize user profile
         ImageView imgAvatar = new ImageView();
 
-        Label labelUsername = new Label(main.getUser().getUserName());
+        Label labelUsername = new Label(main.getUser().getNickName());
         labelUsername.setAlignment(Pos.CENTER);
         labelUsername.setFont(Font.font("Calibri", FontWeight.BOLD, 32));
+        userController.setLabelUsername(labelUsername);
 
         Button buttonEditProfile = new Button("Edit Profile");
         buttonEditProfile.setFont(Font.font("Calibri", 20));
         buttonEditProfile.setOnAction(editProfile -> {
-            //TODO:edit profile
+            userController.newEditProfileStage();
         });
 
 

@@ -7,6 +7,7 @@ import model.User;
 import model.search.BoardGameSearched;
 import util.Database;
 import model.GameLog;
+import util.Time;
 import util.TransportThings;
 import util.myexception.AccountAlreadyExistException;
 import util.myexception.AccountNotExistException;
@@ -21,6 +22,7 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -191,7 +193,7 @@ class ServiceTask implements Runnable {
                 break;
             case "gamelog":
                 //TODO: gamelog部分没写完
-                System.out.println("gamelog recv");
+                Time.println("gamelog recv");
                 GameLog gameLog = tt.getGameLog();
                 User theUser = tt.getUser();
                 try {
@@ -204,7 +206,7 @@ class ServiceTask implements Runnable {
                 System.out.println(tt_ret.getState());
                 break;
             case "recent"://查询最近游玩
-                System.out.println("recently played");
+                Time.println(currentUser.getUserName() + " is getting recently played");
                 try {
                     tt_ret = boardGameDao.RecentlyPlayed(tt.getUser().getUserName());
                     tt_ret.setState(0x01);
@@ -216,6 +218,18 @@ class ServiceTask implements Runnable {
                     tt_ret.setInfo("NoSearchResultException");
                 }
                 break;
+            case "changeNickName":
+                Time.println(currentUser.getUserName() + " change nickName");
+                try {
+                    userDao.changeNickName(tt.getUser().getNickName(), (int) tt.getUser().getUserID());
+                    tt_ret.setState(0x01);
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                    tt_ret.setInfo("cannot access database");
+                } catch (NoSearchResultException e) {
+                    e.printStackTrace();
+                    tt_ret.setInfo("NoSearchResultException");
+                }
             default:
                 break;
         }

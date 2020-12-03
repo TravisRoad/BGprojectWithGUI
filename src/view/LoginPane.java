@@ -66,7 +66,11 @@ public class LoginPane extends VBox {
         gpLogin.add(buttonLogin, 1, 2);
         GridPane.setMargin(buttonLogin, new Insets(0, 1, 0, 50));*/
 
+        // 快速登录
         Button quick = new Button("quickLogin");
+        quick.setDefaultButton(true);
+        // fixme: 记得删除
+
         quick.setOnAction(e -> {
             loginController.login("lxy", "123456", e);
         });

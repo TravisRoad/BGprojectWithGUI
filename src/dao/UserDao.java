@@ -3,6 +3,7 @@ package dao;
 import model.User;
 import util.Database;
 import util.myexception.AccountNotExistException;
+import util.myexception.NoSearchResultException;
 import util.myexception.WrongPassWdException;
 
 import javax.xml.crypto.Data;
@@ -43,10 +44,17 @@ public class UserDao {
         return ret;
     }
 
-    public void changeNickName(String s, int user_id) throws SQLException {
-        String sql = "UPDATE user set nickName = ? where user_id = ?";
+    public void changeNickName(String s, int user_id) throws SQLException, NoSearchResultException {
+        String sql = "UPDATE user set nickname = ? where user_id = ?;";
         try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
-
+            ps.setObject(1, s);
+            ps.setObject(2, user_id);
+            int flag = ps.executeUpdate();
+            if (flag > 0) {
+                // success
+            } else {
+                throw new NoSearchResultException();
+            }
         }
     }
 
