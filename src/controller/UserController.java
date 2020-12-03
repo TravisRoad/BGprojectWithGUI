@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.BoardGameModel;
+import model.GameLog;
 import model.boardgamefetched.BoardGameFetched;
 import util.TransportThings;
 import view.Main;
@@ -16,6 +17,8 @@ import view.myLayout.GameEntry;
 import view.myLayout.GameEntryInUser;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 
 public class UserController {
     Main main;
@@ -38,13 +41,18 @@ public class UserController {
                 break;
             case 0x01:
                 ArrayList<BoardGameModel> boardGameModels = tt.getBoardGameModels();
+                ArrayList<GameLog> gameLogs = tt.getGameLogs();
+                Iterator<GameLog> iterator = gameLogs.iterator();
                 for (BoardGameModel boardGameModel : boardGameModels) {
                     String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
-                    //String url = "file:src/resource/avatar.png";
                     String name = boardGameModel.getName();
                     String intro = boardGameModel.getIntroduction();
                     Double rating = boardGameModel.getRate();
-                    HBox hBox = new GameEntryInUser(url, name, intro);
+
+                    GameLog gameLog = iterator.next();
+                    Date date = gameLog.getDate();
+                    ArrayList<String> userNames = gameLog.getUserNames();
+                    HBox hBox = new GameEntryInUser(url, name, intro, date, userNames);
                     hBox.setOnMouseClicked(e -> {
                         this.newStage((int) boardGameModel.getBg_id());
                     });

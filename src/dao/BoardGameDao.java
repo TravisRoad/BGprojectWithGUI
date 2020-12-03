@@ -175,8 +175,6 @@ public class BoardGameDao {
                 ArrayList<String> usernames = UsersPlayedwith(ph_id);
                 tmpLog.setUserNames(usernames);
 
-                gameLogList.add(tmpLog);
-
                 BoardGameModel boardGameModel = new BoardGameModel();
                 boardGameModel.setBg_id(bg_id);
                 boardGameModel.setName(name);
