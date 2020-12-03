@@ -79,7 +79,7 @@ public class LoginController implements Initializable {
             user = tt.getUser();
             main.setUser(user);
             loginFlag = true;
-            showAlert("登陆成功", tt.getState(), null);
+            showAlert("Login Successful!", tt.getState(), null);
         } else if (tt.getState() == 0x00) {
             System.out.println(tt.getInfo());
             showAlert(tt.getInfo(), tt.getState(), null);
@@ -98,11 +98,11 @@ public class LoginController implements Initializable {
         tt.setQuery("signup");
         tt.setUser(user);
         if (passWord.length() < 6 || passWord.length() > 40) {
-            showAlert("密码长度不合要求", 0, null);
+            showAlert("Password too short or too long", 0, null);
             return;
         }
         if (userName.length() > 50 || userName.length() == 0) {
-            showAlert("用户名不符合要求", 0, null);
+            showAlert("Username is empty or too long", 0, null);
             return;
         }
         main.getClientTrans().writeObj(tt);//TODO:密码需要加密处理
@@ -110,7 +110,7 @@ public class LoginController implements Initializable {
         if (tt.getState() == 0x01) {
             System.out.println("success");
             user = tt.getUser();
-            showAlert("注册成功", 0, null);
+            showAlert("Signup Successful!", 0, null);
         } else if (tt.getState() == 0x00) {
             System.out.println(tt.getInfo());
             showAlert(tt.getInfo(), 0, null);
@@ -124,7 +124,7 @@ public class LoginController implements Initializable {
     private void showAlert(String str, int state, Event e) {
         Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
         //设置对话框标题
-        alert2.setTitle("Exit");
+        alert2.setTitle("Info");
         //设置内容
         alert2.setHeaderText(str);
         //显示对话框
