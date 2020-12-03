@@ -14,7 +14,7 @@ public class Home {
 
     public void start() {
         Stage primaryStage = new Stage();
-        MainTabLayout mainTabLayout = new MainTabLayout(main);
+        MainTabLayout mainTabLayout = new MainTabLayout(main, primaryStage);
         Scene mainScene = new Scene(mainTabLayout);
 
         primaryStage.setTitle("boardgame");

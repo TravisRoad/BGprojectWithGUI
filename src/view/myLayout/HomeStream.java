@@ -9,19 +9,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import model.BoardGameModel;
 import transport.ClientTrans;
 import util.TransportThings;
 import view.Main;
+import view.myStage.ProgressFrom;
 
 import java.util.ArrayList;
 
 public class HomeStream extends VBox {
     private Main main;
+    private Stage stage;
     private SearchController searchController = new SearchController();
 
-    public HomeStream(Main main) {
+    public HomeStream(Main main, Stage stage) {
         this.main = main;
+        this.stage = stage;
         setLayout();
     }
 
@@ -52,6 +56,7 @@ public class HomeStream extends VBox {
             HBox hBox = new GameEntry(url, name, intro, rating);
             hBox.setOnMouseClicked(e -> {
                 searchController.newStage((int) boardGameModel.getBg_id());
+                searchController.newStage_0((int) boardGameModel.getBg_id());
             });
             vvBox.getChildren().add(hBox);
         }

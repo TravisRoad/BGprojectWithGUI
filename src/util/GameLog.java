@@ -8,6 +8,7 @@ public class GameLog {
     private ArrayList<String> userNames = null;
     private String theVictoryOne = null;
     private Date date = null;
+    private int bg_id = 0;
 
     public void dateFormat() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -36,5 +37,13 @@ public class GameLog {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public int getBg_id() {
+        return bg_id;
+    }
+
+    public void setBg_id(int bg_id) {
+        this.bg_id = bg_id;
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import transport.ClientTrans;
 import util.myexception.NoSearchResultException;
 import view.Main;
@@ -15,7 +16,7 @@ import view.myStage.SearchResultStage;
 public class SearchMain extends VBox {
     private SearchController searchController;
 
-    public SearchMain(Main main) {
+    public SearchMain(Main main, Stage stage) {
         searchController = new SearchController();
         searchController.setMain(main);
 
@@ -32,7 +33,7 @@ public class SearchMain extends VBox {
         buttonSearch.setOnAction(buttonSearchClicked -> {
             String queryString = fieldSearch.getText();
             try {
-                SearchResultStage searchResultStage = new SearchResultStage();
+                SearchResultStage searchResultStage = new SearchResultStage(stage);
                 searchResultStage.setMain(main);
                 searchResultStage.setBoardGameModels(searchController.searchBottomOnClick(queryString));
                 searchResultStage.build();
