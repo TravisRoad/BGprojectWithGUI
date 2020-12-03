@@ -117,7 +117,7 @@ class ServiceTask implements Runnable {
      * @param tt       TransportThings
      * @param exitFlag 用于传出结束标志
      */
-    private void parseTransportThings(TransportThings tt, boolean exitFlag) throws SQLException, NoSearchResultException {
+    private void parseTransportThings(TransportThings tt, boolean exitFlag) {
         TransportThings tt_ret = new TransportThings();
         switch (tt.getQuery()) {
             case "login": // fixme:非原子操作,需要加数据库锁，没有进行数据库修改好像问题不大
@@ -164,9 +164,8 @@ class ServiceTask implements Runnable {
                 break;
             case "search":
                 String searchstr = tt.getInfo();
-                BoardGameSearched boardGameSearched = boardGameDao.search(searchstr);
                 try {
-                    ArrayList<BoardGameModel> boardGameModels = boardGameDao.Browser();
+                    ArrayList<BoardGameModel> boardGameModels = boardGameDao.search0(searchstr);
                     tt_ret.setBoardGameModels(boardGameModels);
                     tt_ret.setState(0x01);
                 } catch (NoSearchResultException e) {
@@ -206,11 +205,14 @@ class ServiceTask implements Runnable {
                 break;
             case "recent"://查询最近游玩
                 System.out.println("recently played");
-                try{
+                try {
                     boardGameDao.RecentlyPlayed(tt.getUser().getUserName());
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                     tt_ret.setInfo("cannot access database");
+                } catch (NoSearchResultException e) {
+                    e.printStackTrace();
+                    tt_ret.setInfo("NoSearchResultException");
                 }
 
             default:

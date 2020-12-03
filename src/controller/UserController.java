@@ -28,6 +28,7 @@ public class UserController {
         //向服务器查询内容
         TransportThings tt = new TransportThings();
         tt.setQuery("recent");
+        tt.setUser(main.getUser());
         main.getClientTrans().writeObj(tt);
         tt = (TransportThings) main.getClientTrans().readObj();
         ArrayList<BoardGameModel> boardGameModels = tt.getBoardGameModels();

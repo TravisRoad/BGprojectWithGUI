@@ -7,6 +7,7 @@ import model.search.BoardGameSearched;
 import util.Database;
 import model.GameLog;
 import util.JsonConvert;
+import util.TransportThings;
 import util.XMLtoJSON;
 import util.httpRequest.MyGetRequest;
 import util.myexception.NoSearchResultException;
@@ -106,49 +107,107 @@ public class BoardGameDao {
         return boardGameList;
     }
 
+    /**
+     * 记录游戏记录
+     * 首先插入play_history中，再根据ph_id,将其与各个user联系
+     *
+     * @param gameLog gamelog类
+     * @param user    发起者
+     * @return true or false
+     * @throws SQLException
+     */
     public boolean logGame(GameLog gameLog, User user) throws SQLException {
-        String sql = "INSERT INTO play_history (playdate,bg_id,username) VALUES (?,?,?)";
+        String sql0 = "INSERT INTO play_history (playdate,bg_id,username) VALUES (?,?,?);";
+        String sql1 = "SELECT ph_id FROM play_history where ph_id in (SELECT max(ph_id) from play_history);";
+        String sql2 = "INSERT INTO play (userName,ph_id) VALUES (?,?);";
         boolean ret = false;
-        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql0)) {
             ps.setObject(1, gameLog.getDate());
             ps.setObject(2, gameLog.getBg_id());
-            ps.setObject(3, user.getUserName());
+            ps.setObject(3, user.getUserName()); // 发起者姓名
             ret = ps.execute();
             ret = true;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        }
+        int id = 0;
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql1)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            }
+        }
+        for (String name : gameLog.getUserNames()) {
+            try (PreparedStatement ps = database.getConn().prepareStatement(sql2)) {
+                ps.setObject(1, name);
+                ps.setObject(2, id);
+                ret = ps.execute();
+                ret = true;
+            }
         }
         return true;
     }
 
     /**
-     * 查询最近游玩
+     * @param username
+     * @return
+     * @throws SQLException
+     * @throws NoSearchResultException
      */
-    public ArrayList<GameLog> RecentlyPlayed(String username) throws SQLException, NoSearchResultException {
-        String sql = "SELECT bg_id, name, introduction, playdate FROM play_history natural join boardgame WHERE username = ? order by playdate desc limit 10";
+    public TransportThings RecentlyPlayed(String username) throws SQLException, NoSearchResultException {
+        String sql = "SELECT bg_id, name, introduction, playdate, ph_id FROM play_history natural join boardgame WHERE username = ? order by playdate desc limit 10";
         ArrayList<GameLog> gameLogList = new ArrayList<>();
-        GameLog tmpLog = new GameLog();
+        ArrayList<BoardGameModel> boardGameModels = new ArrayList<>();
+        TransportThings tt = new TransportThings();
+
         try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
+                GameLog tmpLog = new GameLog();
+
                 int bg_id = rs.getInt(1);
-                String title = rs.getString(2);
+                String name = rs.getString(2);
                 String intro = rs.getString(3);
                 Date playdate = rs.getDate(4);
+                int ph_id = rs.getInt(5);
+
                 tmpLog.setBg_id(bg_id);
                 tmpLog.setDate(playdate);
-                ArrayList<String> usernames = new ArrayList<>();
-                usernames.add(username);
+                ArrayList<String> usernames = UsersPlayedwith(ph_id);
                 tmpLog.setUserNames(usernames);
 
                 gameLogList.add(tmpLog);
-                if (gameLogList.isEmpty()) {
-                    throw new NoSearchResultException();
-                }
+
+                BoardGameModel boardGameModel = new BoardGameModel();
+                boardGameModel.setBg_id(bg_id);
+                boardGameModel.setName(name);
+                boardGameModel.setIntroduction(intro);
+
+                boardGameModels.add(boardGameModel);
+                gameLogList.add(tmpLog);
+            }
+            if (gameLogList.isEmpty()) {
+                throw new NoSearchResultException();
             }
         }
-        return gameLogList;
+        tt.setBoardGameModels(boardGameModels);
+        tt.setGameLogs(gameLogList);
+        return tt;
+    }
+
+    private ArrayList<String> UsersPlayedwith(int ph_id) throws SQLException, NoSearchResultException {
+        String sql = "Select userName from play where ph_id = ?";
+        ArrayList<String> userNames = new ArrayList<>();
+        try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
+            ps.setObject(1, ph_id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                userNames.add(rs.getString(1));
+            }
+        }
+        if (userNames.isEmpty()) {
+            throw new NoSearchResultException();
+        }
+        return userNames;
     }
 
 

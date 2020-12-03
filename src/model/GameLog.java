@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class GameLog implements Serializable {
     private ArrayList<String> userNames = null;
+    private String organizer;
     private String theVictoryOne = null;
     private Date date = null;
     private int bg_id = 0;
@@ -46,5 +47,13 @@ public class GameLog implements Serializable {
 
     public void setBg_id(int bg_id) {
         this.bg_id = bg_id;
+    }
+
+    public String getOrganizer() {
+        return organizer;
+    }
+
+    public void setOrganizer(String organizer) {
+        this.organizer = organizer;
     }
 }
