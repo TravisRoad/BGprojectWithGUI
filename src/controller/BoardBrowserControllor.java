@@ -23,7 +23,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
- *
+ * 浏览页面的控制器
  */
 public class BoardBrowserControllor implements Initializable {
     public void setMain(Main main) {

@@ -2,30 +2,27 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
-import dao.UserDao;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.User;
-import transport.ClientTrans;
-import util.Database;
 import util.SecureHash;
 import util.TransportThings;
-import util.myexception.AccountNotExistException;
-import util.myexception.WrongPassWdException;
 import view.Home;
 import view.Main;
 
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+/**
+ * 登录控制器
+ */
 public class LoginController implements Initializable {
 
+    /**
+     * 接收登录界面的Stage对象
+     */
     public void setLoginStage(Stage loginStage) {
         this.loginStage = loginStage;
         loginStage.setOnCloseRequest(e -> {
@@ -64,6 +61,13 @@ public class LoginController implements Initializable {
 
     }
 
+    /**
+     * 当登录界面的login按钮被按下时，调用的登录方法
+     *
+     * @param userName 文本框中的用户名
+     * @param passWord 文本框中的密码，发送前会加密
+     * @param e        事件参数
+     */
     public void login(String userName, String passWord, ActionEvent e) {
         TransportThings tt = new TransportThings();
         User user = new User(userName, passWord, 0);
@@ -86,6 +90,13 @@ public class LoginController implements Initializable {
         }
     }
 
+    /**
+     * 当 {@Button sigh up} 被按下时，调用的方法
+     *
+     * @param userName 用户名
+     * @param passWord 密码
+     * @param e        事件
+     */
     public void signup(String userName, String passWord, ActionEvent e) {
 //        Stage stage = new Stage();
 //        stage.setHeight(300);
@@ -121,14 +132,22 @@ public class LoginController implements Initializable {
         this.main = main;
     }
 
+    /**
+     * 提示窗口
+     *
+     * @param str   显示的内容
+     * @param state 状态字段
+     * @param e     事件
+     */
     private void showAlert(String str, int state, Event e) {
-        Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         //设置对话框标题
-        alert2.setTitle("Info");
+        alert.setTitle("Info");
         //设置内容
-        alert2.setHeaderText(str);
+        alert.setHeaderText("CONFIRMATION".toLowerCase());
+        alert.setContentText(str);
         //显示对话框
-        Optional<ButtonType> result = alert2.showAndWait();
+        Optional<ButtonType> result = alert.showAndWait();
         switch (state) {
             case 0x01:
                 if (result.get() == ButtonType.OK) {
