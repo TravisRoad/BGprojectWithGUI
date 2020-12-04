@@ -22,6 +22,14 @@ public class BoardGameModel implements Serializable {
         this.rate = rate;
     }
 
+    /**
+     * 构造桌游模型
+     *
+     * @param bg_id        桌游id
+     * @param name         桌游名称
+     * @param introduction 桌游介绍
+     * @param rate         桌游评分
+     */
     public BoardGameModel(int bg_id, String name, String introduction, Double rate) {
         this.bg_id = bg_id;
         this.name = name;

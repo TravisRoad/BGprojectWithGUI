@@ -1,11 +1,9 @@
-/**
- * Copyright 2020 bejson.com
- */
 package model.search;
 
 import java.io.Serializable;
 
 /**
+ * 自动生成
  * Auto-generated: 2020-11-29 1:4:13
  *
  * @author bejson.com (i@bejson.com)

@@ -11,7 +11,7 @@ import java.util.Date;
 public class GameLog implements Serializable {
     private ArrayList<String> userNames = null; // 玩家列表
     private String organizer; // 组织者
-    private String theVictoryOne = null;
+    private String theVictoryOne = null;// 赢家
     private Date date = null;
     private int bg_id = 0;
 

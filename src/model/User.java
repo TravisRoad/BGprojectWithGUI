@@ -20,6 +20,12 @@ public class User implements Serializable {
 
     private String nickName;
 
+    /**
+     * 构造用户对象
+     * @param userName 用户名
+     * @param passWord 用户密码
+     * @param userID 用户id
+     */
     public User(String userName, String passWord, long userID) {
         this.userName = userName;
         this.passWord = passWord;
