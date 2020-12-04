@@ -122,7 +122,7 @@ public class LoginController implements Initializable {
             showAlert("Username is empty or too long", 0, null);
             return;
         }
-        main.getClientTrans().writeObj(tt);//TODO:密码需要加密处理
+        main.getClientTrans().writeObj(tt);
         tt = (TransportThings) main.getClientTrans().readObj();
         if (tt.getState() == 0x01) {
             System.out.println("success");

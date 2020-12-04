@@ -120,10 +120,10 @@ public class LogPlayController {
         alert2.setTitle("");
         boolean flag = false;
         if (state == 0x01) {
-            alert2.setHeaderText("记录成功");
+            alert2.setHeaderText("success");
             flag = true;
         } else {
-            alert2.setHeaderText("失败");
+            alert2.setHeaderText("fail");
         }
         Optional<ButtonType> result = alert2.showAndWait();
         if (flag) stage.close();
