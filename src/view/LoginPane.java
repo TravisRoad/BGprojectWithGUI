@@ -66,13 +66,8 @@ public class LoginPane extends VBox {
         boxButtons.setPadding(new Insets(25, 25, 25, 25));
         boxButtons.setSpacing(25);
 
-        // 快速登录
-        Button quick = new Button("quickLogin");
-        quick.setDefaultButton(true);
-        // fixme: 记得删除
-
-        quick.setOnAction(e -> loginController.login("lxy", "123456", e));
-        getChildren().addAll(headerLogin, gpLogin, boxButtons, quick);
+        //quick.setOnAction(e -> loginController.login("lxy", "123456", e));
+        getChildren().addAll(headerLogin, gpLogin, boxButtons);
 
         loginController = new LoginController(buttonLogin, buttonSignup, fieldUser, fieldPass);
         loginController.setMain(main);

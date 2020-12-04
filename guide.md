@@ -22,7 +22,19 @@
 
 * 采用标签页设计，实现
 
+## 基本流程
 
+![](guide.assets/Blank diagram.png)
+
+![](guide.assets/flow.png)
+
+用户对GUI操作，软件将Client端的参数通过Socket传给Server端，Server端通过Dao数据库访问对象与数据库进行交互，最后返回数据，将结果呈献给用户。
+
+view视图中所有显示的内容，对用户输入的响应，相应的全在对应的Controller(控制器)中完成。
+
+![](guide.assets/usecase.png)
+
+实现的功能如上。
 
 ## 软件模块划分
 
@@ -64,21 +76,64 @@ user_comment(<u>user_id,cm_id</u>);
 
 ### controller
 
-* 控制 GUI 上的控件
+#### 类概要
 
-
+| 类                                                           | 说明                   |
+| :----------------------------------------------------------- | :--------------------- |
+| [BoardBrowserControllor](../controller/BoardBrowserControllor.html) | 桌游详情浏览页面控制器 |
+| [LoginController](../controller/LoginController.html)        | 登录控制器             |
+| [LogPlayController](../controller/LogPlayController.html)    | 记录游玩窗口的控制器   |
+| [SearchController](../controller/SearchController.html)      | 搜索入口界面的控制器   |
+| [UserController](../controller/UserController.html)          | 用户信息界面的控制器   |
 
 ### dao（Database Access Object）
 
-* 数据库交互对象
+#### 类概要
+
+| 类                                       | 说明                                         |
+| :--------------------------------------- | :------------------------------------------- |
+| [BoardGameDao](../dao/BoardGameDao.html) | 桌游数据库交互对象                           |
+| [UserDao](../dao/UserDao.html)           | user table database access object 访问User表 |
 
 ### resource
 * 资源目录
+* 包含 *缩略图，描述页面的fxml文件，css文件*
 
 ### model
-* 实体对象
+
+#### 类概要
+
+| 类                                             | 说明         |
+| :--------------------------------------------- | :----------- |
+| [BoardGameModel](../model/BoardGameModel.html) | 桌游详情页面 |
+| [GameLog](../model/GameLog.html)               | 游戏记录对象 |
+| [User](../model/User.html)                     | 用户实体类   |
+
+- 程序包 model.boardgamefetched，其中内容是由json文件通过[json字符串转java实体类工具](https://www.bejson.com/json2javapojo/new)自动生成的
+
+| 类                                                           | 说明                                            |
+| :----------------------------------------------------------- | :---------------------------------------------- |
+| [BoardGameFetched](../../model/boardgamefetched/BoardGameFetched.html) | 自动生成模型 Auto-generated: 2020-11-28 18:54:7 |
+| [Expansions](../../model/boardgamefetched/Expansions.html)   | 自动生成模型 Auto-generated: 2020-11-28 18:54:7 |
+| [HotBoardGame](../../model/boardgamefetched/HotBoardGame.html) | 热榜桌游                                        |
+| [PlayerPollResults](../../model/boardgamefetched/PlayerPollResults.html) | 自动生成 Auto-generated: 2020-11-28 18:54:7     |
+
+- 程序包 model.search， 如上
+
+| 类                                                           | 说明                                       |
+| :----------------------------------------------------------- | :----------------------------------------- |
+| [Boardgame](../../model/search/Boardgame.html)               | 自动生成 Auto-generated: 2020-11-29 1:4:13 |
+| [Boardgames](../../model/search/Boardgames.html)             | 自动生成 Auto-generated: 2020-11-29 1:4:13 |
+| [BoardGameSearched](../../model/search/BoardGameSearched.html) | 自动生成 Auto-generated: 2020-11-29 1:4:13 |
+| [Name](../../model/search/Name.html)                         | 自动生成 Auto-generated: 2020-11-29 1:4:13 |
+
+#### 简要描述
+
+model包里都是一些数据库里需要操作的实体，属性就对应了数据库中相应数据表的相关属性
 
 ### transport
+
+#### 类概要
 
 | 类            | 说明                                                         |
 | :------------ | :-----------------------------------------------------------|
@@ -86,6 +141,7 @@ user_comment(<u>user_id,cm_id</u>);
 | `Server` | `用于服务端的程序，其中使用了线程池以处理并发的操作`</br> `虽然监听的是本地的连接请求，但是可以将程序放在服务器上运行，接收来自互联网的请求` |
 
 #### Server
+
 | 限定符和类型  | 方法和说明                      |
 | :------------| :------------------------------ |
 | `static void` | `main(java.lang.String[] args)` |
@@ -121,4 +177,37 @@ user_comment(<u>user_id,cm_id</u>);
 |WrongPassWdException	|密码错误|
 
 ### view
-* GUI 视图
+
+#### 类概要
+
+| 类                                  | 说明                      |
+| :---------------------------------- | :------------------------ |
+| [Entrance](../view/Entrance.html)   | 程序入口                  |
+| [Home](../view/Home.html)           | 主界面的View对象          |
+| [LoginPane](../view/LoginPane.html) | 登陆界面的结构,继承了VBox |
+| [Main](../view/Main.html)           | 入口（login）             |
+| [MainPage](../view/MainPage.html)   | 已过时                    |
+
+- 程序包 view.myLayout
+
+| 类                                                           | 说明                                                         |
+| :----------------------------------------------------------- | :----------------------------------------------------------- |
+| [BoardBrowserVBox](../../view/myLayout/BoardBrowserVBox.html) | 浏览页面的主要构成对象                                       |
+| [GameEntry](../../view/myLayout/GameEntry.html)              | 瀑布流中的桌游条目                                           |
+| [GameEntryInUser](../../view/myLayout/GameEntryInUser.html)  | user中的桌游条目，继承基础条目类型，不显示评分而是显示日期和玩家。 |
+| [HomeStream](../../view/myLayout/HomeStream.html)            | Home界面布局                                                 |
+| [LogPlay](../../view/myLayout/LogPlay.html)                  | LogPlay界面布局 待优化                                       |
+| [MainTabLayout](../../view/myLayout/MainTabLayout.html)      | 主界面标签页布局                                             |
+| [SearchMain](../../view/myLayout/SearchMain.html)            | Search界面布局                                               |
+| [UserMain](../../view/myLayout/UserMain.html)                | User界面布局                                                 |
+
+- 程序包 view.myStage
+
+| 类                                                           | 说明                                               |
+| :----------------------------------------------------------- | :------------------------------------------------- |
+| [ProgressFrom](../../view/myStage/ProgressFrom.html)         | 已过时                                             |
+| [SearchResultStage](../../view/myStage/SearchResultStage.html) | 展现搜索结果的窗口描述对象，绑定了相关事件的监听器 |
+
+## 多线程设计
+
+多线程设计采用了Java封装好的线程池类，每次客户端和服务端连接时，服务器则会新创建一个线程用来与客户端通信，当线程池满时，客户端的将会排队等候。

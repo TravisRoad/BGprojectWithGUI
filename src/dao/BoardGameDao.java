@@ -53,7 +53,7 @@ public class BoardGameDao {
      * @throws SQLException            SQL错误
      */
     public ArrayList<BoardGameModel> search0(String thingstoSearch) throws NoSearchResultException, SQLException {
-        String sql = "SELECT * FROM boardgame WHERE name like ? limit 10;";
+        String sql = "SELECT * FROM boardgame WHERE name like ?;";
         ArrayList<BoardGameModel> boardGameList = new ArrayList<>();
         try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
             ps.setObject(1, "%" + thingstoSearch + "%");
