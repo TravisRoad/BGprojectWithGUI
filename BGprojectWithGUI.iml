@@ -6,6 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources/5586a850-26da-4eb3-8ecd-0e741cf56e34" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/libraries" />
+      <excludeFolder url="file://$MODULE_DIR$/src/sample" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="module-library">

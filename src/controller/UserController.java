@@ -23,6 +23,8 @@ import java.util.Optional;
 
 /**
  * 用户信息界面的控制器
+ *
+ * @author Ridd
  */
 public class UserController {
     private Main main;
@@ -161,7 +163,8 @@ public class UserController {
 
     /**
      * 修改昵称的alert窗口
-     * @param str 警示信息
+     *
+     * @param str   警示信息
      * @param state 状态码
      * @param stage 主窗体
      */

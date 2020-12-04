@@ -1,8 +1,5 @@
 package util.httpRequest;
 
-import model.search.BoardGameSearched;
-import util.JsonConvert;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,8 +24,13 @@ public class MyGetRequest {
         return getResponds(url);
     }
 
+    /**
+     * get下载数据
+     * @param url 地址
+     * @return 下载的全部内容String
+     */
     public static String getResponds(String url) {
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
         try {
             URL urlForGetRequest = new URL(url);
             String readLine = null;

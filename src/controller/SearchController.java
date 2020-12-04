@@ -19,6 +19,8 @@ import java.util.ResourceBundle;
 
 /**
  * 搜索入口界面的控制器
+ *
+ * @author Ridd
  */
 public class SearchController implements Initializable {
     Main main;

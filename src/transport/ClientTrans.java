@@ -8,6 +8,7 @@ import java.net.Socket;
 
 /**
  * 用于客户端与服务端通信
+ *
  * @author Travis
  */
 public class ClientTrans {
@@ -80,9 +81,7 @@ public class ClientTrans {
         try {
             Object obj = obj_is.readObject();
             return obj;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
