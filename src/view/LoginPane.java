@@ -25,6 +25,7 @@ import java.io.IOException;
  * 登陆界面的结构,继承了VBox
  *
  * @author Travis
+ * @author Ridd重写
  */
 public class LoginPane extends VBox {
     private LoginController loginController;
@@ -58,25 +59,19 @@ public class LoginPane extends VBox {
         Button buttonLogin = new Button("Login");
         buttonSignup.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
         buttonLogin.setFont(Font.font("Calibri", FontWeight.BOLD, 20));
-        //buttonLogin.setMinWidth(buttonSignup.getWidth());
 
         HBox boxButtons = new HBox();
         boxButtons.getChildren().addAll(buttonSignup, buttonLogin);
         boxButtons.setAlignment(Pos.CENTER);
         boxButtons.setPadding(new Insets(25, 25, 25, 25));
         boxButtons.setSpacing(25);
-        /*gpLogin.add(buttonSignup, 0, 2);
-        gpLogin.add(buttonLogin, 1, 2);
-        GridPane.setMargin(buttonLogin, new Insets(0, 1, 0, 50));*/
 
         // 快速登录
         Button quick = new Button("quickLogin");
         quick.setDefaultButton(true);
         // fixme: 记得删除
 
-        quick.setOnAction(e -> {
-            loginController.login("lxy", "123456", e);
-        });
+        quick.setOnAction(e -> loginController.login("lxy", "123456", e));
         getChildren().addAll(headerLogin, gpLogin, boxButtons, quick);
 
         loginController = new LoginController(buttonLogin, buttonSignup, fieldUser, fieldPass);

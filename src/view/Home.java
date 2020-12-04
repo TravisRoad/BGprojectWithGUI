@@ -1,12 +1,11 @@
 package view;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import view.myLayout.MainTabLayout;
 
 /**
- * 主界面的描述对象
+ * 主界面的View对象
  */
 public class Home {
     private Main main;
@@ -20,7 +19,7 @@ public class Home {
         MainTabLayout mainTabLayout = new MainTabLayout(main, primaryStage);
         Scene mainScene = new Scene(mainTabLayout);
 
-        primaryStage.setTitle("boardgame");
+        primaryStage.setTitle("BoardGame Recorder");
         primaryStage.setScene(mainScene);
         primaryStage.setWidth(1400);
         primaryStage.setHeight(900);

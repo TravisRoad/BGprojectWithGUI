@@ -15,6 +15,8 @@ import javafx.scene.text.FontWeight;
 
 /**
  * 瀑布流中的桌游条目
+ *
+ * @author Ridd
  */
 public class GameEntry extends HBox {
     protected String imageURL;

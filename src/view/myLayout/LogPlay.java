@@ -1,6 +1,5 @@
 package view.myLayout;
 
-//import com.browniebytes.javafx.control.DateTimePicker;
 import controller.LogPlayController;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -15,10 +14,13 @@ import java.time.LocalDate;
 
 /**
  * LogPlay界面布局
+ * 待优化
+ *
+ * @author Travis
  */
 public class LogPlay extends VBox {
     private Main main;
-    private LogPlayController logPlayController;
+    private final LogPlayController logPlayController;
 
     public LogPlay(Main main, Stage stage) {
         super(5);
@@ -41,17 +43,13 @@ public class LogPlay extends VBox {
         hBox.getChildren().addAll(label, textField);
 
         playerVBox.getChildren().add(hBox);
-        addPlayer.setOnAction(e -> {
-            logPlayController.addPlayerButtonOnClicked(playerVBox);
-        });
+        addPlayer.setOnAction(e -> logPlayController.addPlayerButtonOnClicked(playerVBox));
 
         Button applyButton = new Button("确认");
         HBox buttonBox = new HBox(10);
         buttonBox.getChildren().addAll(applyButton, addPlayer);
 
-        applyButton.setOnAction(e -> {
-            logPlayController.log();
-        });
+        applyButton.setOnAction(e -> logPlayController.log());
 
         this.getChildren().addAll(datePicker, playerVBox, buttonBox);
     }

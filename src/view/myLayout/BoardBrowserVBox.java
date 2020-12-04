@@ -25,6 +25,7 @@ import view.Main;
 
 /**
  * 浏览页面的主要构成对象
+ * @author 重写Ridd
  */
 public class BoardBrowserVBox extends VBox {
     private BoardBrowserControllor boardBrowserControllor;
@@ -40,6 +41,11 @@ public class BoardBrowserVBox extends VBox {
         build(boardGameFetched);
     }
 
+    /**
+     * 构造界面
+     *
+     * @param boardGameFetched 桌游对象
+     */
     private void build(BoardGameFetched boardGameFetched) {
         setAlignment(Pos.CENTER);
         int rank = boardGameFetched.getRank();
@@ -65,7 +71,7 @@ public class BoardBrowserVBox extends VBox {
         descLabel.setWrapText(true);
         ScrollPane scrollPane = new ScrollPane(descLabel);
         scrollPane.setMaxWidth(1010);
-        mainBox.setPadding(new Insets(50,50,50,50));
+        mainBox.setPadding(new Insets(50, 50, 50, 50));
         mainBox.setSpacing(25);
 
 

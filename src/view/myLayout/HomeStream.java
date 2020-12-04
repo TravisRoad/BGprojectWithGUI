@@ -2,39 +2,35 @@ package view.myLayout;
 
 import controller.SearchController;
 import javafx.geometry.Insets;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import model.BoardGameModel;
-import transport.ClientTrans;
 import util.TransportThings;
 import view.Main;
-import view.myStage.ProgressFrom;
 
 import java.util.ArrayList;
 
-
 /**
  * Home界面布局
+ *
+ * @author Ridd
  */
 public class HomeStream extends VBox {
-    private Main main;
-    private Stage stage;
-    private SearchController searchController = new SearchController();
+    private final Main main;
+    private final SearchController searchController = new SearchController();
 
     public HomeStream(Main main, Stage stage) {
         this.main = main;
-        this.stage = stage;
         searchController.setMain(main);
         setLayout();
     }
 
+    /**
+     * 构造主页瀑布流
+     */
     private void setLayout() {
         setId("MainContainer");//设置为css主容器类
         //基础框架scrollpane
@@ -46,7 +42,7 @@ public class HomeStream extends VBox {
         //页面标题
         Label title = new Label("Play Now");
         title.setId("Title-big");
-        title.setPadding(new Insets(0,0,25,0));
+        title.setPadding(new Insets(0, 0, 25, 0));
         vBox.setPadding(new Insets(40, 50, 100, 75));
         vBox.getChildren().add(title);
 
@@ -61,7 +57,6 @@ public class HomeStream extends VBox {
         VBox vvBox = new VBox();
         for (BoardGameModel boardGameModel : boardGameModels) {
             String url = "file:src/resource/thumbnail/" + boardGameModel.getBg_id() + ".jpg";
-            //String url = "file:src/resource/avatar.png";
             String name = boardGameModel.getName();
             String intro = boardGameModel.getIntroduction();
             Double rating = boardGameModel.getRate();
@@ -73,6 +68,5 @@ public class HomeStream extends VBox {
             vvBox.getChildren().add(hBox);
         }
         vBox.getChildren().add(vvBox);
-        //Button buttonShowMore = new Button("Show More");
     }
 }
