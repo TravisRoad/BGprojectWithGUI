@@ -3,7 +3,6 @@ package dao;
 import model.BoardGameModel;
 import model.User;
 import model.boardgamefetched.BoardGameFetched;
-import model.search.BoardGameSearched;
 import util.Database;
 import model.GameLog;
 import util.JsonConvert;
@@ -17,9 +16,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * 桌游数据库交互对象
+ */
 public class BoardGameDao {
     private Database database;
-    //private BoardGameFetched boardGameFetched;
 
     public BoardGameDao() {
 
@@ -44,6 +45,8 @@ public class BoardGameDao {
     }
 
     /**
+     * 根据字段查询
+     *
      * @param thingstoSearch 查询字段
      * @return 返回查询得到的所有桌游的列表
      * @throws NoSearchResultException 没有结果
@@ -72,7 +75,7 @@ public class BoardGameDao {
     /**
      * 查询top10
      *
-     * @return
+     * @return 返回ArrayList<BoardGameModel>桌游列表
      */
     public ArrayList<BoardGameModel> Browser() throws SQLException, NoSearchResultException {
         String sql = "SELECT * FROM boardgame limit 10";
@@ -100,7 +103,7 @@ public class BoardGameDao {
      * @param gameLog gamelog类
      * @param user    发起者
      * @return true or false
-     * @throws SQLException
+     * @throws SQLException 数据库异常
      */
     public boolean logGame(GameLog gameLog, User user) throws SQLException {
         String sql0 = "INSERT INTO play_history (playdate,bg_id,username) VALUES (?,?,?);";
@@ -178,6 +181,14 @@ public class BoardGameDao {
         return tt;
     }
 
+    /**
+     * 检索与用户一起游玩的用户信息
+     *
+     * @param ph_id 历史记录id
+     * @return 返回ArrayList<String>用户昵称列表
+     * @throws SQLException            数据库异常
+     * @throws NoSearchResultException 没有查询结果异常
+     */
     private ArrayList<String> UsersPlayedwith(int ph_id) throws SQLException, NoSearchResultException {
         String sql = "Select userName from play where ph_id = ?";
         ArrayList<String> userNames = new ArrayList<>();

@@ -2,6 +2,9 @@ package model.boardgamefetched;
 
 import java.io.Serializable;
 
+/**
+ * 热榜桌游
+ */
 public class HotBoardGame implements Serializable {
     private int rank;
     private long gameId;
@@ -9,6 +12,13 @@ public class HotBoardGame implements Serializable {
     private String thumbnail;
     private int yearPublished;
 
+    /**
+     * @param rank          桌游排名
+     * @param gameId        桌游id
+     * @param name          桌游名称
+     * @param thumbnail     缩略图
+     * @param yearPublished 发行年份
+     */
     public HotBoardGame(int rank, long gameId, String name, String thumbnail, int yearPublished) {
         super();
         this.rank = rank;

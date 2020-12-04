@@ -6,7 +6,6 @@ import util.myexception.AccountNotExistException;
 import util.myexception.NoSearchResultException;
 import util.myexception.WrongPassWdException;
 
-import javax.xml.crypto.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ import java.sql.SQLException;
  * 访问User表
  */
 public class UserDao {
-    private Database database;
+    private final Database database;
 
     public UserDao(Database database) {
         this.database = database;
@@ -44,6 +43,14 @@ public class UserDao {
         return ret;
     }
 
+    /**
+     * 修改用户昵称
+     *
+     * @param s       新昵称
+     * @param user_id 用户id
+     * @throws SQLException            数据库异常
+     * @throws NoSearchResultException 没有查询结果异常
+     */
     public void changeNickName(String s, int user_id) throws SQLException, NoSearchResultException {
         String sql = "UPDATE user set nickname = ? where user_id = ?;";
         try (PreparedStatement ps = database.getConn().prepareStatement(sql)) {
@@ -81,8 +88,7 @@ public class UserDao {
                         user = new User(userName, passwd, id);
                         user.setNickName(nickName);
                     }
-                }
-                else{//无对应账户
+                } else {//无对应账户
                     throw new AccountNotExistException();
                 }
             }

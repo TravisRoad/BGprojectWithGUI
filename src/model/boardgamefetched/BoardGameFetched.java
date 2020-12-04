@@ -1,12 +1,10 @@
-/**
- * Copyright 2020 bejson.com
- */
 package model.boardgamefetched;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
+ * 自动生成模型
  * Auto-generated: 2020-11-28 18:54:7
  *
  * @author bejson.com (i@bejson.com)
