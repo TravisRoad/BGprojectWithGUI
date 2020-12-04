@@ -2,6 +2,7 @@ package view.myStage;
 
 import controller.SearchController;
 import dao.BoardGameDao;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -64,8 +65,10 @@ public class SearchResultStage extends Stage {
             });
             vBox.getChildren().add(hBox);
         }
-
+        vBox.setPadding(new Insets(50, 50, 50, 50));
         Scene scene = new Scene(root);
         setScene(scene);
+        setWidth(1440);
+        setHeight(900);
     }
 }
