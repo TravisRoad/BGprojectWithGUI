@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -136,11 +137,16 @@ public class LogPlayController {
     public void addPlayerButtonOnClicked(VBox playerVBox) {
         HBox hBox = new HBox();
 
-        Label label = new Label("玩家");
+        Label label = new Label("Player");
+        label.setId("Title");
         TextField textField = new TextField();
+        textField.setId("fieldPlayer");
+        textField.setPadding(new Insets(10, 0, 0, 0));
+        hBox.setPadding(new Insets(10, 10, 10, 10));
+        hBox.setSpacing(10);
         textFields.add(textField);
 
-        Button removeButton = new Button("移除");
+        Button removeButton = new Button("Remove");
 
         hBox.getChildren().addAll(label, textField, removeButton);
         playerVBox.getChildren().add(hBox);

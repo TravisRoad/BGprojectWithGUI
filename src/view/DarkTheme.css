@@ -71,6 +71,17 @@
     -fx-padding: 1 2 2 6;
 }
 
+#fieldPlayer {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 0.75;
+    -fx-border-color: rgb(230, 230, 230);
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+    -fx-padding: 1 2 2 6;
+}
+
 .text-field:focused {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
