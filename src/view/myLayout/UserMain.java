@@ -45,7 +45,7 @@ public class UserMain extends SplitPane {
         gpBasicInfo.setVgap(25);
 
         //TODO: customize user avatar
-        ImageView imgAvatar = new ImageView("src/resource/avatar.png");
+        ImageView imgAvatar = new ImageView("file:src/resource/avatar.png");
 
         Label labelUsername = new Label(main.getUser().getNickName());
         labelUsername.setAlignment(Pos.CENTER);

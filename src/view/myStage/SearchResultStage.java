@@ -65,7 +65,8 @@ public class SearchResultStage extends Stage {
             vBox.getChildren().add(hBox);
         }
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1440, 900);
         setScene(scene);
+
     }
 }
