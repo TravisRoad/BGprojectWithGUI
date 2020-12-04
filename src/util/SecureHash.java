@@ -29,10 +29,15 @@ public class SecureHash {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        assert sha != null;
         return sha.toString(32);
     }
 
-    public static void main(String args[]) {
+    /**
+     * 测试方法
+     * @param args 参数
+     */
+    public static void main(String[] args) {
         try {
             System.out.println(getResult("LXY"));
             System.out.println(getResult("LXY"));

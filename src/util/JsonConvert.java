@@ -9,7 +9,6 @@ import model.search.BoardGameSearched;
  * 用于装换Json字符串为Java Beans对象
  */
 public class JsonConvert {
-
     static void test() {
         String json = "{\n" +
                 "    \"rank\": 1,\n" +

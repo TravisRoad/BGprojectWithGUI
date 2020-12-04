@@ -13,7 +13,6 @@ public class Database {
     private static final String passwd = "123456";
     private static Connection conn;
 
-
     public Database() {
         connect();
     }
@@ -38,25 +37,21 @@ public class Database {
 
     /**
      * 用于关闭connection
-     *
-     * @return 是否成功关闭
      */
-    public boolean close() {
+    public void close() {
         boolean flag = false;
         try {
             conn.close();
             flag = true;
         } catch (SQLException throwable) {
             throwable.printStackTrace();
-        } finally {
-            return flag;
         }
     }
 
     /**
      * 测试方法
      *
-     * @param args
+     * @param args 启动参数
      */
     public static void main(String[] args) {
         Database d = new Database();

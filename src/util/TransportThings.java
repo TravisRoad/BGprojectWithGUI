@@ -27,7 +27,6 @@ public class TransportThings implements Serializable {
         this.boardGameModels = boardGameModels;
     }
 
-
     private String query = null;
     private String info = null;
     private int state = 0x00;//规定0x00代表查询失败，0x01代表成功
