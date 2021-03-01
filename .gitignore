@@ -170,3 +170,5 @@ hs_err_pid*
 
 # Used by previous versions of JEnv
 .jenv-version
+src/resource/thumbnail.7z
+src/resource/thumbnail/

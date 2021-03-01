@@ -1,0 +1,12 @@
+controller
+dao
+model
+model.boardgamefetched
+model.search
+transport
+util
+util.httpRequest
+util.myexception
+view
+view.myLayout
+view.myStage
